@@ -18,18 +18,19 @@
 % Load Standard Packages:
 %---------------------------------------------------------------------------
 \usepackage[standard-baselineskips]{cmbright}
-\usepackage[ngerman]{babel}                                 % german hyphenation
-\usepackage[ansinew]{inputenc}                              % Windows - load extended character set (ISO 8859-1)
-\usepackage[T1]{fontenc}                                    % hyphenation of words with Ã¤,Ã¶ and Ã¼
-\usepackage{textcomp}                                       % additional symbols
-\usepackage{ae}                                             % better resolution of Type1-Fonts 
-\usepackage{fancyhdr}                                       % simple manipulation of header and footer 
-\usepackage{etoolbox}                                       % color manipulation of header and footer
-\usepackage{graphicx}                                       % integration of images
-\usepackage{float}                                          % floating objects
-\usepackage{caption}                                        % for captions of figureMain documents and tables
-\usepackage{booktabs}                                       % package for nicer tables
-\usepackage{tocvsec2}                                       % provides means of controlling the sectional numbering
+\usepackage[ngerman]{babel}                             % german hyphenation
+%\usepackage[ansinew]{inputenc}                         % Windows - load extended character set (ISO 8859-1)
+\usepackage[latin1]{inputenc}                           % Linux - load extended character set (ISO 8859-1)
+\usepackage[T1]{fontenc}                                % hyphenation of words with äöü
+\usepackage{textcomp}                                   % additional symbols
+\usepackage{ae}                                         % better resolution of Type1-Fonts 
+\usepackage{fancyhdr}                                   % simple manipulation of header and footer 
+\usepackage{etoolbox}                                   % color manipulation of header and footer
+\usepackage{graphicx}                                   % integration of images
+\usepackage{float}                                      % floating objects
+\usepackage{caption}                                    % for captions of figureMain documents and tables
+\usepackage{booktabs}                                   % package for nicer tables
+\usepackage{tocvsec2}                                   % provides means of controlling the sectional numbering
 \usepackage[]{acronym}
 \usepackage[acronym,toc]{glossaries}
 
@@ -98,8 +99,8 @@
 
 % Makeindex Package
 %---------------------------------------------------------------------------
-\usepackage{makeidx}                                % To produce index
-\makeindex                                          % Index-Initialisation
+\usepackage{makeidx}                                    % To produce index
+\makeindex                                              % Index-Initialisation
 %---------------------------------------------------------------------------
 
 % Glossary Package
@@ -109,13 +110,13 @@
 
 % Intro:
 %---------------------------------------------------------------------------
-\begin{document}                                    % Start Document    
-\settocdepth{section}                               % Set depth of toc
+\begin{document}                                        % Start Document    
+\settocdepth{section}                                   % Set depth of toc
 \pagenumbering{roman}                                                       
 %---------------------------------------------------------------------------
 
-\input{vorspann/titel}                              % Titel der Arbeit aus Datei titel.tex lesen
-\input{vorspann/version}                            % Versionsnummer und -datum aus Datei version.tex lesen
+\input{vorspann/titel}                                  % Titel der Arbeit aus Datei titel.tex lesen
+\input{vorspann/version}                                % Versionsnummer und -datum aus Datei version.tex lesen
 
 % Set up header and footer
 %---------------------------------------------------------------------------
@@ -148,8 +149,6 @@
 \setcounter{page}{1}
 \cleardoublepage
 \phantomsection 
-%\addcontentsline{toc}{chapter}{Management Summary}
-%\include{vorspann/management_summary}
 \cleardoubleemptypage
 %---------------------------------------------------------------------------
 
@@ -171,17 +170,6 @@
 \include{kapitel/bedingungen}
 \include{kapitel/freigabe}
 
-
-%---------------------------------------------------------------------------
-
-% Selbständigkeitserklärung
-%---------------------------------------------------------------------------
-%\cleardoublepage
-%\phantomsection 
-%\addcontentsline{toc}{chapter}{Selbständigkeitserklärung}
-%\include{vorspann/selbstaendigkeitserklaerung}
-%---------------------------------------------------------------------------
-
 % Glossary
 %---------------------------------------------------------------------------
 \phantomsection 
@@ -196,36 +184,6 @@
 %\bibliographystyle{IEEEtranS}
 %\bibliography{datenbanken/bibliography}{}
 %\printbibliography 
-%---------------------------------------------------------------------------
-
-% Listings
-%---------------------------------------------------------------------------
-%\cleardoublepage
-%\phantomsection 
-%\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
-%\listoffigures
-%\cleardoublepage
-%\phantomsection 
-%\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
-%\listoftables
-%---------------------------------------------------------------------------
-
-% Index
-%---------------------------------------------------------------------------
-%\cleardoublepage
-%\phantomsection 
-%\addcontentsline{toc}{chapter}{Stichwortverzeichnis}
-%\renewcommand{\indexname}{Stichwortverzeichnis}
-%\printindex
-%---------------------------------------------------------------------------
-
-% Attachment:
-%---------------------------------------------------------------------------
-%\appendix
-%\settocdepth{section}
-%\include{anhang/beispielanhang}
-%\include{anhang/beispielanhangB}
-%\include{anhang/inhaltCDROM}
 %---------------------------------------------------------------------------
 
 %---------------------------------------------------------------------------
