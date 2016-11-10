@@ -79,7 +79,7 @@
     hypertexnames = {true},                                 % no failures "same page(i)"
     bookmarksopen = {true},                                 % opens the bar on the left side
     bookmarksopenlevel = {0},                               % depth of opened bookmarks
-    pdftitle = {Template für Bachelor Thesis},             % PDF-property
+    pdftitle = {Template für Bachelor Thesis},              % PDF-property
     pdfauthor = {brd3},                                     % PDF-property
     pdfsubject = {LaTeX Template},                          % PDF-property
     linkcolor = {linkcolor},                                % Color of Links
@@ -149,7 +149,7 @@
     \fancyfoot[OL,ER]{\footnotesize \titel, Version \versionnumber, \versiondate}   % footer even page left part 
 }
 
-\renewcommand{\chaptermark}[1]{\markboth{\thechapter.  #1}{}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter. #1}{}}
 \renewcommand{\headrulewidth}{0pt}                          % no header stripline
 \renewcommand{\footrulewidth}{0pt}                          % no bottom stripline
 
@@ -159,7 +159,6 @@
 
 % Title Page and Abstract
 %---------------------------------------------------------------------------
-%\include{vorspann/titelseite_ohne_bild}                    % activate for Titelseite ohne Bild
 \include{vorspann/titelseite_mit_bild}                      % activate for Titelseite mit Bild
 \include{vorspann/versionen}
 \cleardoubleemptypage
@@ -181,17 +180,18 @@
 %---------------------------------------------------------------------------
 \pagenumbering{arabic}
 
-\include{kapitel/einleitung}
-\include{kapitel/anleitungen}
-\include{kapitel/satzspiegeltest}
-\include{kapitel/schlussfolgerungen}
+\include{kapitel/Einleitung}
+\include{kapitel/ZephyrOS}
+\include{kapitel/nRF52DK}
+\include{kapitel/DemoApp}
+\include{kapitel/Fazit}
 %---------------------------------------------------------------------------
 
-% SelbständigkeitserklÃ¤rung
+% Selbständigkeitserklärung
 %---------------------------------------------------------------------------
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{SelbstÃ¤ndigkeitserklÃ¤rung}
+\addcontentsline{toc}{chapter}{Selbständigkeitserklärung}
 \include{vorspann/selbstaendigkeitserklaerung}
 %---------------------------------------------------------------------------
 
@@ -240,7 +240,6 @@
 \settocdepth{section}
 \include{anhang/beispielanhang}
 \include{anhang/beispielanhangB}
-\include{anhang/inhaltCDROM}
 %---------------------------------------------------------------------------
 
 %---------------------------------------------------------------------------
