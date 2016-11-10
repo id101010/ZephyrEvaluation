@@ -4,23 +4,17 @@
 
 \section{Übersicht über Zephyr}
 
-Zephyr ist ein Open-Source-Echtzeitbetriebssystem für das Internet der Dinge. Die Architektur basiert auf einer echtzeitfähigen Kombination von 
-Es wird aktuell von der LinuxFoundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative Projects entwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen. [1]
-Ziel ist es ein robustes und sicheres Betriebsystem für das Internet der Dinge zu schaffen. Zephyr ist vollständig Open-Source steht unter der Apache Lizenz Version 2.0. [2] 
-Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen welche den Einsatz von Open-Source-Software scheuen welche unter der GPL (Gnu Public License) stehen. [2] Wird in Produkten Software verwendet welche unter GPL lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter GPL zu veröffentlichen. Dies beinhaltet auch sämltiche Änderungen welche vorgenommen wurden. Bei der Apache-Lizenz ist dies nicht zwingend. [3]
-Momentan unterstützt der Zephyr-Kernel Prozessoren der Architekturen ARC, ARM-v7 aber auch x86. Dadurch ist das System auf populären Plattformen wie dem Arduino 101 Board, dem Arduino Due Board, dem NXP Freedom DK lauffähig und Intel Galileo Gen 2. Zur Kommunikation stehen unter anderem Protokolle Ipv4, Ipv6, Bluetooth 4.0, 6LoWPAN zur verfügung. [4]
+Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem, speziell optimiert für Anwendungen im Internet der Dinge. Die Architektur basiert auf einer echtzeitfähigen Kombination von Nano- und Mikrokernel. Es wird aktuell von der Linux-Foundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative-Projects entwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen.
+Ziel ist es ein robustes und sicheres Betriebssystem für das Internet der Dinge zu schaffen. Zephyr ist vollständig Open-Source steht laut Information des Newsportals Heise.de \cite{HeiseDe} unter der Apache Lizenz Version 2.0. 
+Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Einsatz von Open-Source-Software generell scheuen da diese oft unter der \ac{GPL} stehen. [2] Wird in Produkten Software verwendet welche unter der \ac{GPL} lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter GPL zu veröffentlichen. Dies beinhaltet auch sämtliche Änderungen welche vorgenommen wurden. Bei der Apache-Lizenz ist dies gemäss Definition \cite{ApacheLicense} nicht zwingend.
 
-Sources:
- %https://www.linuxfoundation.org/news-media/announcements/2016/02/linux-foundation-announces-project-build-real-time-operating-system
- %https://www.heise.de/newsticker/meldung/Zephyr-Linux-Foundation-startet-Projekt-fuer-IoT-Betriebssystem-ohne-Linux-3109906.html?wt_mc=rss.ho.beitrag.atom
- %http://www.apache.org/licenses/LICENSE-2.0
- %https://www.zephyrproject.org/doc/board/board.html
+Momentan unterstützt der Zephyr-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARC, ARM-v7 aber auch x86. Dadurch ist das System auf populären Plattformen wie dem Arduino 101 Board, dem Arduino Due Board, dem NXP Freedom DK lauffähig und Intel Galileo Gen 2. Zur Kommunikation stehen unter anderem Protokolle Ipv4, Ipv6, Bluetooth 4.0, LoWPAN zur Verfügung.
 
 \section{Ziele}
 
 Zephyr ist für den Einsatz auf Geräten mit geringem Speicherplatz und feststehender Hardwarekonfiguration gedacht. Darunter fallen unter anderem Steuerungen für Heizungs- und Beleuchtungssysteme aber auch Geräte aus allen Bereichen des täglichen Lebens mit Internet-Anbindung.
 
-Das ZephyrProjekt verfolgt laut [1] folgende Ziele:
+Das ZephyrProjekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} folgende Ziele:
 \begin{itemize}
     \item Kleiner footprint - lauffähig mit minimal 10kB
     \item CPU unabhängige Architektur
@@ -31,8 +25,6 @@ Das ZephyrProjekt verfolgt laut [1] folgende Ziele:
     \item OpenSource Kernel mit Apache v2.0 Lizenz
 \end{itemize}
 
- %http://hackerboards.com/zephyr-a-tiny-open-source-iot-rtos/
-
 \section{Aufbau}
 
 Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll Zephyr  bereits mit nur 10 Kbyte an Speicherplatz lauffähig sein. Das macht Zephyr besonders für Anwendungen auf kleinen Mikrokontrollern attraktiv. Bei einem herkömmlichen Linux-Kernel wäre dies nicht denkbar. Gängige Adaptionen für Smartphone SoCs benötigen laut [1] in der kleinsten Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
@@ -41,6 +33,9 @@ Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit die der Nanokernel für die 
 [1] http://linuxdevices.linuxgizmos.com/my-linux-is-smaller-than-your-linux-a/
 
 \section{Aufsetzen der SDK unter Ubuntu}
+
 \section{Vergleich mit anderen RTOS}
+
 \section{Sicherheitsaspekte}
+
 \section{Portierungsaufwand}

@@ -1,15 +1,25 @@
-%
-%                       Main document Project Zephyr
 % ===========================================================================
-
-% Needed packages according to operating system
+%  ______          _           _     ______           _                
+%  | ___ \        (_)         | |   |___  /          | |               
+%  | |_/ / __ ___  _  ___  ___| |_     / /  ___ _ __ | |__  _   _ _ __ 
+%  |  __/ '__/ _ \| |/ _ \/ __| __|   / /  / _ \ '_ \| '_ \| | | | '__|
+%  | |  | | | (_) | |  __/ (__| |_  ./ /__|  __/ |_) | | | | |_| | |   
+%  \_|  |_|  \___/| |\___|\___|\__| \_____/\___| .__/|_| |_|\__, |_|   
+%                _/ |                          | |           __/ |     
+%               |__/                           |_|          |___/  
 %
-%   Arch Linux                  Ubuntu
-%   texlive-bin                 texlive-core
-%   texlive-core                texlive-fonts-extra
-%   texlive-fontsextra          texlive-latex-extra
-%   texlive-genericextra        texlive-generic-extra
-%   texlive-latexextra          texlive-lang-all
+%                       Main Document Project Zephyr
+% ===========================================================================
+%
+%   Needed ArchLinux Packaes:
+%
+%   texlive-bin
+%   texlive-core
+%   texlive-fontsextra
+%   texlive-bibtexextra
+%   texlive-genericextra
+%   texlive-latexextra
+%   texlive-publishers
 %
 
 %---------------------------------------------------------------------------
@@ -32,16 +42,19 @@
 \usepackage[standard-baselineskips]{cmbright}
 \usepackage[ngerman]{babel}                                 % german hyphenation
 \usepackage[ansinew]{inputenc}                              % Windows - load extended character set (ISO 8859-1)
-\usepackage[T1]{fontenc}                                    % hyphenation of words with Ã¤,Ã¶ and Ã¼
+\usepackage[T1]{fontenc}                                    % hyphenation of words with äöü
 \usepackage{textcomp}                                       % additional symbols
-\usepackage{ae}                                             % better resolution of Type1-Fonts 
-\usepackage{fancyhdr}                                       % simple manipulation of header and footer 
+\usepackage{ae}                                             % better resolution of Type1-Fonts
+\usepackage{fancyhdr}                                       % simple manipulation of header and footer
 \usepackage{etoolbox}                                       % color manipulation of header and footer
 \usepackage{graphicx}                                       % integration of images
 \usepackage{float}                                          % floating objects
 \usepackage{caption}                                        % for captions of figureMain documents and tables
 \usepackage{booktabs}                                       % package for nicer tables
 \usepackage{tocvsec2}                                       % provides means of controlling the sectional numbering
+
+\usepackage[]{acronym}                                      % Glossary
+\usepackage[acronym,toc]{glossaries}
 %---------------------------------------------------------------------------
 
 % Load Math Packages
@@ -58,7 +71,7 @@
 \usepackage[absolute]{textpos}
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
-%---------------------------------------------------------------------------                    
+%---------------------------------------------------------------------------
             
 % Definition of Colors
 %---------------------------------------------------------------------------
@@ -66,7 +79,7 @@
 \definecolor{linkblue}{rgb}{0,0,0.8}                        % Standard
 \definecolor{darkblue}{rgb}{0,0.08,0.45}                    % Dark blue
 \definecolor{bfhgrey}{rgb}{0.41,0.49,0.57}                  % BFH grey
-%\definecolor{linkcolor}{rgb}{0,0,0.8}                      % Blue for the web- and cd-version!
+\definecolor{linkcolor}{rgb}{0,0,0.8}                       % Blue for the web- and cd-version!
 \definecolor{linkcolor}{rgb}{0,0,0}                         % Black for the print-version!
 %---------------------------------------------------------------------------
 
@@ -111,19 +124,7 @@
 
 % Glossary Package
 %---------------------------------------------------------------------------
-% the glossaries package uses makeindex
-% if you use TeXnicCenter do the following steps:
-%  - Goto "Ausgabeprofile definieren" (ctrl + F7)
-%  - Select the profile "LaTeX => PDF"
-%  - Add in register "Nachbearbeitung" a new "Postprozessoren" point named Glossar
-%  - Select makeindex.exe in the field "Anwendung" ( ..\MiKTeX x.x\miktex\bin\makeindex.exe )
-%  - Add this [ -s "%tm.ist" -t "%tm.glg" -o "%tm.gls" "%tm.glo" ] in the field "Argumente"
-%
-% for futher informations go to http://ewus.de/tipp-1029.html
-%---------------------------------------------------------------------------
-\usepackage[nonumberlist]{glossaries}
 \makeglossaries
-\include{datenbanken/glossar}
 %---------------------------------------------------------------------------
 
 % Intro:
@@ -146,7 +147,7 @@
 \fancyhf{}                                                  % clean all fields
 \fancypagestyle{plain}{                                     % new definition of plain style 
     \fancyfoot[OR,EL]{\footnotesize \thepage}               % footer right part --> page number
-    \fancyfoot[OL,ER]{\footnotesize \titel, Version \versionnumber, \versiondate}   % footer even page left part 
+    \fancyfoot[OL,ER]{\footnotesize \titel, Version \versionnumber, \versiondate} % footer even page left part 
 }
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter. #1}{}}
@@ -197,11 +198,10 @@
 
 % Glossary
 %---------------------------------------------------------------------------
-\cleardoublepage
 \phantomsection 
 \addcontentsline{toc}{chapter}{Glossar}
-\renewcommand{\glossaryname}{Glossar}
-\printglossary
+\include{datenbanken/glossar}
+%\printglossary
 %---------------------------------------------------------------------------
 
 % Bibliography
@@ -242,6 +242,5 @@
 \include{anhang/beispielanhangB}
 %---------------------------------------------------------------------------
 
-%---------------------------------------------------------------------------
 \end{document}
 

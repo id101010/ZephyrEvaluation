@@ -1,5 +1,19 @@
 % !TeX encoding = ISO-8859-1
-\newglossaryentry{BibTeX}{name={BibTeX},description={Programm zur Erstellung von Literaturangaben und -verzeichnissen in \TeX- oder \LaTeX-Dokumenten}}
-\newglossaryentry{StwVrz}{name={Stichwortverzeichnis},description={Verzeichnis mit Stichworten aus dem Text}}
+\chapter*{Glossar}
+\label{chap:Glossar}
+
+% \ac{} normal erste verwendung in langform, ansonsten in kurzform
+% \acs{} erzwingt kurzform
+% \acl{} erzwingt langform
+% \acp{} plural form
+
+\begin{acronym}[HTTPS] %[ ] längste Abkürzung für einrücken
+    \acro{API}{Application Programming Interface}
+    \acro{CPU}{Central Processing Unit}
+    \acro{BLE}{Bluetooth Low-Energy}
+    \acro{SoM}{System On Module}
+    \acro{SoC}{System On Chip}
+    \acro{GPL}{GNU General Public License}
+\end{acronym}
 
 
