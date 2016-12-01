@@ -13,19 +13,20 @@ Um die Software auf dem Hostsystem für das nRF52DK kompilieren zu können benötig
 Es gilt darauf zu achten die neueste Version zu verwenden und sich zu notieren welche Version heruntergeladen wurde, da diese später im Makefile angegeben werden muss. Die Software sollte im Verzeichnis /opt installiert werden. Die Binaries sollten mit den nötigen Rechten ausgestattet werden. Weiter empfiehlt es sich symbolische Links zu generieren um die Programme systemweit sichtbar zu machen.
 
 Die Befehle dazu lauten:
-\begin{verbatim}
-	tar -xf gcc-arm-none-eabi-{VERSION}-linux.tar.bz2 /opt/gcc-arm-none-eabi-{VERSION}
-	ln -s /opt/gcc-arm-none-eabi-{VERSION}/bin/* /usr/local/bin/
-\end{verbatim}
+
+\begin{lstlisting}[style=BashInputStyle]
+    tar -xf gcc-arm-none-eabi-linux.tar.bz2 /opt/gcc-arm-none-eabi-tools
+    ln -s /opt/gcc-arm-none-eabi-tools/bin/* /usr/local/bin/
+\end{lstlisting}
 
 Unter ArchLinux lässt sich die Software auch aus den offiziellen Paketquellen installieren, die Befehle dazu lauten:
 
-\begin{verbatim}
-	pacman -S community/arm-none-eabi-binutils
-	pacman -S community/arm-none-eabi-newlib
-	pacman -S community/arm-none-eabi-gcc
-	pacman -S community/arm-none-eabi-gdb
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    pacman -S community/arm-none-eabi-binutils
+    pacman -S community/arm-none-eabi-newlib
+    pacman -S community/arm-none-eabi-gcc
+    pacman -S community/arm-none-eabi-gdb
+\end{lstlisting}
 
 
 \section{Installation der nordic SDK}
@@ -37,8 +38,8 @@ Nordic Semiconductor verfügt über ein Software Archiv von welchem alle benötigte
 Um mit dem nRF52 Entwicklungskit arbeiten zu können benötigen wir folgende Softwarepakete:
 
 \begin{enumerate}
-	\item nRF5 SDK Zip File
-	\item nRF5x-Command-Line-Tools-Linux64
+    \item nRF5 SDK Zip File
+    \item nRF5x-Command-Line-Tools-Linux64
 \end{enumerate}
 
 Im ersten Paket befinden sich alle Files welche zur Entwicklung von Software auf dem nRF52dk notwendig sind. Darunter Makefiles, Linkerskripte und auch Beispielcode.
@@ -49,17 +50,17 @@ Die SDK sowie die Command-Line-Tools sollten auf dem System unter dem Ordner /op
 \clearpage
 
 Die Befehle dazu lauten:
-\begin{verbatim}
-	tar -xf nRF5x-Command-Line-Tools-Linux64.tar /opt/
-	ln -s /opt/nrfjprog/nrfjprog /usr/bin/nrfjprog
-	ln -s /opt/mergehex/mergehex /usr/bin/mergehex
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    tar -xf nRF5x-Command-Line-Tools-Linux64.tar /opt/
+    ln -s /opt/nrfjprog/nrfjprog /usr/bin/nrfjprog
+    ln -s /opt/mergehex/mergehex /usr/bin/mergehex
+\end{lstlisting}
 
 Unter Arch Linux lassen sich die Command Line Tools auch über das Arch User Repository beziehen. Dazu kann man den Pacman Wrapper "yaourt" verwenden:
 
-\begin{verbatim}
-	yaourt -S aur/nrf5x-command-line-tools 
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    yaourt -S aur/nrf5x-command-line-tools 
+\end{lstlisting}
 
 \section{Installation des SEGGER JLink Debuggers}
 
@@ -71,33 +72,33 @@ Das Paket "J-Link Software and Documentation Pack" enthält verschiedene Programm
 
 Die JLink Toolchain sollte auf dem System unter dem Ordner /opt installiert werden und mit den nötigen Berechtigungen versehen werden. Die Programme sollten mittels symbolischen Links in einen Ordner gelinkt werden welcher im Systempfad angegeben ist.
 
-\begin{verbatim}
-	mkdir /opt/SEGGER/JLink
-	tar -xzf JLink_Linux_{VERSION}.tar.gz /opt/SEGGER/JLink
-	ln -s /opt/SEGGER/JLink/JLinkExe /usr/bin/JLinkExe
-	ln -s /opt/SEGGER/JLink/JLinkGDBServer /usr/bin/JLinkGDBServer
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    mkdir /opt/SEGGER/JLink
+    tar -xzf JLink_Linux_{VERSION}.tar.gz /opt/SEGGER/JLink
+    ln -s /opt/SEGGER/JLink/JLinkExe /usr/bin/JLinkExe
+    ln -s /opt/SEGGER/JLink/JLinkGDBServer /usr/bin/JLinkGDBServer
+\end{lstlisting}
 
 SEGGER bietet auch ein Debianpaket an. Dieses kann auf Systemen welche über den Paketmanager DPKG verfügen mittels \verb|dpkg -i JLink_linux.deb| installiert werden. Dadurch entfällt obiger Installationsaufwand.\newline
 
 Unter ArchLinux lässt sich die Software auch aus dem Arch-User-Repository installieren, der Befehl dazu lautet:
-\begin{verbatim}
-	yaourt -S aur/jlink-software-and-documentation
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    yaourt -S aur/jlink-software-and-documentation
+\end{lstlisting}
 
 \section{Verwendung des JLinkGDBServers}
 
-\begin{verbatim}
-	JLinkGDBServer -Device nRF52832_xxAA -If SWD -Speed 4000 -Autoconnect 1
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    JLinkGDBServer -Device nRF52832_xxAA -If SWD -Speed 4000 -Autoconnect 1
+\end{lstlisting}
 
 \section{Verwendung von nrfjprog}
 
-\begin{verbatim}
-	nrfjprog --eraseall -f nrf52
-	nrfjprog --program outdir/nrf52_pca10040/zephyr.hex -f nrf52
-	nrfjprog --reset -f nrf52
-\end{verbatim}
+\begin{lstlisting}[style=BashInputStyle]
+    nrfjprog --eraseall -f nrf52
+    nrfjprog --program outdir/nrf52_pca10040/zephyr.hex -f nrf52
+    nrfjprog --reset -f nrf52
+\end{lstlisting}
 
 \section{Vorteile}
 \section{Technische Beschreibung des Boards}

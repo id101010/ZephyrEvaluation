@@ -52,7 +52,7 @@
 \usepackage{caption}                                        % for captions of figureMain documents and tables
 \usepackage{booktabs}                                       % package for nicer tables
 \usepackage{tocvsec2}                                       % provides means of controlling the sectional numbering
-\usepackage{listings}										% Highlight aaaall the codes!
+\usepackage{listings}                                       % Highlight aaaall the codes!
 
 \usepackage[]{acronym}                                      % Glossary
 \usepackage[acronym,toc]{glossaries}
@@ -73,7 +73,7 @@
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{1mm}
 %---------------------------------------------------------------------------
-            
+
 % Definition of Colors
 %---------------------------------------------------------------------------
 \RequirePackage{color}                                      % Color (not xcolor!)
@@ -82,6 +82,38 @@
 \definecolor{bfhgrey}{rgb}{0.41,0.49,0.57}                  % BFH grey
 \definecolor{linkcolor}{rgb}{0,0,0.8}                       % Blue for the web- and cd-version!
 \definecolor{linkcolor}{rgb}{0,0,0}                         % Black for the print-version!
+\definecolor{codebackground}{RGB}{255, 255, 175}            % Codehighlight background
+%---------------------------------------------------------------------------
+
+% Codehighlightings
+%---------------------------------------------------------------------------
+\lstdefinestyle{BashInputStyle}{
+    language=bash,
+    basicstyle=\small\sffamily,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    backgroundcolor=\color{codebackground},
+    linewidth=0.9\linewidth,
+    xleftmargin=0.05\linewidth
+}
+
+\lstdefinestyle{customc}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    frame=single,
+    xleftmargin=\parindent,
+    language=C,
+    showstringspaces=false,
+    basicstyle=\footnotesize\ttfamily,
+    keywordstyle=\bfseries\color{green!40!black},
+    commentstyle=\itshape\color{purple!40!black},
+    identifierstyle=\color{blue},
+    stringstyle=\color{orange},
+}
 %---------------------------------------------------------------------------
 
 % Hyperref Package (Create links in a pdf)
