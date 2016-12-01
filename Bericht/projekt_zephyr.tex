@@ -77,6 +77,8 @@
 % Definition of Colors
 %---------------------------------------------------------------------------
 \RequirePackage{color}                                      % Color (not xcolor!)
+\definecolor{orange}{RGB}{244, 182, 66}
+\definecolor{purple}{RGB}{188, 66, 244}
 \definecolor{linkblue}{rgb}{0,0,0.8}                        % Standard
 \definecolor{darkblue}{rgb}{0,0.08,0.45}                    % Dark blue
 \definecolor{bfhgrey}{rgb}{0.41,0.49,0.57}                  % BFH grey
@@ -88,29 +90,34 @@
 % Codehighlightings
 %---------------------------------------------------------------------------
 \lstdefinestyle{BashInputStyle}{
-    language=bash,
-    basicstyle=\small\sffamily,
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    frame=single,
     numbers=left,
     numberstyle=\tiny,
-    numbersep=5pt,
-    frame=single,
-    columns=fullflexible,
-    keepspaces=true,
-    backgroundcolor=\color{codebackground},
     linewidth=0.9\linewidth,
-    xleftmargin=0.05\linewidth
+    xleftmargin=0.05\linewidth,
+    language=bash,
+    showstringspaces=false,
+    basicstyle=\small\sffamily,
+    keywordstyle=\bfseries\color{black},
+    backgroundcolor=\color{codebackground},
 }
 
 \lstdefinestyle{customc}{
     belowcaptionskip=1\baselineskip,
     breaklines=true,
     frame=single,
-    xleftmargin=\parindent,
+    numbers=left,
+    numberstyle=\tiny,
+    linewidth=0.9\linewidth,
+    xleftmargin=0.05\linewidth,
     language=C,
     showstringspaces=false,
     basicstyle=\footnotesize\ttfamily,
-    keywordstyle=\bfseries\color{green!40!black},
-    commentstyle=\itshape\color{purple!40!black},
+    keywordstyle=\bfseries\color{green},
+    backgroundcolor=\color{codebackground},
+    commentstyle=\itshape\color{purple},
     identifierstyle=\color{blue},
     stringstyle=\color{orange},
 }

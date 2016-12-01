@@ -4,18 +4,34 @@
 
 \section{TEST}
 
+\begin{lstlisting}[style=customc]
+#include <stdio.h>
+#define N 10
+/* Block
+* comment */
 
-\newcommand*{\Package}[1]{\texttt{#1}}
-\noindent The command:
-\lstinline[style=BashInputStyle]´# apt-get --purge remove rubygems´.
-removes the \Package{rubygems} package.
+int main()
+{
+int i;
+
+// Line comment.
+puts("Hello world!");
+
+for (i = 0; i < N; i++)
+{
+puts("LaTeX is also great for programmers!");
+}
+
+return 0;
+}
+\end{lstlisting}
 
 \bigskip
 \noindent Consider the following command:
 \begin{lstlisting}[style=BashInputStyle]
 # apt-get --purge remove rubygems
 \end{lstlisting}
-This removes the \Package{rubygems} package.
+
 
 
 \section{TEST2}
