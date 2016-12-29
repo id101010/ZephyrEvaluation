@@ -1,14 +1,26 @@
 % !TeX encoding = ISO-8859-1
-\chapter{ZephyrOverview}
+\chapter{Zephyr-Overview}
 \label{chap:overview}
 
 \section{Übersicht über Zephyr}
 
-Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem, speziell optimiert für Anwendungen im Internet der Dinge. Die Architektur basiert auf einer echtzeitfähigen Kombination von Nano- und Mikrokernel. Es wird aktuell von der Linux-Foundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative-Projects entwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen.
+Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem, speziell optimiert für Anwendungen im Internet der Dinge. Dieses etwa für Glühlampen, Heizungsthermostate und andere Alltagsgeräte mit Internet-Anbindung gedachte Open-Source-Betriebssystem.
+
+Die Architektur basiert, nicht wie bei andere IoT-Betreibssystemen auf einen Linux-Kernel, sondern auf einen echtzeitfähigen Kombination von Nano- und Mikrokernel, welche von der Firma Wind River entwickelt worden ist. Es wird aktuell von der Linux-Foundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative-Projects entwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen.
+
 Ziel ist es ein robustes und sicheres Betriebssystem für das Internet der Dinge zu schaffen. Zephyr ist vollständig Open-Source steht laut Information des Newsportals Heise.de \cite{HeiseDe} unter der Apache Lizenz Version 2.0. 
 Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Einsatz von Open-Source-Software generell scheuen da diese oft unter der \ac{GPL} stehen. [2] Wird in Produkten Software verwendet welche unter der \ac{GPL} lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter GPL zu veröffentlichen. Dies beinhaltet auch sämtliche Änderungen welche vorgenommen wurden. Bei der Apache-Lizenz ist dies gemäss Definition \cite{ApacheLicense} nicht zwingend.
 
-Momentan unterstützt der Zephyr-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARC, ARM-v7 aber auch x86. Dadurch ist das System auf populären Plattformen wie dem Arduino 101 Board, dem Arduino Due Board, dem NXP Freedom DK lauffähig und Intel Galileo Gen 2. Zur Kommunikation stehen unter anderem Protokolle Ipv4, Ipv6, Bluetooth 4.0, LoWPAN zur Verfügung.
+\vspace{15mm}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{bilder/zephyr_components.jpg}
+	\caption{Komponente und Übersicht über das Zephyr RTOS}
+	\label{fig:components}
+\end{figure}
+\vspace{10mm}
+
+
 
 \section{Ziele}
 
@@ -29,13 +41,101 @@ Das ZephyrProjekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFou
 
 Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll Zephyr  bereits mit nur 10 Kbyte an Speicherplatz lauffähig sein. Das macht Zephyr besonders für Anwendungen auf kleinen Mikrokontrollern attraktiv. Bei einem herkömmlichen Linux-Kernel wäre dies nicht denkbar. Gängige Adaptionen für Smartphone SoCs benötigen laut [1] in der kleinsten Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
 
-Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit die der Nanokernel für die Abarbeitung einer Aufgabe benötigt ist also deterministisch. Dies unabhängig davon wie stark das System gerade ausgelastet ist. Für alle Aufgaben welche keine Anforderungen an Echtzeit-Verarbeitung stellen verfügt das System über einen Microkernel. 
+
+\vspace{10mm}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{bilder/zephyr_rtos_concept.jpg}
+	\caption{Übersicht über den Nano- und Microkernel des Zephyr-Betriebssytems}
+	\label{fig:components}
+\end{figure}
+\vspace{5mm}
+
+Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit die der Nanokernel für die Abarbeitung einer Aufgabe benötigt ist also deterministisch. Dies bedeutet, dass darunter laufenden Anwendungen sich so sicherstellen, dass eine bestimmte Aufgabe in einer zuvor festgelegten Zeit fertig gestellt wird. Dies unabhängig davon wie stark das System gerade ausgelastet ist. Für alle Aufgaben welche keine Anforderungen an Echtzeit-Verarbeitung stellen verfügt das System über einen Microkernel. 
 [1] http://linuxdevices.linuxgizmos.com/my-linux-is-smaller-than-your-linux-a/
 
-\section{Aufsetzen der SDK unter Ubuntu}
 
-\section{Vergleich mit anderen RTOS}
 
-\section{Sicherheitsaspekte}
+Der ''Zephyr-Kernel'' oder auch ''Schmalspur-Kernel''  soll unter Geräten laufen, die zwischen 8 und 512 KByte Arbeitsspeicher haben. Mit so wenig Speicher laufen aktuelle Versionen des Linux-Kernel gar nicht oder allenfalls sehr eingeschränkt, obwohl sich einige Entwickler des Linux-Kernels seit ein bis zwei Jahren darum bemühen, die Hardware-Anforderungen zu reduzieren. Gängige Adaptionen für Smartphone SoCs benötigen laut [1] in der kleinsten Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
 
-\section{Portierungsaufwand}
+\section{Unterstütztung}
+
+Momentan unterstützt der Zephyr-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARC, ARM-v7 aber auch x86. Dadurch ist das System auf populären Plattformen wie dem Arduino 101 Board, dem Arduino Due Board, dem NXP Freedom DK lauffähig.
+Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+
+\vspace{5mm}
+
+ARC:
+\begin{itemize}
+	\item Arduino 101
+	\item EDesignWare ARC EM Starter Kit
+\end{itemize}
+\vspace{5mm}
+
+ARC:
+\begin{itemize}
+	\item 96B-Carbon
+	\item 96B-Nitrogen
+	\item Arduino Due
+	\item ARM Cortex-M3 Emulation (QEMU)
+	\item Arduino Due
+	\item Hexiwear
+	\item NXP FRDM-K64F
+	\item OLIMEXINO-STM32
+	\item nRF51-PCA10028
+	\item nRF52-PCA10040
+	\item nRF52840-PCA10056
+	\item V2M Beetle
+\end{itemize}
+\vspace{5mm}
+
+x86:
+\begin{itemize}
+	\item Arduino 101
+	\item Quark D2000 CRB
+	\item Galileo Gen1 Gen2
+	\item Minnowboard Max
+	\item X86 Emulation (QEMU)
+\end{itemize}
+
+
+
+
+
+ Zur Kommunikation unterstützt das Zephyr-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ 
+ \vspace{5mm}
+ 
+ \begin{itemize}
+ 	\item IPv4
+ 	\item IPv6
+ 	\item Bluetooth 4.0 
+ 	\item Bluetooth Low Energy
+ 	\item 6LoWPAN 
+	\item IEEE 802.15.4 
+	\item Wi-Fi
+	\item Radios
+ \end{itemize}
+ \vspace{5mm}
+ 
+ Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet. Zephyr kann folgendes unterstützen: 
+
+ 
+  \begin{itemize}
+  	\item UART
+  	\item GPIO
+  	\item SPI 
+  	\item I2C
+  \end{itemize}
+  \vspace{5mm}
+  
+  \section{Aufsetzen der SDK unter Ubuntu}
+  
+  \section{Sicherheitsaspekte}
+  
+  \section{Portierungsaufwand}
+ 
+ 
+
+
+
