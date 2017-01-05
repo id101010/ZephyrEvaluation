@@ -1,0 +1,159 @@
+ % !TeX encoding = ISO-8859-1
+ \chapter{RIOT-Overview}
+ \label{chap:overview}
+ 
+ \section{Übersicht über RIOT}
+ 
+ RIOT ist ein Open Source-Mikrokernel-basiertes Betriebssystem, das auf die Anforderungen von IOT-Geräten und anderen eingebetteten Geräten abgestimmt ist. Diese Anforderungen umfassen einen sehr geringen Speicherbedarf (in der Größenordnung von einigen Kilobytes), eine hohe Energieeffizienz, Echtzeitfähigkeiten, Kommunikationsstapel für sowohl drahtlose als auch drahtgebundene Netzwerke und Unterstützung für eine breite Palette von Niedrigleistungs-Hardware.
+ RIOT stellt einen Mikrokernel, mehrere Netzwerkstapel und Dienstprogramme bereit, die kryptografische Bibliotheken, Datenstrukturen (Blütenfilter, Hash-Tabellen, Prioritäts-Warteschlangen), eine Shell und vieles mehr umfassen. RIOT unterstützt eine breite Palette von Mikrocontroller-Architekturen, Radiotreibern, Sensoren und Konfigurationen für ganze Plattformen, z.B. Atmel SAM R21 Xplained Pro, Zolertia Z1, STM32 Discovery Boards etc. (siehe Liste der unterstützten Hardware) Über alle unterstützten Hardware (32-Bit-, 16-Bit- und 8-Bit-Plattformen) RIOT bietet eine konsistente API und ermöglicht ANSI C und C ++ Anwendungsprogrammierung, mit Multithreading, IPC, System-Timer, Mutexes ect.
+ 
+ Es ist unter der LGPL lizenziert und wird von der Freien Universität Berlin, dem Institut national de recherche en informatique et en automatique (INRIA) und der Hochschule für Angewandte Wissenschaften Hamburg entwickelt. Es ist nicht zu verwechseln mit der Datenarchitektur RIoT (für englisch: "Robust Internet of Things", zu deutsch: "robustes Internet der Dinge" des Unternehmens Microsoft.[1])
+ 
+ \vspace{5mm}
+ \section{Ziele}
+ Das Vorgängerprojekt von RIOT hieß Feuerware und war als Betriebssystem für drahtlose Sensornetzwerke gedacht. Entwickelt wurde es im Rahmen des FeuerWhere Projekts, das Feuerwehrmänner im Einsatz überwachen sollte. 2008 wurde an der Freien Universität Berlin mit der Entwicklung begonnen. Im Jahr 2010 kam es zu einer Abspaltung (Fork) von Feuerware und das Programm wurde in RIOT umbenannt. Damit einhergehend wurde IETF-Protokolle wie etwa 6LoWPAN, RPL und TCP implementiert um es für einen Einsatz im Internet anzupassen. 2013 erfolgte die Umbenennung in RIOT. 
+  
+  \vspace{10mm}
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=1.0\linewidth]{bilder/RIOT.png}
+  	\caption{Übersicht über das RIOT}
+  	\label{fig:components}
+  \end{figure} 
+  \vspace{15mm} 
+   
+ RIOT-Programme können in C und C++ geschrieben werden. Es ist im Gegensatz zu anderen kleinen Betriebssystemen wie TinyOS echtes Multithreading verfügbar. Für Linux und MacOS existieren native Portierungen, so dass Anwendungen auf dem Computer geschrieben und dann schnell auf echte Hardware portiert werden können, was das Debugging erleichtern soll. Dabei werden Standardwerkzeuge wie GNU Compiler Collection (GCC), GNU Debugger und valgrind benutzt.[3] Aufgrund der Herkunft als Betriebssystem für Sensornetzwerke bei der Feuerwehr ist RIOT echtzeitfähig. Teile des POSIX-Standards sind implementiert.
+ Der Quellcode liegt auf GitHub und wird von einer freien Entwickler-Community mitentwickelt.
+ 
+ \vspace{5mm}
+ \section{Aufbau}
+ 
+ Dieser Abschnitt führt Sie durch die Struktur von RIOT. Sobald Sie diese Struktur verstehen, verstehen sie den RIOT-Code-Basis.
+ 
+ \vspace{5mm} 
+ \begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\linewidth]{bilder/RIOT.jpg}
+  \caption{Struktur von RIOT}
+  \label{fig:components}
+ \end{figure}
+ \vspace{10mm}
+
+ 
+ Die Codebasis von RIOT ist in fünf Gruppen eingeteilt.
+  
+ \vspace{5mm}
+ \begin{itemize}
+   \item Der Kernel (Core)
+   \item Plattformspezifischer Code (CPU)
+   \item Gerätetreiber (Drivers)
+   \item Bibliotheken und Netzwerk-Code (sys; pkg)
+ \end{itemize}
+ \vspace{5mm}
+  
+
+  
+  Darüber hinaus enthält RIOT eine Sammlung von Skripten für verschiedene Aufgaben, sowie eine vordefinierte Umgebung für die Erstellung dieser Dokumentation. Die Strukturgruppen werden auf die Verzeichnisstruktur von RIOT projiziert, wobei jede dieser Gruppen in einem oder zwei Verzeichnissen im Haupt-RIOT-Verzeichnis liegt. Die folgende Liste enthält eine detaillierte Beschreibung der einzelnen Verzeichnisse des RIOT-Verzeichnisses:
+  
+  
+  \vspace{5mm}
+  
+  Core:
+  
+  Dieses Verzeichnis enthält den eigentlichen Kernel. Der Kernel besteht aus dem Scheduler, der Interprozess-Kommunikation (Messaging), dem Threading, der Threadsynchronisation und den unterstützenden Datenstrukturen und Typdefinitionen.
+  
+  \vspace{5mm}
+  
+  Board:
+  
+  Der plattformabhängige Code ist in zwei logische Elemente CPU und Board unterteilt. Eine Board hat genau eine CPU, während eine CPU Teil von n Boards sein kann. Der CPU-Teil enthält alle generischen, CPU-spezifischen Code.
+  
+  Der Board-Teil enthält die spezifische Konfiguration für die darin enthaltene CPU. Diese Konfiguration umfasst hauptsächlich die Peripheriekonfiguration und Pin-Mapping, die Konfiguration von On-Board-Geräten und die Taktkonfiguration der CPU. Zusätzlich zu den Quell- und Header-Dateien, die für jedes Board benötigt werden, kann dieses Verzeichnis zusätzlich einige Skript- und Konfigurationsdateien enthalten, die für die Anbindung an die Boards benötigt werden. 
+  
+  \vspace{5mm}
+  
+  CPU:
+  
+  Für jede unterstützte CPU enthält dieses Verzeichnis ein Unterverzeichnis mit dem Namen der CPU. Diese Verzeichnisse enthalten dann alle CPU-spezifischen Konfigurationen, wie Implementierungen des Energiemanagements (LPM), Interrupt-Handler und Vektoren, Startupcode und Taktinitialisierungscode. Für die meisten CPUs finden Sie auch die Linkerskripte im Unterverzeichnis.
+  
+  Im Periph-Unterverzeichnis jeder CPU finden Sie die Implementierungen der Peripherie-Treiber wie SPI, UART, GPIO, etc. Viele CPUs teilen eine bestimmte Code, z.B. alle ARM Cortex-M-basierten CPUs verwenden denselben Code für den Taskwechsel und den Interrupthandler. Dieser freigegebene Code hat einen eigenes Verzeichnisse.
+  
+  \vspace{5mm}
+  
+  Drivers:
+  
+  Dieses Verzeichnis enthält die Treiber für externe Geräte wie Netzwerkschnittstellen, Sensoren und Aktoren. Jeder Gerätetreiber wird in ein eigenes Unterverzeichnis mit dem Namen des Geräts eingefügt.
+  
+  Alle Gerätetreiber des RIOT basieren auf der peripheren Treiber-API z.B. SPI, GPIO und anderen RIOT-Modulen wie dem xtimer. Auf diese Weise sind die Treiber völlig Plattform unabhängig.
+  
+  \vspace{5mm}
+  
+  Sys /net:
+  
+  RIOT folgt dem Mikrokern-Design-Paradigma, wo alles ein Modul sein soll. Alle diese Module, die nicht Teil der Hardware-Abstraktion oder Gerätetreiber sind, können in diesem Verzeichnis gefunden werden. Die Bibliotheken umfassen Datenstrukturen, Kryptobibliotheken, hight-level APIs und Speicherverwaltung. 
+
+  Das Unterverzeichnis sys / net muss explizit erwähnt werden, da hier der gesamte Netzwerkcode im RIOT liegt. Hier finden Sie die Netzwerk-Stack-Implementierungen z.B. den GNRC-Stack.
+  
+  \vspace{5mm}
+  
+  Pkg:
+  
+  RIOT unterstützt mehrere externe Bibliotheken z.B. OpenWSN, Microcoap. Die exteren Bibliotheken werden als benutzerdefinierte Makefiles ausgeliefert. Die Bibliothek lädt optional eine Anzahl von Patches herunter, damit RIOT funktioniert. Diese Makefiles und Patches finden Sie im pkg-Verzeichnis.
+  
+ \vspace{25mm}
+ \section{Unterstütztung}
+ 
+  Momentan unterstützt der RIOT-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+  
+  \vspace{5mm}
+  
+  \begin{itemize}
+  	\item Arduino
+  	\item ARM architecture
+  	\item Atmel
+  	\item Freescale
+	\item IoT-LAB
+  	\item PIC microcontroller
+	\item MSB
+	\item Nordic Semiconductor
+	\item Nucleo
+  	\item NXP
+  	\item STMicroelectronics
+  	\item Texas Instruments
+
+  \end{itemize}
+  
+  \vspace{5mm}
+  
+  Zur Kommunikation unterstützt das RIOT-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+  
+  \vspace{5mm}
+  
+  \begin{itemize}
+
+  	\item Bluetooth 4.0 
+  	\item 6LoWPAN 
+  	\item CoAP / CSMA / CA
+   	\item IPv4 / IPv6
+   	\item UDP / UHCP
+   	\item NTP / UNTP
+  	\item IEEE 802.15.4 
+  	\item Radios
+  	\item Wi-Fi
+  \end{itemize}
+  \vspace{5mm}
+  
+  Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet.RIOT kann folgendes unterstützen: 
+  
+  
+  \begin{itemize}
+  	\item ADC
+  	\item UART
+  	\item GPIO
+  	\item SPI 
+  	\item Ethrnet
+  	\item Flash / RAM
+  \end{itemize}
+  \vspace{5mm}
+
+

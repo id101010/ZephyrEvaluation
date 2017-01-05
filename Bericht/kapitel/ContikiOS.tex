@@ -1,0 +1,147 @@
+ % !TeX encoding = ISO-8859-1
+ \chapter{Contiki-Overview}
+ \label{chap:overview}
+ 
+ \section{Übersicht über Contiki}
+ 
+  Contiki ist ein Open-Source-Betriebssystem für das Internet der Dinge. Contiki verbindet winzige Low-Cost-, Low-Power-Mikrocontroller mit dem Internet. Contiki ist eine leistungsstarke Toolbox für den Aufbau komplexer drahtloser Systeme. Die Basis von Contiki und die meisten seiner Kernfunktionen, wie der Kernel, die meisten Bibliotheken, der uIP-Stack und der Rime-Stack wurdne von Adam Dunkels entwickelt.
+  
+  Contiki bietet einen einfachen ereignisgesteuerten Betriebssystemkern mit sogenannten Protothreads, optionalem präemptiven Multiprogramming, Interprozesskommunikation via Messagepassing durch Events, eine dynamische Prozessstruktur mit Unterstützung für das Laden von Programmen, nativen TCP/IP-Support über den uIP TCP/IP-Stack und eine grafische Benutzerschnittstelle, welche direkt auf einem Bildschirm oder als virtuelle Anzeige über Telnet oder VNC genutzt werden kann. Der Speicherbedraft beträgt nur wenige Kilobyte und kann für extrem eingeschränkte Systeme bei Bedarf bis auf einige dutzend Bytes reduziert werden. Inzwischen unterstützt Contiki auch IPv6 (uIPv6).
+  An Anwendungsprogrammen bietet das System einen Webbrowser, einen Web-Server, einen Telnet-Server und vieles mehr.
+  
+  \vspace{5mm}
+    
+  \begin{figure}[h]
+   \centering
+   \includegraphics[width=1.0\linewidth]{bilder/Contiki.jpg}
+   \caption{Übersicht über das Contiki OS}
+   \label{fig:components}
+  \end{figure}
+  \vspace{10mm}
+  
+  Wegen seiner Portabilität wurde und wird dieses System an viele Computer angepasst, wie Atari 8-bit-Rechner oder Apple II. Eine der am aktivsten entwickelten Portierungen ist die auf den C64, die sogar eine ebenfalls von Adam Dunkels entwickelte Ethernetanbindung unterstützt. PCs können Contiki ausführen und es gibt sogar eine Portierung für kleinere Spielekonsolen wie dem Game Boy.
+  Daneben findet die Software Einsatz in der Middleware und den Sensoren des RUNES Projekts, Reconfigurable Ubiquitous Networked Embedded Systems.
+ 
+ 
+  Der Contiki-Quellcode wird unter einer 3-Klausel BSD-Lizenz veröffentlicht. Unter dieser Lizenz kann Contiki frei in kommerziellen und nicht-kommerziellen Systemen verwendet werden, solange das Copyright-Header in den Quellcodedateien beibehalten wird.
+  Das Copyright für den Contiki-Quellcode liegt im Besitz der Personen oder Organisationen, die es zu Contiki beigetragen haben, aber jeder hat es unter denselben Bedingungen der BSD-Lizenzbestimmungen mitgeteilt.
+  
+ 
+ \vspace{5mm}
+ \section{Ziele}
+ \vspace{5mm}
+ 
+  Contiki entstand aus dem Wunsch von Adam Dunkels, unerwartete Dinge mit dem Internet zu verbinden. 2001 wurde der Open-Source-UIP-Stack als kleinerer Cousin zu lwIP entwickelt und verbreitete sich rasch über die Embedded World. Aber uIP war nicht nur in zahlreichen tief eingebetteten Systemen, sondern auch im Internet der Dinge verwendet. 2003 folgte Contiki.
+  Im Jahr 2004 wurde das Konzept der Protothreads, das nun die Grundlage für die Prozesse von Contiki bildet, in Contiki eingeführt. Frühe Versionen von Cooja und dem Rime-Stack wurden 2007 mit Contiki 2.0 hinzugefügt. Power-Profiling wurde 2007 entwickelt. Instant Contiki und das Coffee-Dateisystem wurden Anfang 2008 eingeführt. Später führte Cisco den vollständig zertifizierten IPv6-Stack zu Contiki ein.
+  2009 und 2010 wurden viele neue Plattformen zu Contiki hinzugefügt und neue Low-Power-Mechanismen entwickelt. 2011 wurden zwei wichtige Mechanismen hinzugefügt: ContikiRPL, für IPv6-Routing und ContikiMAC für schläfrige Router.
+  Im Jahr 2012 wurde Thingsquare gegründet, um Contiki in die Cloud zu bringen.
+  
+ \vspace{5mm}
+  
+ \section{Aufbau}
+ \vspace{5mm}
+ 
+ Contiki bietet leistungsstarke Low-Power-Internet-Kommunikation. Contiki unterstützt vollständig Standard IPv6 und IPv4, zusammen mit den jüngsten Low-Power-Wireless-Standards: 6lowpan, RPL, CoAP. Mit Contiki's ContikiMAC und schläfrigen Routern können sogar drahtlose Router batteriebetrieben werden.
+
+ 
+  \vspace{5mm}
+ 
+ Memory Allocation:
+ 
+ Contiki ist für kleine Systeme mit nur wenigen Kilobyte Speicherplatz ausgelegt. Contiki ist daher hochspeicherfähig und stellt einen Satz von Mechanismen für die Speicherzuteilung bereit: Speicherblockzuteilung Membran, einen verwalteten Speicherzuweiser mmem sowie den Standard-C-Speicherzuweiser malloc.
+ 
+  \vspace{5mm}
+ 
+ Power Awareness:
+ 
+ Contiki ist für den Betrieb in extrem energiesparenden Systemen ausgelegt: Systeme, die möglicherweise Jahre an einem Paar AA-Batterien betrieben werden müssen. Um die Entwicklung von energiesparenden Systemen zu unterstützen, bietet Contiki Mechanismen zur Schätzung des Energieverbrauchs des Systems und zum Verständnis, wo die Energie verbraucht wurde.
+ 
+  \vspace{5mm}
+ 
+ 6lowpan, RPL, CoAP:
+ 
+ Contiki unterstützt die kürzlich standardisierten IETF-Protokolle für Low-Power IPv6-Netzwerke, einschließlich der 6lowpan-Adaptionsschicht, des RPL-IPv6-Multi-Hop-Routingprotokolls und des CoAP RESTful-Anwendungsschichtprotokolls.
+ 
+  \vspace{20mm}
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=0.7\linewidth]{bilder/Contiki.png}
+  	\caption{Struktur des Contiki OS}
+  	\label{fig:components}
+  \end{figure}
+  \vspace{10mm}
+ 
+ Dynamic Module Loading:
+ 
+ Contiki unterstützt dynamisches Laden und Verknüpfen von Modulen zur Laufzeit. Dies ist nützlich bei Anwendungen, bei denen das Verhalten nach der Implementierung geändert werden soll. Der Contiki-Modul-Loader kann Standard-ELF-Dateien laden, verlagern und verknüpfen, die wahlweise von den Debugging-Symbolen entfernt werden können, um deren Größe beizubehalten.
+ 
+  \vspace{5mm}
+ 
+ Memory Footprint:
+ 
+ Contiki ist entworfen, um in kleinen Mengen des Gedächtnisses laufen zu lassen. Ein typisches System mit voller IPv6-Vernetzung mit schläfrigen Routern und RPL-Routing benötigt weniger als 10 k RAM und 30 k ROM.
+ 
+ \vspace{50mm}
+
+ \section{Unterstütztung}
+
+ Momentan unterstützt der Contiki-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ 
+ \vspace{5mm}
+ 
+ \begin{itemize}
+ 	\item TI CC2538
+ 	\item nRF52832
+ 	\item RL78
+ 	\item Microchip pic32mx795f512l
+ 	\item TI CC2538
+ 	\item TI MSP430
+ 	\item Atmel AVR
+ 	\item pic32mx795f512l
+
+ \end{itemize}
+ 
+ \vspace{5mm}
+ 
+ Zur Kommunikation unterstützt das Contiki-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ 
+ \vspace{5mm}
+ 
+ \begin{itemize}
+ 	\item IPv4
+ 	\item IPv6
+ 	\item Bluetooth 4.0 
+ 	\item 6LoWPAN 
+ 	\item RPL
+ 	\item CoAP
+ 	\item UDP
+ 	\item TCP
+ 	\item HTTP
+ 	\item IEEE 802.15.4 
+ 	\item Wi-Fi
+ \end{itemize}
+ \vspace{5mm}
+ 
+ Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet. Contiki kann folgendes unterstützen: 
+ 
+ 
+ \begin{itemize}
+ 	\item UART
+ 	\item GPIO
+ 	\item SPI 
+ 	\item I2C
+ \end{itemize}
+ \vspace{5mm}
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 

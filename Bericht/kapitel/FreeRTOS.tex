@@ -1,0 +1,144 @@
+ % !TeX encoding = ISO-8859-1
+ \chapter{FreeRTOS-Overview}
+ \label{chap:overview}
+ 
+ \section{Übersicht über FreeRTOS}
+ 
+ FreeRTOS ist laut Beschreibung der Real Time Enginners Ltd \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem. FreeRTOS wurde professionell entwickelt und wird gewartet durch die Firma Real Time Enginners Ltd. Sie arbeiten seit über 12 Jahren in enger Partnerschaft mit weltweit führenden Chip-Herstellern zusammmen um ihren Kunden ein völlig freie Qualitätssoftware zur Verfügung zu stellen. Mittels hohem C Quellcodes Standart wurde das robuste des Echtzeitbetriebssystem zum Marktführer unter den RTOS und unterstütz über 35 Architekturen.
+ 
+ \vspace{5mm}
+ 
+ FreeRTOS ist sehr streng verwaltet, nicht nur in Software-Coding-Standards und Look-and-Feel, sondern auch in der Umsetzung. Beispielsweise:
+ 
+  \begin{itemize}
+  	\item  FreeRTOS führt nie einen nicht-deterministischen Vorgang aus, wie etwa das Verfolgen einer verknüpften Liste, und zwar innerhalb eines kritischen Abschnitts oder Interrupts.
+  	\item Wir sind besonders stolz auf die effiziente Software-Timerimplementierung, die keine CPU-Zeit in Anspruch nimmt, es sei denn, ein Timer muss tatsächlich gewartet werden. Software-Timer enthalten keine Variablen, die bis auf Null gezählt werden müssen.
+  	\item Ebenso benötigen Listen von blockierten (angehängten) Tasks keine zeitraubende periodische Wartung.
+  	\item Direkt zu Task-Benachrichtigungen ermöglichen eine schnelle Task-Signalisierung mit praktisch keinem RAM-Overhead und können in der Mehrzahl der Inter-Task- und Interrupt-Task-Signaling-Szenarien verwendet werden.
+  	\item Das FreeRTOS-Warteschlangen-Nutzungsmodell schafft es, Einfachheit mit Flexibilität (in einer winzigen Codegröße) zu kombinieren - Attribute, die sich normalerweise gegenseitig ausschließen.
+  \end{itemize}
+ 
+  \vspace{10mm}
+  
+  \begin{figure}[h]
+  	\centering
+  	\includegraphics[width=0.7\linewidth]{bilder/FreeRTOS_Context.jpg}
+  	\caption{Übersicht über das FreeRTOS}
+  	\label{fig:components}
+  \end{figure}
+  \vspace{10mm}
+ 
+Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnahme verteilt. Die Einschränkung verbietet das Benchmarking, während die Ausnahme erlaubt, dass der proprietäre Code der Benutzer eine geschlossene Quelle bleibt, während der Kernel selbst als Open Source beibehalten wird, wodurch die Verwendung von FreeRTOS in proprietären Anwendungen erleichtert wird. FreeRTOS wurde schon im Weltraum eingesetzt.
+ 
+ \vspace{5mm}
+ \section{Ziele}
+ 
+ Die ursprüngliche Aufgabe des FreeRTOS-Projekts war es, eine kostenlose RTOS-Lösung bereitzustellen, die einfach zu bedienen war. Das heisst, einfach zu erstellen und zu implementieren, auf einem Windows- oder Linux Computer, ohne herauszufinden, welche Quelldateien erforderlich sind und welche Pfade erforderlich sind, oder wie die Echtzeit-Debugging-Umgebung konfiguriert wird. Dies wurde durch die Bereitstellung von vorkonfigurierten Beispielprojekten für jeden offiziell unterstützten Board erreicht.
+ 
+ FreeRTOS ist ein skalierbarer Echtzeitkern, der speziell für kleine Embedded-Systeme entwickelt wurde. Zu den Highlights gehören:
+ 
+ \vspace{5mm}
+ 
+ \begin{itemize}
+ 	\item Freier RTOS-Scheduler - präventive, kooperative und hybride Konfigurationsoptionen mit optionalem Time Slicing
+ 	\item CPU unabhängige Architektur
+ 	\item SafeRTOS-Derivatprodukt soll ein hohes Maß an Vertrauen in die Codeintegrität
+ 	\item Enthält einen tickless-Modus für Anwendungen mit geringer Leistung
+ 	\item Unterstützen von vielen unterschiedlichen Boards und Kommunikationsprotokolle
+ 	\item RTOS-Objekte (Tasks, Warteschlangen, Semaphoren, Software-Timer, Mutexes und Ereignisgruppen) können entweder mit dynamisch oder statisch zugewiesenem RAM erstellt werden
+ 	\item Unterstützt sowohl Echtzeitaufgaben als auch Co-Routinen.
+ 	\item Mutexes mit Prioritätsvererbung
+ 	\item Effiziente Software-Timer
+ 	\item Leistungsstarke Ablaufverfolgungsfunktionalität
+	\item FreeRTOS-MPU unterstützt die ARM Cortex-M3 Memory Protection Unit (MPU)
+ \end{itemize}
+ 
+  \vspace{50mm}
+  
+  
+ \section{Aufbau}
+ 
+ Implementierung FreeRTOS ist so konzipiert, dass es klein und einfach ist. Der Kernel selbst besteht aus nur drei C-Dateien. Um den Code lesbar, einfach zu portieren und wartbar zu machen, ist er meistens in C geschrieben, aber es gibt, wenn nötig, einige Montagefunktionen (meistens in architekturspezifischen Schedulerroutinen). FreeRTOS bietet Methoden für mehrere Threads oder Aufgaben, Mutexes, Semaphoren und Software-Timer. Ein Tick-less-Modus ist für Anwendungen mit geringer Leistung vorgesehen. Thread-Prioritäten werden unterstützt. Darüber hinaus gibt es vier Schemata der Speicherzuweisung:
+ 
+ \vspace{5mm}
+   \begin{itemize}
+   	\item Nur Zuweisung
+   	\item Zuweisen und kostenlos mit einem sehr einfachen, schnellen, Algorithmus
+   	\item Ein komplexer, aber schnell zuweisbarer und freier Algorithmus mit Speicherkoaleszenz 
+   	\item  Und C-Bibliothek zuzuordnen und kostenlos mit einigen gegenseitigen Ausschluss Schutz
+   \end{itemize}
+   \vspace{5mm}
+   
+
+ Es gibt keine der erweiterten Funktionen in der Regel in Betriebssystemen wie Linux oder Microsoft Windows, wie Gerätetreiber, erweiterte Speicherverwaltung, Benutzerkonten und Vernetzung gefunden. Der Schwerpunkt liegt auf Kompaktheit und Geschwindigkeit der Ausführung:
+ 
+   \vspace{5mm}
+   \begin{itemize}
+   	\item Sehr geringer Speicherbedarf, geringer Overhead und sehr schnelle Ausführung
+   	\item Tick-less Option für Low-Power-Anwendungen
+   	\item Gleichermaßen gut für Hobbyisten, die neu für Betriebssysteme sind und professionelle Entwickler, die an kommerziellen Produkten arbeiten
+   	\item   Der Scheduler kann sowohl für den präventiven als auch für den kooperativen Betrieb konfiguriert werden
+   	\item Coroutine Unterstützung (Coroutine in FreeRTOS ist eine sehr einfache und leichte Aufgabe, die sehr begrenzte Nutzung von Stack hat)
+   \end{itemize}
+   \vspace{5mm}
+ 
+ FreeRTOS kann als 'Thread-Bibliothek' und nicht als 'Betriebssystem' gedacht werden, obwohl Kommandozeilen-Interface und POSIX-ähnliche I / O Abstraktions-Add-ons zur Verfügung stehen. FreeRTOS implementiert mehrere Threads, indem das Host-Programm eine Thread-Tick-Methode in regelmäßigen kurzen Abständen aufrufen. Die Thread-Tick-Methode wechselt Tasks abhängig von Priorität und einem Round-Robin-Scheduling-Schema. Das übliche Intervall beträgt 1/1000 einer Sekunde bis 1/100 Sekunde über eine Unterbrechung von einem Hardware-Zeitgeber, aber dieses Intervall wird häufig geändert, um es einer bestimmten Anwendung anzupassen.
+ 
+ Der Download enthält vorbereitete Konfigurationen und Demonstrationen für jeden Board und Compiler, was ein schnelles Anwendungsdesign ermöglicht. 
+ 
+ \vspace{30mm}
+ 
+ \section{Unterstütztung}
+ 
+ Momentan unterstützt der FreeRTOS-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ 
+ \vspace{5mm}
+ 
+ \begin{itemize}
+ 	\item Altera Nios II
+ 	\item ARM architecture
+ 	\item Atmel
+ 	\item Cortus
+ 	\item Cypress
+ 	\item Energy Micro
+ 	\item Fujitsu
+ 	\item Freescale
+ 	\item IBM
+ 	\item Infineon
+ 	\item Intel
+ 	\item PIC microcontroller
+ 	\item NXP
+ 	\item STMicroelectronics
+ 	\item Texas Instruments
+ 	\item Xilinx
+ \end{itemize}
+ 
+ \vspace{5mm}
+ 
+  Zur Kommunikation unterstützt das FreeRTOS-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+  
+  \vspace{5mm}
+  
+  \begin{itemize}
+  	\item Bluetooth 4.0 
+  	\item TCP
+    \item HTTP
+  	\item 6LoWPAN 
+  	\item IPv4 / IPv6
+  	\item Wi-Fi
+  \end{itemize}
+  \vspace{5mm}
+  
+  Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet. FreeRTOS kann folgendes unterstützen: 
+  
+  
+  \begin{itemize}
+  	\item CAN
+  	\item GPIO
+  	\item UART 
+  	\item I2C
+  	\item SPI
+  \end{itemize}
+  \vspace{5mm}
+
+ 
