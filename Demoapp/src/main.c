@@ -18,17 +18,20 @@
 #include <misc/printk.h>
 #include <board.h>
 #include <device.h>
+#include <sensor.h>
 #include <gpio.h>
 
 #define DEBUG
-#define PORT        "GPIO_0"
+#define PORT            "GPIO_0"
+#define SENSOR          "DHT11"
 
-#define LED1         17
-#define LED2         18
-#define LED3         19
-#define LED4         20
+#define DHT11_PIN       0
+#define LED1            17
+#define LED2            18
+#define LED3            19
+#define LED4            20
 
-#define SLEEP_TIME  100
+#define SLEEP_TIME      1000
 
 // Debug using serial terminal
 void debug(const char *message)
@@ -42,26 +45,49 @@ void main(void)
 {
     debug("Started program.");
 
-    int cnt = 0;
+    // Configure gpios
+    struct device *gpio = device_get_binding(PORT);
+    // Test if gpio binding has been created
+    if(!gpio){
+        debug("GPIO Error!");
+        return;
+    }
 
-    // Configure gpio
-    struct device *dev;
-    dev = device_get_binding(PORT);
-    gpio_pin_configure(dev, LED1, GPIO_DIR_OUT);
-    gpio_pin_configure(dev, LED2, GPIO_DIR_OUT);
-    gpio_pin_configure(dev, LED3, GPIO_DIR_OUT);
-    gpio_pin_configure(dev, LED4, GPIO_DIR_OUT);
+    // Configure Sensor
+    struct device *sensor = device_get_binding(SENSOR);
+    // Test if sensor binding has been created
+    if(!sensor){
+        debug("Sensor Error!");
+        return;
+    }
+
+    // Configure LEDS as output
+    gpio_pin_configure(gpio, LED1, GPIO_DIR_OUT);
+    gpio_pin_configure(gpio, LED2, GPIO_DIR_OUT);
+    gpio_pin_configure(gpio, LED3, GPIO_DIR_OUT);
+    gpio_pin_configure(gpio, LED4, GPIO_DIR_OUT);
+
+    // Configure sensor pin as input
+    //gpio_pin_configure(sensor, DHT11_PIN, GPIO_DIR_IN);
 
     while (1) {
-        debug("Main cycle.");
-        printk("Cycle: %d\n", cnt);
-        
-        gpio_pin_write(dev, LED1, (cnt % 2));
-        gpio_pin_write(dev, LED2, (cnt % 3));
-        gpio_pin_write(dev, LED3, (cnt % 4));
-        gpio_pin_write(dev, LED4, (cnt % 5));
-        
+        //struct sensor_value temp;
+        int rc;
+
+        rc = sensor_sample_fetch(sensor);
+        if(rc != 0){
+            debug("sensor_sample_fetch error.");
+            return;
+        }
+
+        //rc = sensor_channel_get(sensor, SENSOR_CHAN_TEMP, &temp);        
+        if(rc != 0){
+            debug("sensor_channel_get error.");
+            return;
+        }
+
+        //printk("temp: %d.%06d\n", temp.val1, temp.val2);
+
         k_sleep(SLEEP_TIME);
-        cnt++;
     }
 }
