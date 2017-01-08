@@ -60,4 +60,24 @@ Weiter erwartet das Buildsystem einige Umgebungsvariablen, die jedoch im Normalf
 
 \section{Debugging mit GDB}
 
+\section{nrf52dk-zephyr-tool.sh}
+
+Das Makefile der Zephyr-Build-Tools erlaubt es mittels \textbf{make flash} Software auf Boards direkt herunterzuladen. Jedoch muss beim nrf52 Development-Kit auf proprietäre Software von Nordic zurückgegriffen werden. Da diese Software nicht Quelloffen ist, kann sie nicht mit den Build-Tools ausgeliefert werden.
+Um die Entwicklung von Zephyrapplikationen dennoch zu vereinfachen ist im Rahmen der Projektarbeit ein kleines Shellskript entstanden welches die grundlegenden Operationen wie das erstellen eines Projektes mit Minimalkonfiguration, das Kompilieren einer Applikation oder das Herunterladen eines Binarys auf das nrf52 Development-Kit erlaubt. Die Bedienung des Shellskripts hält sich an die gängigen Unix Standards.
+
+\begin{lstlisting}[style=BashInputStyle]
+$ ./nrf52dk_zephyr_tool.sh help
+
+Usage: nrf52dk_zephyr_tool.sh [options]
+
+This script handles the creation and compilation of zephyr applications for the nrf52dk.
+
+OPTIONS:
+help                 Show this message
+flash  ProjectPath   Flashes the previously built project
+build  ProjectPath   Builds a zephyr application
+create ProjectPath   Creates a new project folder with standard configuration
+
+\end{lstlisting}
+
 

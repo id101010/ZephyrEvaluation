@@ -10,7 +10,7 @@ usage()
 cat << EOF
 Usage: $0 [options]
 
-This script 
+This script handles the creation and compilation of zephyr applications for the nrf52dk.
 
 OPTIONS:
    help                 Show this message
