@@ -89,62 +89,59 @@
  
  \vspace{5mm}
  
- \begin{itemize}
- 	\item ARM7TDMI 
- 	\item ARM920T 
- 	\item ARM926EJS 
- 	\item ARM Cortex-A5
- 	\item ARM Cortex-A8
- 	\item ARM Cortex-R4/R4F
- 	\item ARM Cortex-M0 
- 	\item ARM Cortex-M3 
- 	\item ARM Cortex-M4 
- 	\item ARM Cortex-M7 
- 	\item Atmel 8-bit AVR (AT90USB, ATmega)
- 	\item AVR32
- 	\item Freescale M68HCS12
- 	\item Intel X86
- 	\item MicroChip PIC32MX (MIPS32 24Kc)
- 	\item MicroChip PIC32MZ (MIPS32 M14k)
- 	\item Renesas/Hitachi SuperH
- 	\item Renesas M16C/26
- 	\item Zilog Z16F ZNeo
- 	\item Zilog eZ80 Acclaim
- 	\item Zilog Z8Encore
- 	\item Zilog Z80 	
- \end{itemize}
+ \begin{center}
+ 	\begin{tabular}{ | l |}
+ 		\hline
+ 		\textbf{Hersteller} 				\\ \hline
+ 		ARM7TDMI 							\\ \hline
+ 		ARM920T 							\\ \hline
+ 		ARM926EJS 							\\ \hline
+ 		ARM Cortex-A5						\\ \hline	
+ 		ARM Cortex-A8						\\ \hline
+ 		ARM Cortex-R4/R4F					\\ \hline
+ 		ARM Cortex-M0 						\\ \hline
+ 		ARM Cortex-M3 						\\ \hline
+ 		ARM Cortex-M4 						\\ \hline
+ 		ARM Cortex-M7 						\\ \hline
+ 		Atmel 8-bit AVR (AT90USB, ATmega)	\\ \hline
+ 		AVR32								\\ \hline
+ 		Freescale M68HCS12					\\ \hline
+ 		Intel X86							\\ \hline
+ 		MicroChip PIC32MX (MIPS32 24Kc)		\\ \hline
+ 		MicroChip PIC32MZ (MIPS32 M14k)		\\ \hline
+ 		Renesas/Hitachi SuperH				\\ \hline
+	 	Renesas M16C/26						\\ \hline
+ 		Zilog Z16F ZNeo						\\ \hline
+ 		Zilog eZ80 Acclaim					\\ \hline
+ 		Zilog Z8Encore						\\ \hline
+ 		Zilog Z80 							\\ \hline
+ 		\hline
+ 	\end{tabular}
+ \end{center}
  
- \vspace{5mm}
+ \vspace{15mm}
  
- Zur Kommunikation unterstützt das NuttX-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
- 
- \vspace{5mm}
- 
- \begin{itemize}
- 	\item IPv4 / IPv6
- 	\item 6LoWPAN 
- 	\item TCP / IP
- 	\item UDP /APR
- 	\item ICMP /  ICMPv6 / ICMPv2
- 	\item DHCP
- 	\item HTTP
- 	\item NFS 
- \end{itemize}
- \vspace{5mm}
- 
- Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet. NuttX kann folgendes unterstützen: 
- 
- 
- \begin{itemize}
- 	\item ADC
- 	\item CAN
- 	\item GPIO
- 	\item I2C
- 	\item UART
- 	\item USB
- 	\item PWM
- 	\item SPI 
+  Zur Kommunikation unterstützt das NuttX-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. 
+  
+  Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle:
+  
+  \vspace{5mm}
+  
+  \begin{center}
+  	\begin{tabular}{ | l | l |}
+  		\hline
+  		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
+  		DHCP 						& ADC 		\\ \hline
+  		HTTP						& CAN		\\ \hline
+	  	ICMP /  ICMPv6 / ICMPv2		& GPIO		\\ \hline
+  		IPv4 / IPv6					& I2C	 	\\ \hline
+  		TCP	/ IP					& PWM			\\ \hline
+  		NFR							& SPI			\\ \hline
+  		UDP / APR					& UART			\\ \hline
+  		6LoWPAN 					& USB			\\ \hline
+  		\hline
+  	\end{tabular}
+  \end{center}
+  
 
- \end{itemize}
- \vspace{5mm}
  

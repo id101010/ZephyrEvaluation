@@ -92,53 +92,54 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
  
  Momentan unterstützt der FreeRTOS-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
  
- \vspace{5mm}
- 
- \begin{itemize}
- 	\item Altera Nios II
- 	\item ARM architecture
- 	\item Atmel
- 	\item Cortus
- 	\item Cypress
- 	\item Energy Micro
- 	\item Fujitsu
- 	\item Freescale
- 	\item IBM
- 	\item Infineon
- 	\item Intel
- 	\item PIC microcontroller
- 	\item NXP
- 	\item STMicroelectronics
- 	\item Texas Instruments
- 	\item Xilinx
- \end{itemize}
- 
- \vspace{5mm}
- 
-  Zur Kommunikation unterstützt das FreeRTOS-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
-  
   \vspace{5mm}
-  
-  \begin{itemize}
-  	\item Bluetooth 4.0 
-  	\item TCP
-    \item HTTP
-  	\item 6LoWPAN 
-  	\item IPv4 / IPv6
-  	\item Wi-Fi
-  \end{itemize}
+ 
+ \begin{center}
+ \begin{tabular}{ | l |}
+ 	\hline
+ 	\textbf{Hersteller} 	\\ \hline
+ 	Altera Nios II 			\\ \hline
+ 	ARM architecture 		\\ \hline
+ 	Atmel 					\\ \hline
+ 	Cortus 					\\ \hline
+ 	Cypress					\\ \hline
+ 	Energy Micro			\\ \hline
+ 	Fujitsu					\\ \hline
+ 	Freescale				\\ \hline
+ 	IBM						\\ \hline	
+	Infineon				\\ \hline	
+ 	Intel 					\\ \hline
+ 	NXP						\\ \hline
+ 	PIC microcontroller		\\ \hline
+ 	STMicroelectronics		\\ \hline
+ 	Texas Instruments		\\ \hline
+ 	Xilinx					\\ \hline
+ 	\hline
+ \end{tabular}
+\end{center}
+ 
+ \vspace{15mm}
+ 
+ Zur Kommunikation unterstützt das FreeRTOS-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. 
+ 
+ Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle:
+ 
   \vspace{5mm}
-  
-  Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet. FreeRTOS kann folgendes unterstützen: 
-  
-  
-  \begin{itemize}
-  	\item CAN
-  	\item GPIO
-  	\item UART 
-  	\item I2C
-  	\item SPI
-  \end{itemize}
-  \vspace{5mm}
+ 
+ \begin{center}
+ 	\begin{tabular}{ | l | l |}
+ 		\hline
+ 		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
+ 		Bluetooth 4.0 			& CAN 	\\ \hline
+		IPv4 / IPv6				& GPIO 	\\ \hline
+ 		TCP			 			& I2C	\\ \hline
+ 		HTTP 					& SPI	\\ \hline	
+ 		6LoWPAN 				& UART	\\ \hline
+ 		Wi-Fi					& 		\\ \hline
+ 		\hline
+ 	\end{tabular}
+ \end{center}
+ 
+
 
  

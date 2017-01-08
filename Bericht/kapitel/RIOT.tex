@@ -104,56 +104,54 @@
  \section{Unterstütztung}
  
   Momentan unterstützt der RIOT-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
-  
-  \vspace{5mm}
-  
-  \begin{itemize}
-  	\item Arduino
-  	\item ARM architecture
-  	\item Atmel
-  	\item Freescale
-	\item IoT-LAB
-  	\item PIC microcontroller
-	\item MSB
-	\item Nordic Semiconductor
-	\item Nucleo
-  	\item NXP
-  	\item STMicroelectronics
-  	\item Texas Instruments
 
-  \end{itemize}
-  
-  \vspace{5mm}
-  
-  Zur Kommunikation unterstützt das RIOT-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
-  
-  \vspace{5mm}
-  
-  \begin{itemize}
+   \vspace{5mm}
+   
+   \begin{center}
+   	\begin{tabular}{ | l |}
+   		\hline
+   		\textbf{Hersteller} 	\\ \hline
+   		Arduino		I 			\\ \hline
+   		ARM architecture 		\\ \hline
+   		Atmel 					\\ \hline
+   		Freescale				\\ \hline
+   		IoT-LAB					\\ \hline	
+   		MSB						\\ \hline	
+   		Nordic Semiconductor 	\\ \hline
+   		Nucleo					\\ \hline
+   		NXP						\\ \hline
+   		PIC microcontroller		\\ \hline
+   		STMicroelectronics		\\ \hline
+   		Texas Instruments		\\ \hline
+   		\hline
+   	\end{tabular}
+   \end{center}
+   
+ \vspace{15mm}
+   
+ Zur Kommunikation unterstützt das RIOT-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. 
+    
+ Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle:
+    
+ \vspace{5mm}
+    
+ \begin{center}
+  \begin{tabular}{ | l | l |}
+		\hline
+		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
+		Bluetooth 4.0 			& ADC 			\\ \hline
+		CoAP / CSMA / CA		& Ethernet		\\ \hline
+		IPv4 / IPv6				& Flash / RAM 	\\ \hline
+		IEEE 802.15.4 		 	& GPIO			\\ \hline
+		NTP / UNTP				& SPI			\\ \hline
+		UDP / UHCP				& UART			\\ \hline
+		6LoWPAN 				& 				\\ \hline
+		Radios					& 				\\ \hline
+		Wi-Fi					& 				\\ \hline
+		\hline
+   \end{tabular}
+  \end{center}
 
-  	\item Bluetooth 4.0 
-  	\item 6LoWPAN 
-  	\item CoAP / CSMA / CA
-   	\item IPv4 / IPv6
-   	\item UDP / UHCP
-   	\item NTP / UNTP
-  	\item IEEE 802.15.4 
-  	\item Radios
-  	\item Wi-Fi
-  \end{itemize}
-  \vspace{5mm}
-  
-  Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet.RIOT kann folgendes unterstützen: 
-  
-  
-  \begin{itemize}
-  	\item ADC
-  	\item UART
-  	\item GPIO
-  	\item SPI 
-  	\item Ethrnet
-  	\item Flash / RAM
-  \end{itemize}
   \vspace{5mm}
 
 

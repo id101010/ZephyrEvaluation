@@ -88,51 +88,54 @@
 
  Momentan unterstützt der Contiki-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
  
- \vspace{5mm}
- 
- \begin{itemize}
- 	\item TI CC2538
- 	\item nRF52832
- 	\item RL78
- 	\item Microchip pic32mx795f512l
- 	\item TI CC2538
- 	\item TI MSP430
- 	\item Atmel AVR
- 	\item pic32mx795f512l
+\vspace{5mm}
 
- \end{itemize}
+\begin{center}
+  \begin{tabular}{ | l |}
+	\hline
+	\textbf{ARM} 				\\ \hline
+	Atmel AVR			 		\\ \hline
+	Microchip pic32mx795f512l 	\\ \hline
+	Microchip pic32mx795f512l	\\ \hline
+	nRF52832 					\\ \hline
+	RL78						\\ \hline
+	TI CC2538					\\ \hline	
+	TI CC2538					\\ \hline	
+	TI MSP430 					\\ \hline
+	\hline
+ \end{tabular}
+\end{center}
+
+\vspace{15mm}
+
+ Zur Kommunikation unterstützt das Contiki-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. 
+ 
+ Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle:
  
  \vspace{5mm}
  
- Zur Kommunikation unterstützt das Contiki-Betreibssystem eine Vielzahl an Kommunitations-Protokolle. Folgende Kommunitations-Protokolle wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ \begin{center}
+ 	\begin{tabular}{ | l | l |}
+ 		\hline
+ 		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
+ 		Bluetooth 4.0 			& GPIO 		\\ \hline
+ 		CoAP					& I2C		\\ \hline
+ 		HTTP					& SPI		\\ \hline
+ 		IPv4 / IPv6				& UART	 	\\ \hline
+ 		IEEE 802.15.4 		 	& 			\\ \hline
+ 		TCP						& 			\\ \hline
+ 		UDP / UHCP				& 			\\ \hline
+ 		6LoWPAN 				& 			\\ \hline
+ 		Radios					& 			\\ \hline
+ 		RPL						& 			\\ \hline
+ 		Wi-Fi					& 			\\ \hline
+ 		\hline
+ 	\end{tabular}
+ \end{center}
  
  \vspace{5mm}
  
- \begin{itemize}
- 	\item IPv4
- 	\item IPv6
- 	\item Bluetooth 4.0 
- 	\item 6LoWPAN 
- 	\item RPL
- 	\item CoAP
- 	\item UDP
- 	\item TCP
- 	\item HTTP
- 	\item IEEE 802.15.4 
- 	\item Wi-Fi
- \end{itemize}
- \vspace{5mm}
- 
- Aber auch Kommutationmöglichkeiten mit welcher man andere Hardwarekomponenten ansprechen kann. Dies ist natürlich abhängig welches Eval-Board man verwendet. Contiki kann folgendes unterstützen: 
- 
- 
- \begin{itemize}
- 	\item UART
- 	\item GPIO
- 	\item SPI 
- 	\item I2C
- \end{itemize}
- \vspace{5mm}
+
  
  
  
