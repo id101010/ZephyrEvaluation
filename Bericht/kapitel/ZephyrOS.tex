@@ -2,7 +2,7 @@
 \chapter{Zephyr-Overview}
 \label{chap:overview}
 
-\section{Übersicht über Zephyr}
+\section{Übersicht Zephyr-OS}
 
 Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem, speziell optimiert für Anwendungen im Internet der Dinge. Konkret also für Glühlampen, Heizungsthermostate und andere Alltagsgeräte mit Internet-Anbindung.
 
@@ -158,7 +158,7 @@ $ git clone https://gerrit.zephyrproject.org/r/zephyr zephyr-project
 
 Um an der Entwicklungsarbeit teilzunehmen ist ein Linux Foundation Account notwendig. Dieser lässt sich im Gerrit Account-Bereich der Zephyr-Webseite mit wenigen Angaben erstellen.
 
-\subsection{Erstellen einer Beispielsapplikation in QEMU}
+\subsection{Testen der Toolchain mittels QEMU}
 
 Die Beispielapplikationen befinden sich im Zephyr-Projektordner unter der Kategorie Samples. Sie lassen sich in nur wenigen Schritten für QEMU kompilieren und ausführen.
 
@@ -206,10 +206,6 @@ Der Emulator QEMU ist fähig Software für alle von Zephyr unterstützten Architekt
 \begin{lstlisting}[style=BashInputStyle]
 $ make BOARD=qemu_x86 qemu
 \end{lstlisting}
-
-\section{Sicherheitsaspekte}
-
-\section{Portierungsaufwand}
  
  
 

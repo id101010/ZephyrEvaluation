@@ -1,0 +1,63 @@
+% !TeX encoding = ISO-8859-1
+\chapter{Applikationsentwicklung mit Zephyr}
+\label{chap:zephyrdevel}
+
+\section{Übersicht}
+
+Das Buildsystem des Zephyr-Kernels basiert auf Kbuild. Kuild ist das Sytem welches für den Linux Kernel entwickelt wurde.
+
+Um eine Applikation zu erstellen ist ein Konfigurationsfile für den Kernel notwendig. Das Buildsystem kompiliert dann sowohl den Kernel als auch die Applikation und erstellt ein einziges Binary daraus.
+
+Im folgenden wir unterschieden zwischen dem Kernel-Ordner und dem Applikations-Ordner. Der Kernel-Ordner enthält den vollständigen Quellcode des Kernels, die Standardkonfiguration und die Build Definitionen für den Kernel.
+
+Der Applikationsordner enthält den ganzen Quellcode und spezifische Konfigurationen für den Kernel. Im Quellcode der Applikation wird lediglich auf den Kernel gelinkt. Wenn keine neuen Treiber entwickelt werden sollen, beschränkt sich die Applikationsentwicklung ausschliesslich auf die Konfigurationen und den Quellcode im Applikationsverzeichnis. Der Kernel selbst muss nicht verändert werden, da dies vom Buildsystem erledigt wird.
+
+\section{Applikationsstruktur}
+
+Das Minimum einer Applikationsstruktur sieht folgendermassen aus:
+
+\begin{itemize}
+	\item \textbf{Quelltext der Applikation} Applikationen werden typischerweise in C oder Assembler geschrieben und liegen im Ordner src.
+	\item \textbf{Kernel Konfigurationsfiles} Eine Zephyrapplikation stellt dem Buildsystem ein Konfigurationsfile *.conf zur Verfügung. Fehlt diese Datei, wird die Standardkonfiguration verwendet.
+	\item \textbf{Makefile} Diese Datei teilt dem Buildsystem lediglich mit wo die oben genannten Dateien zu finden sind und um was für ein Board es sich beim Target handelt. Es handelt sich dabei nicht um ein Makefile im klassischen Sinne.
+\end{itemize}
+
+Wurde die Applikation nach obigem Standard definiert, kann sie mit einem einzigen Aufruf vom \textbf{make} gebaut werden. Das Kompilat findet sich in einem eigens dafür erstellten Unterordner namens \textbf{outdir/BOARD}. Vom Buildsystem werden folgende Dateien generiert:
+
+\begin{itemize}
+	\item Das \textbf{.config} File enthält die Einstellungen welche vom Buildsystem für das Erstellen der Applikation benutzt wurden.
+	\item Object-Files \textbf{.o und .a} welche Kompilat aus Kernel und Applikation enthalten.
+	\item Das \textbf{zephyr.elf} Binary, welches Kernel- und Applikationscode in sich vereint.
+\end{itemize}  
+
+\section{Bedienung des Build-Systems}
+
+Die Verwendung des Buildsystems gestaltet sich denkbar einfach. Es muss lediglich das zentrale Makefile ins Projektmakefile inkludiert werden, das Programm Make erledigt dann den Rest. Folgende Zeile muss dem Makefile hinzugefügt werden:
+
+\begin{lstlisting}[style=BashInputStyle]
+$ include $(ZEPHYR_BASE)/Makefile.inc
+\end{lstlisting}
+
+Weiter erwartet das Buildsystem einige Umgebungsvariablen, die jedoch im Normalfall automatisch gesetzt werden. Der Vollständigkeit halber folgt im Anschluss eine Liste.
+
+\begin{itemize}
+	\item \textbf{ZEPHY-RBASE} Hier steht der Pfad zum Ordner welcher den vollständigen Kernel Sourcecode enthält. Diese Variable wird über das Sourcen des zephyr-env.sh Skriptes gesetzt, wie in Kapitel 2.5.3 Beschrieben.
+	
+	\item \textbf{PROJECT-BASE} Hier steht der Pfad zum Applikationsordner. Diese Variable wird durch das Makefile gesetzt.
+	
+	\item \textbf{SOURCE-DIR} Hier steht der Pfad zum Quelltext der Applikation, per Standard zeigt diese Variable auf den Unterordner src.
+	
+	\item \textbf{BOARD} Diese Variable gibt an für welches Board die Applikation kompiliert werden soll.
+	
+	\item \textbf{CONF-FILE} Diese Variable gibt an welche speziellen Kernelkonfigurationen vorgenommen werden sollen.
+	
+	\item \textbf{O} Hier befindet sich der Ordner in welchem sich das kompilierte Binary befinden wird. Standardmässig wird dies der Unterordner outdir sein.
+\end{itemize}  
+
+\section{Konfiguration des Makefiles einer Applikation}
+
+\section{Konfiguration des Kernels einer Applikation}
+
+\section{Debugging mit GDB}
+
+
