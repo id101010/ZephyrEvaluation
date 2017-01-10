@@ -42,23 +42,82 @@ Weiter erwartet das Buildsystem einige Umgebungsvariablen, die jedoch im Normalf
 
 \begin{itemize}
 	\item \textbf{ZEPHY-RBASE} Hier steht der Pfad zum Ordner welcher den vollständigen Kernel Sourcecode enthält. Diese Variable wird über das Sourcen des zephyr-env.sh Skriptes gesetzt, wie in Kapitel 2.5.3 Beschrieben.
-	
 	\item \textbf{PROJECT-BASE} Hier steht der Pfad zum Applikationsordner. Diese Variable wird durch das Makefile gesetzt.
-	
 	\item \textbf{SOURCE-DIR} Hier steht der Pfad zum Quelltext der Applikation, per Standard zeigt diese Variable auf den Unterordner src.
-	
 	\item \textbf{BOARD} Diese Variable gibt an für welches Board die Applikation kompiliert werden soll.
-	
 	\item \textbf{CONF-FILE} Diese Variable gibt an welche speziellen Kernelkonfigurationen vorgenommen werden sollen.
-	
 	\item \textbf{O} Hier befindet sich der Ordner in welchem sich das kompilierte Binary befinden wird. Standardmässig wird dies der Unterordner outdir sein.
 \end{itemize}  
 
-\section{Konfiguration des Makefiles einer Applikation}
+Applikationsspezifischer Quelltext wird üblicherweise im src Ordner abgelegt. Selbstverständlich kann der Code in diesem Ordner übersichtlich in Unterordnern modularisiert werden. Wichtig ist hierbei, dass jeder Unterordner ein Makefile enthält! Dieses Makefile ist wie folgt zu erstellen:
 
-\section{Konfiguration des Kernels einer Applikation}
+\begin{itemize}
+	\item In jedem Unterordner muss ein Makefile erstellt werden, welches alle Dateien für Kbuild referenziert.
+	\item Um Dateien zu referenzieren ist die Folgende Syntax zu verwenden:
+	\begin{lstlisting}[style=BashInputStyle]
+	obj-y += file1.o file2.o
+	\end{lstlisting}
+	\item Um Unterordner zu referenzieren ist die Folgende Syntax zu verwenden:
+	\begin{lstlisting}[style=BashInputStyle]
+ 	obj-y += directory_name/**
+	\end{lstlisting}
+\end{itemize}
+
+
+\section{Konfiguration der Kernelparameter}
+
+Der Kernel welcher für und mit der Applikation kompiliert wird kann mittels Buildsystem speziell für die Ansprüche der Applikation angepasst werden. Um dies zu tun gibt es mehrere Möglichkeiten. Die dazu anzupassenden Konfigurationsdateien sind im Folgenden in hirarchischer Weise aufgelistet. Das bedeutet, dass das die erste Konfiguration der Liste alle anderen überschreiben wird.
+
+\begin{enumerate}
+	\item Konfigurationsdatei der Applikation anpassen (.config)
+	\item Spezifische Konfiguration des Boards in der SDK anpassen (.defconfig)
+	\item Kernelkonfig direkt anpassen (Kconfig Dateien)
+\end{enumerate}
+
+Eine Anpassung der Kconfig des Kernels macht nur für sehr spezifische Applikationen wirklich Sinn. Auf diese Option sollte nur zu Optimierungszwecken zurückgegriffen werden. Eine sehr ausführliche Liste mit allen Konfigurationen finden sich im Kernel Primer Guide auf der Homepage des Zephyr Projektest. Da dies den Rahmen der Dokumentation sprengen würde, wird an dieser Stelle auf eine ausführliche Beschreibung verzichtet. Nachfolgend wird auf die restlichen Möglichkeiten und deren Einsatzzweck eingegangen.
+
+\subsection{Boardkonfiguration}
+
+Die Konfigurationen des Kernels für die unterstützten Boards befinden sich in der SDK unter folgendem Link:
+
+\begin{lstlisting}[style=BashInputStyle]
+$ZEPHYR_BASE/boards/ARCHITECTURE/BOARD/BOARD_defconfig
+\end{lstlisting}
+
+Die Boardkonfiguration enthält alle Kernelkonfigurationen um die Hardwarekomponenten des Entwicklungskits zu betreiben. Wenn die bereits gesetzten Werte der Boardkonfiguration ausreichend sind kann auf eine weiterführende Konfiguration verzichtet werden. Sollen aber beispielsweise Debugfunktionen wie die serielle Printfunktion printk zur Verfügung stehen, lässt sich das über ein einfaches Bearbeiten der entsprechenden Konfiguration des Boards erreichen. Wichtig ist dabei die Syntax einzuhalten:
+
+\begin{itemize}
+	\item Jede Konfiguration muss auf einen eigenen Zeile stehen.
+	\item Konfigurationen beginnen immer mit dem Präfix CONFIG
+	\item Konfigurationen dürfen keine Leerzeichen enthalten, auch nicht vor oder nach dem Gleichheitszeichen!
+	\item Alle mit einer Raute beginnenden Zeilen sind Kommentar. 
+\end{itemize} 
+
+Folgende Zeile stellt allen Applikationen welche mit der angepassten Boardkonfiguration kompiliert werden die serielle Ausgabe zur Verfügung:
+
+\begin{lstlisting}[style=BashInputStyle]
+# Enable printk for debugging
+CONFIG_PRINTK=y
+\end{lstlisting}
+
+\subsection{Applikationsspezifische Konfiguration}
+
+Diese Konfigurationsmethode kann verwendet werden um alle Standardkonfigurationen permanent zu überschreiben. Sie baut daher auch auf einem graphischen ncurses-Menu auf, wie man sich es von der Kompilierung des Linuxkernels gewohnt ist.
+
+Das Menu kann folgendermassen via make aufgerufen werden:
+
+\begin{lstlisting}[style=BashInputStyle]
+make [BOARD=<type>] menuconfig
+\end{lstlisting}
+
+Mit dem Boardparameter kann auch noch eine spezifische Boardkonfiguration mitberücksichtigt werden.
+Sind alle gewünschten Einstellungen getätigt kann die Konfiguration unter dem bereits gesetzten Namen abgespeichert werden. Im Applikationsverzeichnis wird daraufhin ein Ordner namens outdir erstellt welcher die eben erstellte Customconfig enthält. Wichtig ist hier dass sich im outdir nur eine .config Datei befinden darf. Wenn mit unterschiedlichen Konfigurationen experimentiert wird, sollten die restlichen Dateien in einem separaten Ordner abgespeichert werden. Selbstverständlich werden Dateien mit einer Punktierung im Namen von sämtlichen Linuxsystemen als versteckte Datei behandelt.
 
 \section{Debugging mit GDB}
+
+
+
+
 
 \section{nrf52dk-zephyr-tool.sh}
 
