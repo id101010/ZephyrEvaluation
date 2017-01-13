@@ -4,15 +4,11 @@
  
  \section{Übersicht über NuttX Real}
  
- 
  NuttX ist ein Echtzeitbetriebssystem (RTOS) mit einem Schwerpunkt auf Normenkonformität und geringem Platzbedarf. Skalierbar von 8-Bit- bis 32-Bit-Mikrocontroller-Umgebungen sind die primären Normen in NuttX die Posix- und ANSI-Standards. Zusätzliche Standard-APIs von Unix und anderen gängigen RTOS, wie VxWorks, werden für die Funktionalität, die unter diesen Standards nicht verfügbar ist, oder für Funktionalitäten, die für tief eingebettete Umgebungen wie zum Beispiel ''fork'' nicht geeignet sind, übernommen.
  NuttX wurde zuerst 2007 von Gregory Nutt unter der permissiven BSD Lizenz veröffentlicht.
  
- 
-
  NuttX, wie bei vielen RTOS, ist eine Sammlung von verschiedenen Funktionen gebündelt als Bibliothek. Es wird nicht ausgeführt ausser wenn entweder:
  
-  \vspace{5mm}
   \begin{itemize}
   	\item Die Anwendung den NuttX-Bibliothekscode aufruft
   	\item Ein Interrupt auftritt
@@ -21,9 +17,9 @@
   \vspace{5mm}
   
   
- NuttX implementieren ein virtuelles Dateisystem ''VFS'', das verwendet werden kann, um mit einer Anzahl von Verschiedene  Entities  Schnittstellen   über die standardmäßigen open(), close(), read(), write(), etc. zu kommunizieren. 
+ NuttX implementieren ein virtuelles Dateisystem ''VFS'', das verwendet werden kann, um mit einer Anzahl von verschiedene  Entities  Schnittstellen   über die standardmäßigen open(), close(), read(), write(), etc. zu kommunizieren. 
  
- Wie andere VFSs unterstützt das NuttX VFS Dateisystem-Mountpunkte, Dateien, Verzeichnisse, Gerätetreiber usw. Auch wie bei anderen VFSs unterstützt das  NuttX-Dateisystem psuedo-Dateisysteme, also Dateisysteme, die als normale Medien erscheinen, aber wirklich unter programmatischer Kontrolle präsentiert werden. 
+ Wie andere VFSs unterstützt das NuttX VFS Dateisystem-Mountpunkte, Dateien, Verzeichnisse, Gerätetreiber. Auch wie bei anderen VFSs unterstützt das  NuttX-Dateisystem psuedo-Dateisysteme, also Dateisysteme, die als normale Medien erscheinen, aber wirklich unter programmatischer Kontrolle präsentiert werden. 
  Das NuttX-Root-Dateisystem ist immer ein Pseudo-Dateisystem. Das ist genau das Gegenteil von Linux. Mit Linux muss das Root-Dateisystem immer ein physikalisches Block-Device sein, wenn auch nur ein initrd-RAM-Datenträger. Bei NuttX ist das Root-Dateisystem immer ein Pseudofile System, das keinen zugrunde liegenden Blocktreiber oder physikalisches Gerät benötigt. Dann können Sie montieren
  Realen Dateisystem im Pseudo-Dateisystem. Diese Anordnung macht das Leben viel einfacher für die kleine eingebettete Welt. NuttX interagiert mit Geräten über Gerätetreiber - das heißt über Software, die Hardware steuert und
     
@@ -83,7 +79,7 @@
      \vspace{5mm}
 
  \vspace{5mm}
- \section{Unterstütztung}
+ \section{Unterstützung}
  
  Momentan unterstützt der NuttX-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARM. Folgende Hardware wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
  

@@ -9,7 +9,7 @@ Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Ope
 Die Architektur basiert nicht wie bei anderen IoT-Betreibssystemen auf einem Linux-Kernel, sondern auf einer echtzeitfähigen Kombination von Nano- und Mikrokernel. Zephyr wird aktuell von der Linux-Foundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative-Projects weiterentwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen.
 
 Ziel ist es ein robustes und sicheres Betriebssystem für das Internet der Dinge zu schaffen. Zephyr ist dabei vollständig Open-Source und steht laut Information des Newsportals Heise.de \cite{HeiseDe} unter der Apache Lizenz Version 2.0. 
-Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Einsatz von Open-Source-Software generell scheuen. Open-Source Projekte stehen oft unter der \ac{GPL}. [2] Wird in Produkten Software verwendet welche unter der \ac{GPL} lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter der \ac{GPL} zu veröffentlichen. Dies beinhaltet auch sämtliche Änderungen welche vorgenommen wurden. Bei der Apache-Lizenz ist dies gemäss Definition \cite{ApacheLicense} nicht zwingend.
+Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Einsatz von Open-Source-Software generell scheuen. Open-Source Projekte stehen oft unter der \ac{GPL}. Wird in Produkten Software verwendet, welche unter der \ac{GPL} lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter der \ac{GPL} zu veröffentlichen. Dies beinhaltet auch sämtliche Änderungen welche vorgenommen wurden. Bei der Apache-Lizenz ist dies gemäss Definition \cite{ApacheLicense} nicht zwingend.
 
 \begin{figure}[h]
 	\centering
@@ -24,7 +24,7 @@ Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Ein
 
 Zephyr ist für den Einsatz auf Geräten mit geringem Speicherplatz und feststehender Hardwarekonfiguration gedacht. Darunter fallen unter anderem Steuerungen für Heizungs- und Beleuchtungssysteme und auch Geräte aus allen Bereichen des täglichen Lebens mit Internet-Anbindung.
 
-Das ZephyrProjekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} folgende Ziele:
+Das Zephyr-Projekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} folgende Ziele:
 
 \begin{itemize}
 	\item Kleine Speicheranforderung - lauffähig mit minimal 10kB
@@ -33,12 +33,12 @@ Das ZephyrProjekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFou
 	\item Hohe Sicherheitsstandards
 	\item Unterstützt auf Kernellevel viele unterschiedliche Boards und Kommunikationsprotokolle
 	\item Mächtige Entwicklungswerkzeuge
-	\item OpenSource-Kernel mit Apache v2.0 Lizenz
+	\item Open-Source-Kernel mit Apache v2.0 Lizenz
 \end{itemize}
 
 \section{Aufbau}
 
-Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll Zephyr bereits mit 10KB an Speicherplatz lauffähig sein. Das macht Zephyr besonders für Anwendungen auf kleinen Mikrocontrollern attraktiv. Bei einem herkömmlichen Linux-Kernel wäre dies nicht denkbar. Gängige Adaptionen für Smartphone SoCs benötigen laut [1] in der kleinsten Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
+Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll Zephyr bereits mit 10KB an Speicherplatz lauffähig sein. Das macht Zephyr besonders für Anwendungen auf kleinen Mikrocontrollern attraktiv. Bei einem herkömmlichen Linux-Kernel wäre dies nicht denkbar. Gängige Adaptionen für Smartphone SoCs benötigen laut in der kleinsten Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
 
 \begin{figure}[h]
 	\centering
@@ -47,11 +47,11 @@ Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll
 	\label{fig:components}
 \end{figure}
 
-Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit die der Nanokernel für die Abarbeitung einer Aufgabe benötigt verhält somit deterministisch. Das bedeutet dass genau festgelegt werden kann wieviel Zeit der Kernel für eine zuvor festgelegte Aufgabe benötigen wird. Dies unabhängig davon wie stark das System gerade ausgelastet ist. Für alle Aufgaben welche keine Anforderungen an Echtzeit-Verarbeitung stellen verfügt das System über einen Microkernel. 
+Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit, die der Nanokernel für die Abarbeitung einer Aufgabe benötigt, verhält sich somit deterministisch. Das bedeutet, dass genau festgelegt werden kann wieviel Zeit der Kernel für eine zuvor festgelegte Aufgabe benötigen wird. Dies unabhängig davon wie stark das System gerade ausgelastet ist. Für alle Aufgaben, welche keine Anforderungen an Echtzeit-Verarbeitung stellen, verfügt das System über einen Microkernel.\cite{ZephyrProjectDocumentation}
 
-\section{Unterstütztung}
+\section{Unterstützung}
 
-Momentan unterstützt der Zephyr-Kernel gemäss Angaben auf der Projektseite \cite{ZephyrProjectDocumentation} Prozessoren der Architekturen ARC, ARM-v7 sowie auch x86. Dadurch ist das System auf den zur Zeit populären Plattformen lauffähig.
+Momentan unterstützt der Zephyr-Kernel, gemäss Angaben auf der Projektseite, Prozessoren der Architekturen ARC, ARM-v7 sowie auch x86. Dadurch ist das System auf den zur Zeit populären Plattformen lauffähig.
 Zephyrapplikationen können mittels SDK aber auch für System-Emulatoren wie QEMU kompiliert werden. Folgende Hardware wird zum Zeitpunkt unserer Projektarbeit unterstützt:
 
 \begin{center}
@@ -75,7 +75,7 @@ Zephyrapplikationen können mittels SDK aber auch für System-Emulatoren wie QEMU 
 
 Die Zephyr Codebasis unterstützt zum Zeitpunkt der Projektarbeit von Haus aus eine Vielzahl an Kommunikationsprotokollen. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. Zweifelsohne werden im Verlaufe der Entwicklung noch weitere folgen.
 
-Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle.
+Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle.\cite{ZephyrProjectDocumentation}
 
 \begin{center}
 	\begin{tabular}{ | l | l |}
@@ -103,7 +103,7 @@ Der folgende Abschnitt beschreibt das Aufsetzen der Zephyr-SDK unter Linuxsystem
 
 \subsection{Notwendige Software und SDK}
 
-Folgender Befehl installiert alle für die Zephyr-SDK notwendigen Pakete.
+Folgender Befehl installiert alle für die Zephyr-SDK notwendigen Pakete:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ apt-get install git make gcc g++ python3-ply ncurses-dev
@@ -128,16 +128,16 @@ $ ./zephyr-sdk-<version>-i686-setup.run
 
 3) Folgen der ausgegebenen Instruktionen auf dem Bildschirm. Die SDK wird per Standard im Ordner /opt/zephyr-sdk/ abgelegt. Auf den meisten Systemen wird dafür ein Administratorzugang vorausgesetzt, da es sich bei /opt um ein Systemverzeichnis handelt. Optional kann die SDK auch im /home des Users installiert werden.
 
-4) Um die Zephyr-SDK verwenden zu können müssen folgende Umgebungsvariablen gesetzt werden: 
+4) Um die Zephyr-SDK verwenden zu können, müssen folgende Umgebungsvariablen gesetzt werden: 
 
 \begin{lstlisting}[style=BashInputStyle]
 $ export ZEPHYR_GCC_VARIANT=zephyr
 $ export ZEPHYR_SDK_INSTALL_DIR=${Installationspfad}
 \end{lstlisting}
 
-Es gilt zu beachten, dass diese Umgebungsvariablen immer nur für die aktuelle Shell gelten. Sollen diese automatisch mit der Shell geladen werden können die Instruktionen zur Shellkonfiguration (bashrc) hinzugefügt werden. 
+Es gilt zu beachten, dass diese Umgebungsvariablen immer nur für die aktuelle Shell gelten. Sollen diese automatisch mit der Shell geladen werden, können die Instruktionen zur Shellkonfiguration (bashrc) hinzugefügt werden. 
 
-Eine weitere möglichkeit ist die zephyrrc welche im Home-Verzeichnis angelegt werden kann.
+Eine weitere Möglichkeit ist die zephyrrc, welche im Home-Verzeichnis angelegt werden kann:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ cat <<EOF > ~/.zephyrrc
@@ -148,7 +148,7 @@ EOF
 
 \subsection{Herunterladen des Zephyr-Softwarearchives}
 
-Das gesamte Repository von Zephyr wird von der Linux Foundation mit einem Gerrit-Backend zur Verfügung gestellt. Der Code lässt sich bequem mittels git klonen.
+Das gesamte Repository von Zephyr wird von der Linux Foundation mit einem Gerrit-Backend zur Verfügung gestellt. Der Code lässt sich bequem mittels ''git'' klonen.
 
 Folgender Befehl lädt das gesamte Zephyr-Repository in den Ordner zephyr-project herunter:
 
@@ -156,13 +156,13 @@ Folgender Befehl lädt das gesamte Zephyr-Repository in den Ordner zephyr-project
 $ git clone https://gerrit.zephyrproject.org/r/zephyr zephyr-project
 \end{lstlisting}
 
-Um an der Entwicklungsarbeit teilzunehmen ist ein Linux Foundation Account notwendig. Dieser lässt sich im Gerrit Account-Bereich der Zephyr-Webseite mit wenigen Angaben erstellen.
+Um an der Entwicklungsarbeit teilzunehmen, ist ein Linux Foundation Account notwendig. Dieser lässt sich im Gerrit Account-Bereich der Zephyr-Webseite mit wenigen Angaben erstellen.
 
 \subsection{Testen der Toolchain mittels QEMU}
 
 Die Beispielapplikationen befinden sich im Zephyr-Projektordner unter der Kategorie Samples. Sie lassen sich in nur wenigen Schritten für QEMU kompilieren und ausführen.
 
-1) Sicherstellen dass die SDK korrekt installiert wurde und die nötigen Umgebungsvariablen gesetzt sind. 
+1) Sicherstellen, dass die SDK korrekt installiert wurde und die nötigen Umgebungsvariablen gesetzt sind. 
 
 2) Navigieren in den Projektordner.
 
@@ -172,36 +172,36 @@ Die Beispielapplikationen befinden sich im Zephyr-Projektordner unter der Katego
 $ source zephyr-env.sh
 \end{lstlisting}
 
-4) Kompilieren des gewünschten Beispielprojekts.
+4) Kompilieren des gewünschten Beispielprojekts:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ cd $ZEPHYR_BASE/samples/hello_world
 $ make
 \end{lstlisting}
 
-Obige Instruktionen bauen das Hello World Beispiel aus dem Quellcode. Als Standard ist im Makefile dieses Beispiels QEMU als Zielarchitektur vorgesehen. Sollte eine andere Architektur gewünscht sein kann dies dem Makefile wie folgt mitgeteilt werden
+Obige Instruktionen bauen das Hello World Beispiel aus dem Quellcode. Als Standard ist im Makefile dieses Beispiels QEMU als Zielarchitektur vorgesehen. Sollte eine andere Architektur gewünscht sein, kann dies dem Makefile wie folgt mitgeteilt werden:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ make BOARD=nrf52
 \end{lstlisting}
 
-Falls eine Hilfestellung gewünscht ist kann diese mit foilgendem Kommando aufgerufen werden.
+Falls eine Hilfestellung gewünscht ist, kann diese mit folgendem Kommando aufgerufen: werden:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ make help
 \end{lstlisting}
 
-Die erstelten ELF-Binaries und HEX-Files befinden sich jeweils im Projektordner im Ordner outdir. Wurden diese Dateien für spezifische Boards kompiliert können diese gleich mit folgendem Befehl auf das Board geladen werden:
+Die erstellten ELF-Binaries und HEX-Files befinden sich jeweils im Projektordner im Ordner outdir. Wurden diese Dateien für spezifische Boards kompiliert, können diese gleich mit folgendem Befehl auf das Board geladen werden:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ make flash
 \end{lstlisting}
 
-Es gilt zu beachten dass die Flash-Instruktion momentan nur wenige Boards unterstützt. Das nrf52dk, auf welches später genauer eingegangen wird ist nicht unterstützt und muss eigens mit einem Programm von Nordic angesprochen werden.
+Es gilt zu beachten, dass die Flash-Instruktion momentan nur wenige Boards unterstützt. Das nrf52dk, auf welches später genauer eingegangen wird, ist nicht unterstützt und muss eigens mit einem Programm von Nordic angesprochen werden.
 
 \subsection{Simulation mit QEMU für verschiedene Architekturen}
 
-Der Emulator QEMU ist fähig Software für alle von Zephyr unterstützten Architekturen auszuführen. Dazu muss der Programmcode mit den richtigen Argumenten kompiliert werden. Folgendes Beispiel zeigt das Kompilieren des Codes für X86er Architekturen in QEMU. Durch das Argument qemu am Schluss des Aufrufes von Make wird nach erfolgreichem Kompilieren automatisch der Emulator gestartet. 
+Der Emulator QEMU ist fähig, Software für alle von Zephyr unterstützten Architekturen auszuführen. Dazu muss der Programmcode mit den richtigen Argumenten kompiliert werden. Folgendes Beispiel zeigt das Kompilieren des Codes für X86er Architekturen in QEMU. Durch das Argument qemu am Schluss des Aufrufes von Make wird nach erfolgreichem Kompilieren automatisch der Emulator gestartet:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ make BOARD=qemu_x86 qemu
