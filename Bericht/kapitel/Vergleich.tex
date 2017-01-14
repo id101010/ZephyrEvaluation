@@ -2,23 +2,71 @@
  \chapter{Vergleich}
  \label{chap:overview}
  
- \section{Übersichtstabelle}
+ Eines unserer Aufgaben war es die bestehenden RTOS mit dem Zephyr-Betriebssystem zu verglichen. Wir fanden eine Übersichtstabelle wäre für Entwickler, welche sich mit der evaluation eines passendens RTOS auseinander setzen passen. Spezifisch wurde der Fokus auf  die Kommunikationsmöglichkeiten der jeweilgen OS gelegt, da diese Betriebssystem  vorwiegend bei Internet der Ding(IoT) eingesetzt werden.
  
+ \begin{landscape}
+ \section{Übersichtstabelle}
+
  \begin{center}
- 	\begin{tabular}{ | l | l | l | l | l | l |}
+ 	\begin{tabular}{ | l | l | l | l | l | l | l | l |}
  		\hline
- 		\textbf{ARC}		& \textbf{ARM} 		& \textbf{X86}  \\ \hline
- 		Arduino 101			& 96B-Carbon		& Galileo Gen1 Gen2   \\ \hline
- 		EDesignWare EM		& 96B-Nitrogen		& Minnowboard Max \\ \hline
- 		Emulation / QEMU	& Arduino Due		& Quark D2000 CRB	\\ \hline
- 		& Hexiwear		 	& Emulation / QEMU	\\ \hline
- 		& NXP FRDM-K64		&					\\ \hline
- 		& OLIMEXINO-STM32	&					\\ \hline	
- 		& nRF51-PCA10028	&					\\ \hline
- 		& nRF52-PCA10040	&					\\ \hline
- 		& nRF52840-PCA10056	&					\\ \hline
- 		& V2M Beetle		&					\\ \hline
- 		& Emulation / QEMU	&					\\ 
- 		\hline
+ 		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable / Treiber}  & \textbf{Lizinz}\\ \hline
+ 		Zephyr		& ADC		 & Bluetooth 4.0 		& ARC	& 10kByte	& Multi-threding services:	& JA & Apache v2.0 \\ \hline
+					& GPIO		 & Bluetooth Low Energy	& ARM	&			& non-preemptive fibers		&	 & \\ \hline
+				 	& I2C		 & CoAP					& x86	&			& und prioritybased			&	 & \\ \hline
+				 	& IPM		 & MQTT					&    	&			&							&    & \\ \hline
+				 	& PWM		 & HTTP					&		&			&							&	 & \\ \hline	
+				 	& UART		 & 6loWPAN				&		&			&							&	 & \\ \hline
+				 	& SPI 		 & IPv4 / IPv6			&		&			&							&	 & \\ \hline
+				 	&   		 & IEEE 802.15.4		&		&			&							&	 & \\ \hline
+				 	&   		 & Radios				&		&			&							& 	 & \\ \hline
+	    		 	&   		 & Wi-Fi				&		&			&							&	 & \\ \hline
+	    		 	&   		 & 						&		&			&							&	 & \\ \hline
+	    FreeRTOS	& CAN		 & Bluetooth 4.0 		& ARM	& 6-12kByte	& Bietet Methoden 			& JA & GPL \\ \hline
+		    		& GPIO		 & TCP					& 		&			& für mehrere Threds		&	 & \\ \hline
+		    		& I2C		 & HTTP					& 		&			& 							&	 & \\ \hline
+		    		& UART		 & 6loWPAN				&    	&			&							&    & \\ \hline
+		    		& SPI		 & IPv4 / IPv6			&		&			&							&	 & \\ \hline	
+		    		& 		 	 & Wi-Fi				&		&			&							&	 & \\ \hline
+		    		&  			 & 						&		&			&							&	 & \\ \hline
+	    RIOT		& ADC		 & Bluetooth 4.0 		& ARM	& 1.5-5kByte& Unterstützt Multi-threding& JA & LGPL \\ \hline
+				    & GPIO		 & CoAP					& 		&			& 							&	 & \\ \hline
+				    & I2C		 & CSMA / Ca			& 		&			& 							&	 & \\ \hline
+				    & PWM		 & UDP / UHCP			&    	&			&							&    & \\ \hline
+				    & UART		 & HTTP					&		&			&							&	 & \\ \hline	
+				    & SPI		 & 6loWPAN				&		&			&							&	 & \\ \hline
+				    &  			 & IPv4 / IPv6			&		&			&							&	 & \\ \hline
+					&  			 & IEEE 802.15.			&		&			&							&	 & \\ \hline	 		
+					&  			 & Radios				&		&			&							&	 & \\ \hline
+					&  			 & Wi-Fi				&		&			&							&	 & \\ \hline
+				    &  			 & 						&		&			&							&	 & \\ \hline
  	\end{tabular}
  \end{center}
+ 
+  \begin{center}
+  	\begin{tabular}{ | l | l | l | l | l | l | l | l |}
+  		\hline
+  		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable / Treiber}  & \textbf{Lizinz}\\ \hline
+  		Contiki		& GPIO		 & Bluetooth 4.0 		& ARM	& 10-20kByte& Partial Support			& JA & 3Klausel \\ \hline
+  		& I2C		 & CoAP					& 		&			& 							&	 & BSD  \\ \hline
+  		& UART		 & HTTP					& 		&			& 							&	 & \\ \hline
+  		& SPI		 & 6loWPAN				&    	&			&							&    & \\ \hline
+  		& 			 & IPv4 / IPv6			&		&			&							&	 & \\ \hline	
+  		& 			 & IEEE 802.15.			&		&			&							&	 & \\ \hline
+  		&  			 & RPL					&		&			&							&	 & \\ \hline
+  		&  			 & TCP					&		&			&							&	 & \\ \hline	 		
+  		&  			 & UDP					&		&			&							&	 & \\ \hline
+  		&  			 & Wi-Fi				&		&			&							&	 & \\ \hline
+  		&  			 & 						&		&			&							&	 & \\ \hline
+  		NuttX		& ADC		 & DHCP 				& ARM	& 15-30kByte& Unterstützt Multi-threding& JA & BSD \\ \hline
+  		& CAN		 & HTTP					& 		&			& 							&	 & \\ \hline
+  		& GPIO		 & 6loWPAN				& 		&			& 							&	 & \\ \hline
+  		& I2C		 & ICMP					&    	&			&							&    & \\ \hline
+  		& PWM		 & IPv4 / IPv6			&		&			&							&	 & \\ \hline	
+  		& UART		 & NFS					&		&			&							&	 & \\ \hline
+  		& USB		 & TCP / IP				&		&			&							&	 & \\ \hline
+  		& SPI		 & UDP / APR			&		&			&							&	 & \\ \hline	 		
+  		&  			 & 						&		&			&							&	 & \\ \hline
+  	\end{tabular}
+  \end{center}
+ \end{landscape}
