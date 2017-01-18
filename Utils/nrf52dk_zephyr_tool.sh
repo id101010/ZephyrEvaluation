@@ -14,10 +14,16 @@ This script handles the creation and compilation of zephyr applications for the 
 
 OPTIONS:
    help                 Show this message
+   debug                Initializes the JLinkGDBServer for the nrf52 board
    flash  ProjectPath   Flashes the previously built project
    build  ProjectPath   Builds a zephyr application
    create ProjectPath   Creates a new project folder with standard configuration
 EOF
+}
+
+start_debugger()
+{
+    JLinkGDBServer -Device nRF52832_xxAA -If SWD -Speed 4000 -Autoconnect 1
 }
 
 flash_nrf()
@@ -45,7 +51,11 @@ create_new()
     echo -e "$DEFAULT_PRJ" >> $PROJPATH/prj.conf
 }
 
-case $1 in
+case $1 in    
+    debug)
+        start_debugger
+        exit 0
+    ;;
     flash)
         flash_nrf
         exit 0
