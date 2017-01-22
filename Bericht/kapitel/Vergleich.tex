@@ -2,9 +2,9 @@
  \chapter{Vergleich}
  \label{chap:overview}
  
-Eines unserer Aufgaben war es die bestehenden RTOS mit dem Zephyr-Betriebssystem zu verglichen. Wir fanden eine Übersichtstabelle wäre für Entwickler, welche sich mit der Evaluation eines passenden RTOS auseinander setzen passend. Spezifisch wurde der Fokus auf die Kommunikationsmöglichkeiten der jeweiligen OS gelegt, da diese Betriebssystem vorwiegend bei Internet der Ding(IoT) eingesetzt werden. Diese Tabelle mit ihren Angaben vor allem beim Zephyr-Betriebssystem ist mit Vorsicht zu geniessen, da es eine Moment Aufnahme des Betriebssysteme ist. Da an diesem Betriebssystem noch laufend weiterentwickelt wird. 
+Eine unserer Aufgaben war, die bestehenden RTOS mit dem Zephyr-Betriebssystem zu vergleichen. Wir fanden, dass eine Übersichtstabelle für Entwickler, welche sich mit der Evaluation eines passenden RTOS auseinander setzen müssen, sehr hilfreich wäre. Spezifisch wurde der Fokus auf die Kommunikationsmöglichkeiten der jeweiligen OS gelegt, da diese Betriebssysteme vorwiegend beim Internet der Ding(IoT) eingesetzt werden. Diese Tabelle mit den Angaben, vor allem beim Zephyr-Betriebssystem ist mit Vorsicht zu geniessen, da es eine Momentaufnahme des Betriebssystems ist und da an diesem noch laufend weiterentwickelt wird. 
 
-Was noch speziell zu erwähnen ist, viele der angegebenen Unterstützungen bei FreeRTOS sind von sogenannten dritt Anbietern und müssen kostenpflichtig eingekauft werden. Somit ist nur ein kleiner Teil von FreeRTOS auch wirklich Open-Source.
+Was noch speziell zu erwähnen ist; viele der angegebenen Unterstützungen bei FreeRTOS sind von sogenannten Drittanbietern und müssen kostenpflichtig eingekauft werden. Somit ist nur ein kleiner Teil von FreeRTOS auch wirklich Open-Source.
  
  \begin{landscape}
  \section{Übersichtstabelle}
@@ -12,7 +12,7 @@ Was noch speziell zu erwähnen ist, viele der angegebenen Unterstützungen bei Fre
  \begin{center}
  	\begin{tabular}{ | l | l | l | l | l | l | l | l |}
  		\hline
- 		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable / Treiber}  & \textbf{Lizinz}\\ \hline
+ 		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable / Treiber}  & \textbf{Lizenz}\\ \hline
  		Zephyr		& ADC		 & Bluetooth 4.0 		& ARC	& 10kByte	& Multi-threding services:	& JA & Apache v2.0 \\ \hline
 					& GPIO		 & Bluetooth Low Energy	& ARM	&			& non-preemptive fibers		&	 & \\ \hline
 				 	& I2C		 & CoAP					& x86	&			& und prioritybased			&	 & \\ \hline

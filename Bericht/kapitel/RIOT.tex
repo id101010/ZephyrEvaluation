@@ -5,7 +5,7 @@
  \section{Übersicht über RIOT}
  
  RIOT ist ein Open Source-Mikrokernel-basiertes Betriebssystem, das auf die Anforderungen von IOT-Geräten und anderen eingebetteten Geräten abgestimmt ist. Diese Anforderungen umfassen einen sehr geringen Speicherbedarf in der Größenordnung von einigen Kilobytes, eine hohe Energieeffizienz, Echtzeitfähigkeiten, Kommunikationsstapel für sowohl drahtlose als auch drahtgebundene Netzwerke und Unterstützung für eine breite Palette von Niedrigleistungs-Hardware.
- RIOT stellt einen Mikrokernel, mehrere Netzwerkstapel und Dienstprogramme bereit, die kryptografische Bibliotheken, Datenstrukturen,Hash-Tabellen und eine Shell umfasst. RIOT unterstützt eine breite Palette von Mikrocontroller-Architekturen, Radiotreibern, Sensoren und Konfigurationen für ganze Plattformen. Über alle unterstützten Hardware 32-Bit-, 16-Bit- und 8-Bit-Plattformen bietet RIOT eine konsistente API und ermöglicht ANSI C und C ++ Anwendungsprogrammierung, mit Multithreading, IPC, System-Timer, Mutexes. Es ist unter der LGPL lizenziert und wird von der Freien Universität Berlin, dem Institut national de recherche en informatique et en automatique (INRIA) und der Hochschule für Angewandte Wissenschaften Hamburg entwickelt.\cite{RIOTProjectDocumentation}
+ RIOT stellt einen Mikrokernel, mehrere Netzwerkstapel und Dienstprogramme bereit, die kryptografische Bibliotheken, Datenstrukturen, Hash-Tabellen und eine Shell umfasst. RIOT unterstützt eine breite Palette von Mikrocontroller-Architekturen, Radiotreibern, Sensoren und Konfigurationen für ganze Plattformen. Über alle unterstützten Hardware 32-Bit-, 16-Bit- und 8-Bit-Plattformen bietet RIOT eine konsistente API und ermöglicht ANSI C und C ++ Anwendungsprogrammierung, mit Multithreading, IPC, System-Timer und Mutexes. Es ist unter der LGPL lizenziert und wird von der Freien Universität Berlin, dem Institut national de recherche en informatique et en automatique (INRIA) und der Hochschule für Angewandte Wissenschaften Hamburg entwickelt.\cite{RIOTProjectDocumentation}
  
 
  \section{Ziele}
@@ -19,7 +19,7 @@
   \end{figure} 
   \vspace{5mm} 
    
- RIOT-Programme können in C und C++ geschrieben werden. Es ist im Gegensatz zu anderen kleinen Betriebssystemen wie TinyOS echtes Multithreading verfügbar. Für Linux und MacOS existieren native Portierungen, so dass Anwendungen auf dem Computer geschrieben und dann schnell auf echte Hardware portiert werden können, was das Debugging erleichtern soll. Dabei werden Standardwerkzeuge wie GNU Compiler Collection (GCC), GNU Debugger und valgrind benutzt.[3] Aufgrund der Herkunft als Betriebssystem für Sensornetzwerke bei der Feuerwehr ist RIOT echtzeitfähig. Teile des POSIX-Standards sind implementiert.
+ RIOT-Programme können in C und C++ geschrieben werden. Es ist im Gegensatz zu anderen kleinen Betriebssystemen wie TinyOS echtes Multithreading verfügbar. Für Linux und MacOS existieren native Portierungen, so dass Anwendungen auf dem Computer geschrieben und dann schnell auf echte Hardware portiert werden können, was das Debugging erleichtern soll. Dabei werden Standardwerkzeuge wie GNU Compiler Collection (GCC), GNU Debugger benutzt.[3] Aufgrund der Herkunft als Betriebssystem für Sensornetzwerke bei der Feuerwehr ist RIOT echtzeitfähig. Teile des POSIX-Standards sind implementiert.
  Der Quellcode liegt auf GitHub und wird von einer freien Entwickler-Community mitentwickelt.\cite{RIOTProjectDocumentation}
  
  \section{Aufbau}
@@ -59,7 +59,7 @@
   
   Board:
   
-  Der plattformabhängige Code ist in zwei logische Elemente CPU und Board unterteilt. Eine Board hat genau eine CPU, während eine CPU Teil von n Boards sein kann. Der CPU-Teil enthält alle generischen, CPU-spezifischen Code.
+  Der plattformabhängige Code ist in zwei logische Elemente CPU und Board unterteilt. Eine Board hat genau eine CPU, während eine CPU Teil von vielen Boards sein kann. Der CPU-Teil enthält alle generischen, CPU-spezifischen Code.
   
   Der Board-Teil enthält die spezifische Konfiguration für die darin enthaltene CPU. Diese Konfiguration umfasst hauptsächlich die Peripheriekonfiguration und Pin-Mapping, die Konfiguration von On-Board-Geräten und die Taktkonfiguration der CPU. Zusätzlich zu den Quell- und Header-Dateien, die für jedes Board benötigt werden, kann dieses Verzeichnis zusätzlich einige Skript- und Konfigurationsdateien enthalten, die für die Anbindung an die Boards benötigt werden. 
   
@@ -97,7 +97,7 @@
   
  \section{Unterstützung}
  
-  Momentan unterstützt der RIOT-Kernel gemäss Angaben auf der Projektseite \cite{RIOTProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+  Momentan unterstützt der RIOT-Kernel gemäss Angaben auf der Projektseite \cite{RIOTProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurden zum Zeitpunkt unserer Projektarbeit unterstütz:
 
    
    \begin{center}
