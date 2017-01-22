@@ -123,7 +123,7 @@ Sind alle gewünschten Einstellungen getätigt, kann die Konfiguration unter dem b
 
 Der folgende Abschnitt beschreibt das Debugging von Zephyr-Applikationen im Allgemeinen. Da die Toolchain von Nordic nicht Open-Source ist, wird sie vom Zephyr-Makefile nicht offiziell unterstützt. Für das Debugging von Applikationen auf dem nrf52dk sei an dieser Stelle auf das Kapitel 9 verwiesen.
 
-Nachfolgende Grafik zeigt den Aufbau einer Debugging-Kette wies sie für moderne Mikrocontrollersysteme oft verwendet wird.
+Nachfolgende Grafik zeigt den Aufbau einer Debugging-Kette wie sie für moderne Mikrocontrollersysteme oft verwendet wird.
 
 \begin{figure}[h]
 	\centering
@@ -135,7 +135,7 @@ Nachfolgende Grafik zeigt den Aufbau einer Debugging-Kette wies sie für moderne 
 Die Kette setzt sich zusammen aus dem \ac{GDB}, einem GDB Server, der Schnittstelle aufs Board und natürlich dem Board selbst.
 
 Der \ac{GDB} ist im Internet als freie Software verfügbar und auf den unterschiedlichsten Architekturen lauffähig. Im Bild ist er als GDB-Client gekennzeichnet. 
-Der GDB-Server ist ein Stück Software welche über einen TCP-Socket dem GDB-Client ein Interface zur Verfügung stellt. Über dieses Interface lässt sich das Board über GDB steuern. Es können Breakpoints gesetzt und aktuelle Registerwerte ausgelesen werden.
+Der GDB-Server ist ein Stück Software, welche über einen TCP-Socket dem GDB-Client ein Interface zur Verfügung stellt. Über dieses Interface lässt sich das Board über GDB steuern. Es können Breakpoints gesetzt und aktuelle Registerwerte ausgelesen werden.
 Die Schnittstelle zwischen Board und GDB-Server ist in den meisten Fällen via \ac{JTAG} oder \ac{SWD} möglich. Auf Entwicklungsboards ist die Debugging-Hardware meist direkt auf Boardlevel implementiert.
 
 Die Firma Nordic setzt beispielsweise bei ihren Boards J-Link von SEGGER ein. Dazu gehört ein GDB-Server und ein J-Link Gerät. Beim nrf52dk ist J-Link bereits auf dem Board verbaut und via USB ansprechbar.
