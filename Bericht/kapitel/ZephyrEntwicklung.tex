@@ -145,3 +145,58 @@ Die Firma Nordic setzt beispielsweise bei ihren Boards J-Link von SEGGER ein. Da
 
 Das Makefile der Zephyr-Build-Tools erlaubt es mittels \textbf{make flash} Software auf Boards direkt herunterzuladen. Jedoch muss beim nrf52 Development-Kit auf proprietäre Software von SEGGER zurückgegriffen werden. Da diese Software nicht quelloffen ist, kann sie nicht mit den Build-Tools ausgeliefert werden.
 Um die Entwicklung von Zephyrapplikationen dennoch zu vereinfachen, ist im Rahmen der Projektarbeit ein kleines Shellskript entstanden, welches die grundlegenden Operationen wie das Erstellen eines Projektes mit Minimalkonfiguration, das Kompilieren einer Applikation oder das Herunterladen eines Binarys auf das nrf52 Development-Kit erlaubt. Die Bedienung des Shellskripts hält sich an die gängigen Unix Standards. Mehr dazu ist im Kapitel 9 zu finden.
+
+\newpage
+
+\section{Minimalprogramm mit Zephyr}
+
+Nachfolgend ein Beispiel für Minimalprogramm mit Einbindung des Zephyrkernels. Das Programm enthält die Konfiguration der LED Pinnummern fürs nRF52 Board. Passt man diese jedoch an, sollte es auf jeder Plattform lauffähig sein.
+
+\begin{lstlisting}[style=customc]
+#include <zephyr.h>
+#include <misc/printk.h>
+#include <board.h>
+#include <device.h>
+#include <gpio.h>
+
+#define DEBUG
+#define PORT        "GPIO_0"
+
+#define LED1         17
+#define LED2         18
+#define LED3         19
+#define LED4         20
+
+#define SLEEP_TIME  100
+
+void main(void)
+{
+	debug("Started program.");
+	
+	int cnt = 0;
+	
+	// Configure gpio
+	struct device *dev;
+	
+	dev = device_get_binding(PORT);
+	
+	gpio_pin_configure(dev, LED1, GPIO_DIR_OUT);
+	gpio_pin_configure(dev, LED2, GPIO_DIR_OUT);
+	gpio_pin_configure(dev, LED3, GPIO_DIR_OUT);
+	gpio_pin_configure(dev, LED4, GPIO_DIR_OUT);
+	
+	while (1) {
+		printk("Cycle: %d\n", cnt++);
+		
+		gpio_pin_write(dev, LED1, (cnt % 2));
+		gpio_pin_write(dev, LED2, (cnt % 3));
+		gpio_pin_write(dev, LED3, (cnt % 4));
+		gpio_pin_write(dev, LED4, (cnt % 5));
+		
+		k_sleep(SLEEP_TIME);
+	}
+}
+
+\end{lstlisting}
+
+Demonstriert wird die Funktionalität der GPIOS und die Debugausgaben auf dem seriellen Terminal. Unter Linuxsystemen werden serielle Geräte welche über einen \ac{FTDI} Chip verfügen meistens unter /dev/ttyACM oder /dev/ttyUSB gemappt. Die Ausgaben sollten mittels seriellem Terminal under diesen Device Knoten lesbar sein. Die serielle Ausgabe von Zephyr erfolgt, sofern nichts anderes konfiguriert wurde mit 1158200 Baud.
