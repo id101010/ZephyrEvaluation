@@ -2,9 +2,31 @@
 \chapter{nRF52DK}
 \label{chap:nrf52dk}
 
-Um die Funktion aller Tools und der SDK zu gewährleisten, sollten folgende Installationen ausschliesslich in der hier beschriebenen Reihenfolge ausgeführt werden.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{bilder/nrf52_board.jpg}
+	\caption{Das nRF52 Development Kit}
+	\label{fig:devkit}
+\end{figure}
+
+Das nRF52 DK ist eine single-Board Entwicklungsplatform welche für die Verwendung von \ac{BLE}, ANT, und proprietären 2.4GHz Protokollen ausgelegt ist. Herzstück des Kits ist das nRF52832 \ac{SoC}.
+
+Die Header sind kompatibel mit allen Arduino Shields des Revisionsstandards 3 was das Kit enorm erweiterbar macht. Weiter besteht die Möglichkeit eine mitgelieferte NFC-Antenne anzuschliessen um NFC-Tags zu lesen. Alle GPIOs sind via Header herausgeführt. Zusätzlich verfügt das Board über 4 LEDs und 4 Taster. 
+
+\newpage
+
+\section{Technische Übersicht}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{bilder/nrf52_schematic.jpg}
+	\caption{Schema des nRF52DKs aus der Dokumentation von Nordic entnommen}
+	\label{fig:schematic}
+\end{figure}
 
 \section{Installation der GNU ARM Embedded Toolchain}
+
+Um die Funktion aller Tools und der SDK zu gewährleisten, sollten folgende Installationen ausschliesslich in der hier beschriebenen Reihenfolge ausgeführt werden. Da sich die Installation unter Ubuntu und Arch Linux unterscheiden, sind im nachfolgenden beide Varianten dokumentiert. 
 
 Um die Software auf dem Hostsystem für das nRF52DK kompilieren zu können, benötigen wir eine sogenannte crosscompiler-toolchain. Für ARM basierte Controller ist hier die erste Wahl die gnu-arm-none-eabi Toolchain. Sie lässt sich von folgender Seite beziehen:
 
@@ -19,7 +41,7 @@ Die Befehle dazu lauten:
     ln -s /opt/gcc-arm-none-eabi-tools/bin/* /usr/local/bin/
 \end{lstlisting}
 
-Unter ArchLinux lässt sich die Software auch aus den offiziellen Paketquellen installieren, die Befehle dazu lauten:
+Wichtig: Unter Arch Linux sollte unbedingt die aktuellste Version im Community Repository verwendet werden. Die gewünschte Software lässt sich wie folgt installieren:
 
 \begin{lstlisting}[style=BashInputStyle]
     pacman -S community/arm-none-eabi-binutils
@@ -46,8 +68,6 @@ Im ersten Paket befinden sich alle Files, welche zur Entwicklung von Software au
 Im zweiten Paket befinden sich die Command-Line-Tools, welche es uns ermöglichen über die Kommandozeile mit dem nRF52 Entwicklungskit zu kommunizieren. Das wichtigste Tool ist nrfjprog, welches kompilierte Programme auf das Board hochladen kann.
 
 Die SDK sowie die Command-Line-Tools sollten auf dem System unter dem Ordner /opt installiert werden und mit den nötigen Berechtigungen versehen werden. Ebenfalls sollten die Programme in einen Ordner gelinkt werden, welcher im Systempfad angegeben ist.
-
-\clearpage
 
 Die Befehle dazu lauten:
 \begin{lstlisting}[style=BashInputStyle]
@@ -88,11 +108,24 @@ Unter ArchLinux lässt sich die Software auch aus dem Arch-User-Repository instal
 
 \section{Verwendung des JLinkGDBServers}
 
+Der folgende Befehl beschreibt das Starten des GDBJLinkServers von SEGGER. 
+
 \begin{lstlisting}[style=BashInputStyle]
     JLinkGDBServer -Device nRF52832_xxAA -If SWD -Speed 4000 -Autoconnect 1
 \end{lstlisting}
 
+Der Server startet einen lokalen Socket und ist unter Port 1234 erreichbar.
+Nachdem \ac{GDB} gestartet wurde, lässt sich über folgenden Befehl eine Verbindung mit dem Server herstellen:
+
+\textbf{(gdb) target remote localhost:1234}
+
+Alternativ kann auch eine Konfigurationsdatei für GDB angelegt werden. Dazu erstellt man im Home-Verzeichnis eine Datei mit dem Namen .gdbinit. Um automatisch auf den lokalen Server zu verbinden ist lediglich die obere Zeile hinzufügen. 
+
 \section{Verwendung von nrfjprog}
+
+Nrfjprog ist Teil der Proprietären Softwarewerkzeuge der SDK von Nordic. Es unterstützt das Flashen von Hex-Binarys über SWD oder JTAG. Der Funktionsumfang ist sehr gross, daher sei an dieser Stelle auch noch aufs Helpfile verwiesen.
+
+Um eine bereits kompilierte Beispielapplikation auf das nrf52 Board zu laden sind folgende Befehle in dieser Reihenfolge auszuführen.
 
 \begin{lstlisting}[style=BashInputStyle]
     nrfjprog --eraseall -f nrf52
@@ -100,8 +133,6 @@ Unter ArchLinux lässt sich die Software auch aus dem Arch-User-Repository instal
     nrfjprog --reset -f nrf52
 \end{lstlisting}
 
-\section{Vorteile}
-\section{Technische Beschreibung des Boards}
-\section{Bluetooth Low Energy}
-\section{Analog to Digital Converter}
-\section{I2C Bus}
+Zeile 1 löscht den aktuellen Inhalt des Flashspeichers auf dem SoC.\newline
+Zeile 2 flasht ein neues Binary in den Flashspeicher des SoC.\newline
+Zeile 3 Resetet den SoC, alternativ kann auch der Hardwarereset betätigt werden.\newline
