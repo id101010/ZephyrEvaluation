@@ -24,6 +24,8 @@ Die Header sind kompatibel mit allen Arduino Shields des Revisionsstandards 3 wa
 	\label{fig:schematic}
 \end{figure}
 
+Wie aus dem Schema ersichtlich wird, basiert das Developmentkit auf dem nRF52832 \ac{SoC}. In diesem Chip steckt ein 32bit ARM Cortex M4F welcher mit 32MHz getaktet ist. Der Chip verfügt weiter über einen 2.4GHz Transceiver und \ac{NFC}.
+
 \section{Installation der GNU ARM Embedded Toolchain}
 
 Um die Funktion aller Tools und der SDK zu gewährleisten, sollten folgende Installationen ausschliesslich in der hier beschriebenen Reihenfolge ausgeführt werden. Da sich die Installation unter Ubuntu und Arch Linux unterscheiden, sind im nachfolgenden beide Varianten dokumentiert. 
@@ -136,3 +138,48 @@ Um eine bereits kompilierte Beispielapplikation auf das nrf52 Board zu laden sin
 Zeile 1 löscht den aktuellen Inhalt des Flashspeichers auf dem SoC.\newline
 Zeile 2 flasht ein neues Binary in den Flashspeicher des SoC.\newline
 Zeile 3 Resetet den SoC, alternativ kann auch der Hardwarereset betätigt werden.\newline
+
+\clearpage
+
+\section{nrf52dk-zephyr-tool}
+
+Das nrf52-zephyr-tool ist ein Werkzeug welches die noch fehlende Funktionalität des Zephyr Build Systemes fürs nRF52DK ersetzen soll. Es vereinfacht das anlegen von neuen Projekten und bietet die möglichkeit ein Binary auf das Developmentkit zu laden. Die Bedienung funktioniert über ein \ac{CLI}.
+
+Ein Aufruf der Helpfunktion erzeugt folgende Ausgabe:
+
+\begin{lstlisting}[style=BashInputStyle]
+Usage: ./nrf52dk_zephyr_tool.sh [options]
+
+This script handles the creation and compilation of zephyr applications
+for the nrf52dk. Make sure the Zephyr environment (zephyr-env.sh) is sourced! 
+Otherwise the compilation will not work.
+
+OPTIONS:
+help                 Show this message
+debug                Initializes the JLinkGDBServer for the nrf52 board
+flash  ProjectPath   Flashes the previously built project
+build  ProjectPath   Builds a zephyr application
+create ProjectPath   Creates a new project folder with standard configuration
+\end{lstlisting}
+
+Die ganzen boardspezifischen Konfigurationen und eine Beispielapplikation wurden im Script mittels Base64 Codierung hinzugefügt. Es bedarf daher keiner weiteren Dateien um ein neues Projekt anzulegen.
+Damit das Script ordnungsgemäss funktionert muss folgendes gewährleistet sein:
+
+\begin{enumerate}
+	\item Das zephyr-environment ist in der aktuellen Shell gesourced
+	\item Die Zephyr-SDK ist installiert
+	\item Die nRF5x-Command-Line-Tools sind installiert
+\end{enumerate}
+
+Ein Aufruf des Scrips mit dem Argument \textbf{create} führt dazu dass folgende Ordnerstruktur auf dem Filesystem angelegt wird:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{bilder/myAwesomeProject.png}
+	\caption{Angelegte Ordnerstruktur}
+	\label{fig:tree}
+\end{figure}
+
+Das Projekt lässt sich mit dem Argument \textbf{build} kompilieren und anschliessend mit \textbf{flash} auf das Board laden. Der Debugserver von Nordic lässt sich mit \textbf{debug} starten. Anschliessend sollte es möglich sein sich mittels GDB zu verbinden.
+
+Eine wünschenswerte Erweiterung des Scripts wäre der automatische Download und die Installation der Nordic-SDK, der arm-none-eabi-Toolchain und der Zephyr-SDK. 
