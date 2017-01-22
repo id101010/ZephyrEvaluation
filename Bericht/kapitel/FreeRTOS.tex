@@ -12,7 +12,7 @@
   	\item  FreeRTOS führt nie einen nicht-deterministischen Vorgang aus, wie etwa das Verfolgen einer verknüpften Liste, und zwar innerhalb eines kritischen Abschnitts oder Interrupts.
   	\item Wir sind besonders stolz auf die effiziente Software-Timerimplementierung, die keine CPU-Zeit in Anspruch nimmt, es sei denn, ein Timer muss tatsächlich gewartet werden. Software-Timer enthalten keine Variablen, die bis auf Null gezählt werden müssen.
   	\item Ebenso benötigen Listen von blockierten (angehängten) Tasks keine zeitraubende periodische Wartung.
-  	\item Direkt zu Task-Benachrichtigungen ermöglichen eine schnelle Task-Signalisierung mit praktisch keinem RAM-Overhead und können in der Mehrzahl der Inter-Task- und Interrupt-Task-Signaling-Szenarien verwendet werden.
+  	\item Direkt zu Task-Benachrichtigungen ermöglichen eine schnelle Task-Signalisierung mit praktisch keinem RAM-Overhead und können in der Mehrzahl der Inter-Task verwendet werden.
   	\item Das FreeRTOS-Warteschlangen-Nutzungsmodell schafft es, Einfachheit mit Flexibilität (in einer winzigen Codegröße) zu kombinieren - Attribute, die sich normalerweise gegenseitig ausschließen.
   \end{itemize}
  
@@ -23,13 +23,13 @@
   	\caption{Übersicht über das FreeRTOS}
   	\label{fig:components}
   \end{figure}
-  \vspace{10mm}
+  
  
 Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnahme verteilt. Die Einschränkung verbietet das Benchmarking, während die Ausnahme erlaubt, dass der proprietäre Code der Benutzer eine geschlossene Quelle bleibt, während der Kernel selbst als Open Source beibehalten wird, wodurch die Verwendung von FreeRTOS in proprietären Anwendungen erleichtert wird. FreeRTOS wurde schon im Weltraum eingesetzt.\cite{FreeRTOSProjectDocumentation}
  
  \section{Ziele}
  
- Die ursprüngliche Aufgabe des FreeRTOS-Projekts war es, eine kostenlose RTOS-Lösung bereitzustellen, die einfach zu bedienen war. Das heisst, einfach zu erstellen und zu implementieren, auf einem Windows- oder Linux Computer, ohne herauszufinden, welche Quelldateien erforderlich sind und welche Pfade erforderlich sind, oder wie die Echtzeit-Debugging-Umgebung konfiguriert wird. Dies wurde durch die Bereitstellung von vorkonfigurierten Beispielprojekten für jeden offiziell unterstützten Board erreicht.
+ Die ursprüngliche Aufgabe des FreeRTOS-Projekts war es, eine kostenlose RTOS-Lösung bereitzustellen, die einfach zu bedienen war. Das heisst, einfach zu erstellen und zu implementieren, auf einem Windows- oder Linux Computer, ohne herauszufinden, welche Quelldateien und welche Pfade erforderlich sind, oder wie die Echtzeit-Debugging-Umgebung konfiguriert wird. Dies wurde durch die Bereitstellung von vorkonfigurierten Beispielprojekten für jeden offiziell unterstützten Board erreicht.
  
  FreeRTOS ist ein skalierbarer Echtzeitkern, der speziell für kleine Embedded-Systeme entwickelt wurde. Zu den Highlights gehören:\cite{FreeRTOSProjectDocumentation}
  
@@ -57,12 +57,12 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
    	\item Nur Zuweisung
    	\item Zuweisen und kostenlos mit einem sehr einfachen, schnellen Algorithmus
    	\item Ein komplexer, aber schnell zuweisbarer und freier Algorithmus mit Speicherkoaleszenz 
-   	\item C-Bibliothek zuzuordnen und kostenlos mit einigen gegenseitigen Ausschluss Schutz
+   	\item C-Bibliothek zuzuordnen und kostenlos mit einigen gegenseitigen Ausschluss-Schutz
    \end{itemize}
    \vspace{5mm}
    
 
- In FreeRTOS gibt es keine erweiterungsfunktionen wie z.B: Gerätetreiber, erweiterte Speicherverwaltung und Benutzerkonten wie das bei Betriebssystemen wie Linux oder Microsoft Windows üblich ist. Der Schwerpunkt liegt auf Kompaktheit und Geschwindigkeit der Ausführung:
+ In FreeRTOS gibt es keine Erweiterungsfunktionen wie z.B: Gerätetreiber, erweiterte Speicherverwaltung und Benutzerkonten wie das bei Betriebssystemen wie Linux oder Microsoft Windows üblich ist. Der Schwerpunkt liegt auf Kompaktheit und Geschwindigkeit der Ausführung:
  
    \begin{itemize}
    	\item Sehr geringer Speicherbedarf, geringer Overhead und sehr schnelle Ausführung
@@ -80,7 +80,7 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
  
  \section{Unterstützung}
  
- Momentan unterstützt der FreeRTOS-Kernel gemäss Angaben auf der Projektseite \cite{FreeRTOSProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ Momentan unterstützt der FreeRTOS-Kernel, gemäss Angaben auf der Projektseite \cite{FreeRTOSProjectDocumentation}, Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
  
  \begin{center}
  \begin{tabular}{ | l |}
@@ -108,7 +108,7 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
  
  \vspace{4mm}
  
- Zur Kommunikation unterstützt das FreeRTOS-Betreibssystem eine Vielzahl an Kommunikations-Protokolle. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. 
+ Zur Kommunikation unterstützt das FreeRTOS-Betriebssystem eine Vielzahl an Kommunikations-Protokolle. Da der Fokus auf das Internet der Dinge gelegt wurde, wurden auch die entsprechenden Protokolle zuerst implementiert. 
  
  Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssystem unterstützte Hardwarekomponenten wie auch die unterstützten Protokolle:
  
