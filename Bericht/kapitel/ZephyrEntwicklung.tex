@@ -113,30 +113,31 @@ make [BOARD=<type>] menuconfig
 Mit dem Boardparameter kann auch noch eine spezifische Boardkonfiguration mitberücksichtigt werden.
 Sind alle gewünschten Einstellungen getätigt kann die Konfiguration unter dem bereits gesetzten Namen abgespeichert werden. Im Applikationsverzeichnis wird daraufhin ein Ordner namens outdir erstellt welcher die eben erstellte Customconfig enthält. Wichtig ist hier dass sich im outdir nur eine .config Datei befinden darf. Wenn mit unterschiedlichen Konfigurationen experimentiert wird, sollten die restlichen Dateien in einem separaten Ordner abgespeichert werden. Selbstverständlich werden Dateien mit einer Punktierung im Namen von sämtlichen Linuxsystemen als versteckte Datei behandelt.
 
+\newpage
+
 \section{Debugging mit GDB}
 
+Der folgende Abschnitt beschreibt das Debugging von Zephyr-Applikationen im Allgemeinen. Da die Toolchain von Nordic nicht Open-Source ist, wird sie vom Zephyr-Makefile nicht offiziell unterstützt. Für das Debugging von Applikationen auf dem nrf52dk sei an dieser Stelle auf das Kapitel 9 verwiesen.
 
+Nachfolgende Grafik zeigt den Aufbau einer Debugging-Kette wies sie für moderne Mikrocontrollersysteme oft verwendet wird.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{bilder/gdb-debugging-chain.png}
+	\caption{GDB Debugging Chain}
+	\label{fig:debuggingtoolchain}
+\end{figure}
+
+Die Kette setzt sich zusammen aus dem \ac{GDB}, einem GDB Server, der Schnittstelle aufs Board und natürlich dem Board selbst.
+
+Der \ac{GDB} ist im Internet als freie Software verfügbar und auf den unterschiedlichsten Architekturen lauffähig. Im Bild ist er als GDB-Client gekennzeichnet. 
+Der GDB-Server ist ein Stück Software welche über einen TCP-Socket dem GDB-Client ein Interface zur Verfügung stellt. Über dieses Interface lässt sich das Board über GDB steuern. Es können Breakpoints gesetzt und aktuelle Registerwerte ausgelesen werden.
+Die Schnittstelle zwischen Board und GDB-Server ist in den meisten Fällen via \ac{JTAG} oder \ac{SWD} möglich. Auf Entwicklungsboards ist die Debugging-Hardware meist direkt auf Boardlevel implementiert.
+
+Die Firma Nordic setzt beispielsweise bei ihren Boards J-Link von SEGGER ein. Dazu gehört ein GDB-Server und ein J-Link Gerät. Beim nrf52dk ist J-Link bereits auf dem Board verbaut und via USB ansprechbar.
 
 
 \section{nrf52dk-zephyr-tool.sh}
 
-Das Makefile der Zephyr-Build-Tools erlaubt es mittels \textbf{make flash} Software auf Boards direkt herunterzuladen. Jedoch muss beim nrf52 Development-Kit auf proprietäre Software von Nordic zurückgegriffen werden. Da diese Software nicht quelloffen ist, kann sie nicht mit den Build-Tools ausgeliefert werden.
-Um die Entwicklung von Zephyrapplikationen dennoch zu vereinfachen, ist im Rahmen der Projektarbeit ein kleines Shellskript entstanden, welches die grundlegenden Operationen wie das Erstellen eines Projektes mit Minimalkonfiguration, das Kompilieren einer Applikation oder das Herunterladen eines Binarys auf das nrf52 Development-Kit erlaubt. Die Bedienung des Shellskripts hält sich an die gängigen Unix Standards.
-
-\begin{lstlisting}[style=BashInputStyle]
-$ ./nrf52dk_zephyr_tool.sh help
-
-Usage: nrf52dk_zephyr_tool.sh [options]
-
-This script handles the creation and compilation of zephyr applications for the nrf52dk.
-
-OPTIONS:
-help                 Show this message
-flash  ProjectPath   Flashes the previously built project
-build  ProjectPath   Builds a zephyr application
-create ProjectPath   Creates a new project folder with standard configuration
-
-\end{lstlisting}
-
-
+Das Makefile der Zephyr-Build-Tools erlaubt es mittels \textbf{make flash} Software auf Boards direkt herunterzuladen. Jedoch muss beim nrf52 Development-Kit auf proprietäre Software von SEGGER zurückgegriffen werden. Da diese Software nicht quelloffen ist, kann sie nicht mit den Build-Tools ausgeliefert werden.
+Um die Entwicklung von Zephyrapplikationen dennoch zu vereinfachen, ist im Rahmen der Projektarbeit ein kleines Shellskript entstanden, welches die grundlegenden Operationen wie das Erstellen eines Projektes mit Minimalkonfiguration, das Kompilieren einer Applikation oder das Herunterladen eines Binarys auf das nrf52 Development-Kit erlaubt. Die Bedienung des Shellskripts hält sich an die gängigen Unix Standards. Mehr dazu ist im Kapitel 9 zu finden.

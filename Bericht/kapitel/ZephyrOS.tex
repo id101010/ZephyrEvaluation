@@ -14,7 +14,7 @@ Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Ein
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{bilder/zephyr_components.jpg}
-	\caption{Komponente und Übersicht über das Zephyr RTOS}
+	\caption{Komponenten und Übersicht des Zephyr RTOS}
 	\label{fig:components}
 \end{figure}
 
@@ -27,7 +27,7 @@ Zephyr ist für den Einsatz auf Geräten mit geringem Speicherplatz und feststehen
 Das Zephyr-Projekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} folgende Ziele:
 
 \begin{itemize}
-	\item Kleine Speicheranforderung - lauffähig mit minimal 10kB
+	\item Kleine Speicheranforderung, lauffähig mit minimal 10kB
 	\item CPU unabhängige Architektur mit abstrahierten Funktionen
 	\item Modular und hochgradig skalierbar
 	\item Hohe Sicherheitsstandards
@@ -49,7 +49,7 @@ Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll
 
 Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit, die der Nanokernel für die Abarbeitung einer Aufgabe benötigt, verhält sich somit deterministisch. Das bedeutet, dass genau festgelegt werden kann wieviel Zeit der Kernel für eine zuvor festgelegte Aufgabe benötigen wird. Dies unabhängig davon wie stark das System gerade ausgelastet ist. Für alle Aufgaben, welche keine Anforderungen an Echtzeit-Verarbeitung stellen, verfügt das System über einen Microkernel.\cite{ZephyrProjectDocumentation}
 
-\section{Unterstützung}
+\section{Unterstützte Architekturen und Boards}
 
 Momentan unterstützt der Zephyr-Kernel, gemäss Angaben auf der Projektseite, Prozessoren der Architekturen ARC, ARM-v7 sowie auch x86. Dadurch ist das System auf den zur Zeit populären Plattformen lauffähig.
 Zephyrapplikationen können mittels SDK aber auch für System-Emulatoren wie QEMU kompiliert werden. Folgende Hardware wird zum Zeitpunkt unserer Projektarbeit unterstützt:
@@ -80,7 +80,7 @@ Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssy
 \begin{center}
 	\begin{tabular}{ | l | l |}
 		\hline
-		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
+		\textbf{Protokoll} 		& \textbf{System} \\ \hline
 		Bluetooth 4.0 			& ADC 	\\ \hline
 		Bluetooth Low Energy 	& GPIOs \\ \hline
 		CoAP 					& I2C 	\\ \hline
