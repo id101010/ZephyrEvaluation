@@ -6,10 +6,12 @@
 
 Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem, speziell optimiert für Anwendungen im Internet der Dinge. Konkret also für Glühlampen, Heizungsthermostate und andere Alltagsgeräte mit Internet-Anbindung.
 
-Die Architektur basiert nicht wie bei anderen IoT-Betreibssystemen auf einem Linux-Kernel, sondern auf einer echtzeitfähigen Kombination von Nano- und Mikrokernel. Zephyr wird aktuell von der Linux-Foundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative-Projects weiterentwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen.
+Die Architektur basiert nicht wie bei anderen IoT-Betriebssystemen auf einem Linux-Kernel, sondern auf einer echtzeitfähigen Kombination von Nano- und Mikrokernel. Zephyr wird aktuell von der Linux-Foundation in Zusammenarbeit mit den Firmen Intel, NXP und Synopsys in der Form eines Collaborative-Projects weiterentwickelt. Dadurch soll versucht werden die bei der Linux- und Open-Source-Entwicklung verwendeten Arbeitsweisen und Ideen auch im Bereich der Industrie einzubringen.
 
 Ziel ist es ein robustes und sicheres Betriebssystem für das Internet der Dinge zu schaffen. Zephyr ist dabei vollständig Open-Source und steht laut Information des Newsportals Heise.de \cite{HeiseDe} unter der Apache Lizenz Version 2.0. 
-Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Einsatz von Open-Source-Software generell scheuen. Open-Source Projekte stehen oft unter der \ac{GPL}. Wird in Produkten Software verwendet, welche unter der \ac{GPL} lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter der \ac{GPL} zu veröffentlichen. Dies beinhaltet auch sämtliche Änderungen welche vorgenommen wurden. Bei der Apache-Lizenz ist dies gemäss Definition \cite{ApacheLicense} nicht zwingend.
+Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Einsatz von Open-Source-Software generell scheuen. Open-Source Projekte stehen oft unter der \ac{GPL}. Wird in Produkten Software verwendet, welche unter der \ac{GPL} lizensiert ist, zwingt dieses Lizenzmodell die Firmen dazu ihre Produkte ebenfalls unter der \ac{GPL} zu veröffentlichen. Dies beinhaltet auch sämtliche Änderungen, welche vorgenommen wurden. Bei der Apache-Lizenz ist dies gemäss Definition \cite{ApacheLicense} nicht zwingend.
+
+\vspace{10mm}
 
 \begin{figure}[h]
 	\centering
@@ -38,7 +40,9 @@ Das Zephyr-Projekt verfolgt laut Beschreibung der Linux-Foundation \cite{LinuxFo
 
 \section{Aufbau}
 
-Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll Zephyr bereits mit 10KB an Speicherplatz lauffähig sein. Das macht Zephyr besonders für Anwendungen auf kleinen Mikrocontrollern attraktiv. Bei einem herkömmlichen Linux-Kernel wäre dies nicht denkbar. Gängige Adaptionen für Smartphone SoCs benötigen laut in der kleinsten Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
+Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll Zephyr bereits mit 10KB an Speicherplatz lauffähig sein. Das macht Zephyr besonders für Anwendungen auf kleinen Mikrocontrollern attraktiv. Bei einem herkömmlichen Linux-Kernel wäre dies nicht denkbar. Gängige Adaptionen für Smartphone SoCs benötigen für die kleinste Konfiguration noch bis zu 200KB RAM und rund 1MB Flash.
+
+\vspace{10mm}
 
 \begin{figure}[h]
 	\centering
@@ -47,7 +51,7 @@ Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll
 	\label{fig:components}
 \end{figure}
 
-Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit, die der Nanokernel für die Abarbeitung einer Aufgabe benötigt, verhält sich somit deterministisch. Das bedeutet, dass genau festgelegt werden kann wieviel Zeit der Kernel für eine zuvor festgelegte Aufgabe benötigen wird. Dies unabhängig davon wie stark das System gerade ausgelastet ist. Für alle Aufgaben, welche keine Anforderungen an Echtzeit-Verarbeitung stellen, verfügt das System über einen Microkernel.\cite{ZephyrProjectDocumentation}
+Der Nanokernel bietet Echtzeit-Fähigkeiten. Die Zeit, die der Nanokernel für die Abarbeitung einer Aufgabe benötigt, verhält sich somit deterministisch. Das bedeutet, dass genau festgelegt werden kann, wieviel Zeit der Kernel für eine zuvor festgelegte Aufgabe benötigen wird. Dies unabhängig davon, wie stark das System gerade ausgelastet ist. Für alle Aufgaben, welche keine Anforderungen an Echtzeit-Verarbeitung stellen, verfügt das System über einen Microkernel.\cite{ZephyrProjectDocumentation}
 
 \section{Unterstützte Architekturen und Boards}
 
@@ -109,7 +113,7 @@ Folgender Befehl installiert alle für die Zephyr-SDK notwendigen Pakete:
 $ apt-get install git make gcc g++ python3-ply ncurses-dev
 \end{lstlisting}
 
-Die SDK von Zephyr verfügt über alle nötigen Tools und Crosscompiler um den Kernel für alle supporteten Architekturen zu kompilieren. Zusätzlich enthält sie eine speziell angepasste Version von QEMU mit welcher sich die Architekturen auf einem beliebigen Hostsystem simulieren lassen.
+Die SDK von Zephyr verfügt über alle nötigen Tools und Crosscompiler, um den Kernel für alle supporteten Architekturen zu kompilieren. Zusätzlich enthält sie eine speziell angepasste Version von QEMU mit welcher sich die Architekturen auf einem beliebigen Hostsystem simulieren lassen.
 
 Die Installation der SDK gliedert sich in folgende Schritte:
 
@@ -185,7 +189,7 @@ Obige Instruktionen bauen das Hello World Beispiel aus dem Quellcode. Als Standa
 $ make BOARD=nrf52
 \end{lstlisting}
 
-Falls eine Hilfestellung gewünscht ist, kann diese mit folgendem Kommando aufgerufen: werden:
+Falls eine Hilfestellung gewünscht ist, kann diese mit folgendem Kommando aufgerufen werden:
 
 \begin{lstlisting}[style=BashInputStyle]
 $ make help

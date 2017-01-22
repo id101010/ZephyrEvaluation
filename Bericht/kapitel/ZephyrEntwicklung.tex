@@ -4,13 +4,11 @@
 
 \section{Übersicht}
 
-Das Buildsystem des Zephyr-Kernels basiert auf Kbuild. Kuild ist das System, welches für den Linux Kernel entwickelt wurde.
+Das Buildsystem des Zephyr-Kernels basiert auf Kbuild. Kbuild ist das System, welches für den Linux Kernel entwickelt wurde.
 
 Um eine Applikation zu erstellen, ist ein Konfigurationsfile für den Kernel notwendig. Das Buildsystem kompiliert dann sowohl den Kernel als auch die Applikation und erstellt ein einziges Binary daraus.
 
-Im folgenden wird unterschieden zwischen dem Kernel-Ordner und dem Applikations-Ordner. Der Kernel-Ordner enthält den vollständigen Quellcode des Kernels, die Standardkonfiguration und die Build Definitionen für den Kernel.
-
-Der Applikationsordner enthält den ganzen Quellcode und spezifische Konfigurationen für den Kernel. Im Quellcode der Applikation wird lediglich auf den Kernel gelinkt. Wenn keine neuen Treiber entwickelt werden sollen, beschränkt sich die Applikationsentwicklung ausschliesslich auf die Konfigurationen und den Quellcode im Applikationsverzeichnis. Der Kernel selbst muss nicht verändert werden, da dies vom Buildsystem erledigt wird.
+Im folgenden wird unterschieden zwischen dem Kernel-Ordner und dem Applikations-Ordner. Der Kernel-Ordner enthält den vollständigen Quellcode des Kernels, die Standardkonfiguration und die Build Definitionen für den Kernel. Der Applikationsordner enthält den ganzen Quellcode und spezifische Konfigurationen für den Kernel. Im Quellcode der Applikation wird lediglich auf den Kernel gelinkt. Wenn keine neuen Treiber entwickelt werden sollen, beschränkt sich die Applikationsentwicklung ausschliesslich auf die Konfigurationen und den Quellcode im Applikationsverzeichnis. Der Kernel selbst muss nicht verändert werden, da dies vom Buildsystem erledigt wird.
 
 \section{Applikationsstruktur}
 
@@ -18,7 +16,11 @@ Das Minimum einer Applikationsstruktur sieht folgendermassen aus:
 
 \begin{itemize}
 	\item \textbf{Quelltext der Applikation} Applikationen werden typischerweise in C oder Assembler geschrieben und liegen im Ordner src.
+
+	
 	\item \textbf{Kernel Konfigurationsfiles} Eine Zephyrapplikation stellt dem Buildsystem ein Konfigurationsfile *.conf zur Verfügung. Fehlt diese Datei, wird die Standardkonfiguration verwendet.
+
+	
 	\item \textbf{Makefile} Diese Datei teilt dem Buildsystem lediglich mit, wo die oben genannten Dateien zu finden sind und um was für ein Board es sich beim Target handelt. Es handelt sich dabei nicht um ein Makefile im klassischen Sinne.
 \end{itemize}
 
@@ -29,6 +31,8 @@ Wurde die Applikation nach obigem Standard definiert, kann sie mit einem einzige
 	\item Object-Files \textbf{.o und .a}, welche Kompilat aus Kernel und Applikation enthalten.
 	\item Das \textbf{zephyr.elf} Binary, welches Kernel- und Applikationscode in sich vereint.
 \end{itemize}  
+
+\vspace{10mm}
 
 \section{Bedienung des Build-Systems}
 
@@ -53,11 +57,11 @@ Applikationsspezifischer Quelltext wird üblicherweise im src Ordner abgelegt. Se
 
 \begin{itemize}
 	\item In jedem Unterordner muss ein Makefile erstellt werden, welches alle Dateien für Kbuild referenziert.
-	\item Um Dateien zu referenzieren ist die Folgende Syntax zu verwenden:
+	\item Um Dateien zu referenzieren ist die folgende Syntax zu verwenden:
 	\begin{lstlisting}[style=BashInputStyle]
 	obj-y += file1.o file2.o
 	\end{lstlisting}
-	\item Um Unterordner zu referenzieren ist die Folgende Syntax zu verwenden:
+	\item Um Unterordner zu referenzieren ist die folgende Syntax zu verwenden:
 	\begin{lstlisting}[style=BashInputStyle]
  	obj-y += directory_name/**
 	\end{lstlisting}
@@ -66,15 +70,15 @@ Applikationsspezifischer Quelltext wird üblicherweise im src Ordner abgelegt. Se
 
 \section{Konfiguration der Kernelparameter}
 
-Der Kernel, welcher für und mit der Applikation kompiliert wird, kann mittels Buildsystem speziell für die Ansprüche der Applikation angepasst werden. Um dies zu tun, gibt es mehrere Möglichkeiten. Die dazu anzupassenden Konfigurationsdateien sind im Folgenden in hirarchischer Weise aufgelistet. Das bedeutet, dass das die erste Konfiguration der Liste alle anderen überschreiben wird.
+Der Kernel, welcher für und mit der Applikation kompiliert wird, kann mittels Buildsystem speziell für die Ansprüche der Applikation angepasst werden. Um dies zu tun, gibt es mehrere Möglichkeiten. Die dazu anzupassenden Konfigurationsdateien sind im Folgenden in hierarchischer Weise aufgelistet. Das bedeutet, dass die erste Konfiguration der Liste alle anderen überschreiben wird.
 
 \begin{enumerate}
 	\item Konfigurationsdatei der Applikation anpassen (.config)
 	\item Spezifische Konfiguration des Boards in der SDK anpassen (.defconfig)
-	\item Kernelkonfig direkt anpassen (Kconfig Dateien)
+	\item Kernelkonfiguration direkt anpassen (Kconfig Dateien)
 \end{enumerate}
 
-Eine Anpassung der Config des Kernels macht nur für sehr spezifische Applikationen wirklich Sinn. Auf diese Option sollte nur zu Optimierungszwecken zurückgegriffen werden. Eine sehr ausführliche Liste mit allen Konfigurationen finden sich im Kernel Primer Guide auf der Homepage des Zephyr Projektest. Da dies den Rahmen der Dokumentation sprengen würde, wird an dieser Stelle auf eine ausführliche Beschreibung verzichtet. Nachfolgend wird auf die restlichen Möglichkeiten und deren Einsatzzweck eingegangen.
+Eine Anpassung der Config des Kernels macht nur für sehr spezifische Applikationen wirklich Sinn. Auf diese Option sollte nur zu Optimierungszwecken zurückgegriffen werden. Eine sehr ausführliche Liste mit allen Konfigurationen finden sich im Kernel Primer Guide auf der Homepage des Zephyr Projektests. Da dies den Rahmen der Dokumentation sprengen würde, wird an dieser Stelle auf eine ausführliche Beschreibung verzichtet. Nachfolgend wird auf die restlichen Möglichkeiten und deren Einsatzzweck eingegangen.
 
 \subsection{Boardkonfiguration}
 
@@ -84,16 +88,16 @@ Die Konfigurationen des Kernels für die unterstützten Boards befinden sich in de
 $ZEPHYR_BASE/boards/ARCHITECTURE/BOARD/BOARD_defconfig
 \end{lstlisting}
 
-Die Boardkonfiguration enthält alle Kernelkonfigurationen um die Hardwarekomponenten des Entwicklungskits zu betreiben. Wenn die bereits gesetzten Werte der Boardkonfiguration ausreichend sind kann auf eine weiterführende Konfiguration verzichtet werden. Sollen aber beispielsweise Debugfunktionen wie die serielle Printfunktion printk zur Verfügung stehen, lässt sich das über ein einfaches Bearbeiten der entsprechenden Konfiguration des Boards erreichen. Wichtig ist dabei die Syntax einzuhalten:
+Die Boardkonfiguration enthält alle Kernelkonfigurationen, um die Hardwarekomponenten des Entwicklungskits zu betreiben. Wenn die bereits gesetzten Werte der Boardkonfiguration ausreichend sind, kann auf eine weiterführende Konfiguration verzichtet werden. Sollen aber beispielsweise Debugfunktionen, wie die serielle Printfunktion printk, zur Verfügung stehen, lässt sich das über ein einfaches Bearbeiten der entsprechenden Konfiguration des Boards erreichen. Wichtig ist dabei die Syntax einzuhalten:
 
 \begin{itemize}
-	\item Jede Konfiguration muss auf einen eigenen Zeile stehen.
+	\item Jede Konfiguration muss auf einer eigenen Zeile stehen.
 	\item Konfigurationen beginnen immer mit dem Präfix CONFIG
 	\item Konfigurationen dürfen keine Leerzeichen enthalten, auch nicht vor oder nach dem Gleichheitszeichen!
 	\item Alle mit einer Raute beginnenden Zeilen sind Kommentar. 
 \end{itemize} 
 
-Folgende Zeile stellt allen Applikationen welche mit der angepassten Boardkonfiguration kompiliert werden die serielle Ausgabe zur Verfügung:
+Folgende Zeile stellt allen Applikationen, welche mit der angepassten Boardkonfiguration kompiliert werden die serielle Ausgabe zur Verfügung:
 
 \begin{lstlisting}[style=BashInputStyle]
 # Enable printk for debugging
@@ -102,7 +106,7 @@ CONFIG_PRINTK=y
 
 \subsection{Applikationsspezifische Konfiguration}
 
-Diese Konfigurationsmethode kann verwendet werden um alle Standardkonfigurationen permanent zu überschreiben. Sie baut daher auch auf einem graphischen ncurses-Menu auf, wie man sich es von der Kompilierung des Linuxkernels gewohnt ist.
+Diese Konfigurationsmethode kann verwendet werden, um alle Standardkonfigurationen permanent zu überschreiben. Sie baut daher auch auf einem graphischen ncurses-Menu auf, wie man sich es von der Kompilierung des Linuxkernels gewohnt ist.
 
 Das Menu kann folgendermassen via make aufgerufen werden:
 
@@ -111,7 +115,7 @@ make [BOARD=<type>] menuconfig
 \end{lstlisting}
 
 Mit dem Boardparameter kann auch noch eine spezifische Boardkonfiguration mitberücksichtigt werden.
-Sind alle gewünschten Einstellungen getätigt kann die Konfiguration unter dem bereits gesetzten Namen abgespeichert werden. Im Applikationsverzeichnis wird daraufhin ein Ordner namens outdir erstellt welcher die eben erstellte Customconfig enthält. Wichtig ist hier dass sich im outdir nur eine .config Datei befinden darf. Wenn mit unterschiedlichen Konfigurationen experimentiert wird, sollten die restlichen Dateien in einem separaten Ordner abgespeichert werden. Selbstverständlich werden Dateien mit einer Punktierung im Namen von sämtlichen Linuxsystemen als versteckte Datei behandelt.
+Sind alle gewünschten Einstellungen getätigt, kann die Konfiguration unter dem bereits gesetzten Namen abgespeichert werden. Im Applikationsverzeichnis wird daraufhin ein Ordner namens outdir erstellt, welcher die eben erstellte Customconfig enthält. Wichtig ist hier, dass sich im outdir nur eine .config Datei befinden darf. Wenn mit unterschiedlichen Konfigurationen experimentiert wird, sollten die restlichen Dateien in einem separaten Ordner abgespeichert werden. Selbstverständlich werden Dateien mit einer Punktierung im Namen von sämtlichen Linuxsystemen als versteckte Datei behandelt.
 
 \newpage
 
