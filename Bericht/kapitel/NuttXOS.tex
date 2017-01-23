@@ -1,32 +1,27 @@
  % !TeX encoding = ISO-8859-1
- \chapter{NuttX Real-Overview}
+ \chapter{NuttX}
  \label{chap:overview}
  
- \section{Übersicht über NuttX Real}
+ \section{Übersicht über NuttX}
  
- NuttX ist ein Echtzeitbetriebssystem (RTOS) mit einem Schwerpunkt auf Normenkonformität und geringem Platzbedarf. Skalierbar von 8-Bit- bis 32-Bit-Mikrocontroller-Umgebungen sind die primären Normen in NuttX die Posix- und ANSI-Standards. Zusätzliche Standard-APIs von Unix und anderen gängigen RTOS, wie VxWorks, werden für die Funktionalität, die unter diesen Standards nicht verfügbar ist, oder für Funktionalitäten, die für tief eingebettete Umgebungen wie zum Beispiel ''fork'' nicht geeignet sind, übernommen. NuttX wurde zuerst 2007 von Gregory Nutt unter der permissiven BSD Lizenz veröffentlicht. NuttX, wie bei vielen RTOS, ist eine Sammlung von verschiedenen Funktionen gebündelt als Bibliothek. Es wird nicht ausgeführt ausser wenn entweder:\cite{NuttXProjectDocumentation}
- 
-  \begin{itemize}
-  	\item Die Anwendung den NuttX-Bibliothekscode aufruft
-  	\item Ein Interrupt auftritt
-  \end{itemize}  
+ NuttX ist laut Projektseite \cite{NuttXProjectDocumentation} ein Echtzeitbetriebssystem mit einem Schwerpunkt auf Normenkonformität und geringem Platzbedarf. Skalierbar von 8-Bit- bis 32-Bit-Mikrocontroller-Umgebungen sind die primären Normen in NuttX die Posix- und ANSI-Standards. Zusätzliche Standard-APIs von Unix und anderen gängigen RTOS, werden für die Funktionalität, die unter diesen Standards nicht verfügbar ist, oder für Funktionalitäten, die für tief eingebettete Umgebungen wie zum Beispiel "fork" nicht geeignet sind, übernommen. NuttX wurde zuerst 2007 von Gregory Nutt unter der permissiven BSD Lizenz veröffentlicht. NuttX ist als eine Sammlung von verschiedenen Funktionen gebündelt als Bibliothek anzusehen. 
   
- NuttX implementiert ein virtuelles Dateisystem ''VFS'', das verwendet werden kann, um mit einer Anzahl von verschiedenen Entities  Schnittstellen   über die standardmässigen open(), close(), read(), write(), etc. zu kommunizieren. Wie andere VFSs unterstützt das NuttX VFS Dateien, Verzeichnisse und Gerätetreiber. Auch wie bei anderen VFSs unterstützt das  NuttX-Dateisystem psuedo-Dateisysteme. Das NuttX-Root-Dateisystem ist immer ein Pseudo-Dateisystem. Das ist genau das Gegenteil von Linux. Mit Linux muss das Root-Dateisystem immer ein physikalisches Block-Device sein. Bei NuttX ist das Root-Dateisystem immer ein Pseudofile System, das keinen zugrunde liegenden Blocktreiber oder physikalisches Gerät benötigt. Diese Anordnung macht das Leben viel einfacher für die kleine eingebettete Welt. NuttX interagiert mit Geräten über Gerätetreiber - das heißt über Software wird die Hardware gesteuert. Wenn eine Task einen pthread erzeugt, teilt er die Umgebungsvariablen, Dateideskriptoren, Sockets und Streams. Diese Task-Ressourcen werden als Referenz gezählt und bleiben so lange bestehen, wie Thread in der Task-Gruppe aktiv ist:\cite{NuttXProjectPDF}
+ Der Projektdokumentation \cite{NuttXProjectPDF} ist zu entnehmen, dass NuttX ein virtuelles Dateisystem mit dem Namen "VFS" implementiert, das verwendet werden kann um mit einer Anzahl von verschiedenen Entities  Schnittstellen über die standardmässigen open(), close(), read(), write() etc. zu kommunizieren. Wie andere VFSs unterstützt das NuttX VFS Dateien, Verzeichnisse und Gerätetreiber. Auch wie bei anderen VFSs unterstützt das  NuttX-Dateisystem psuedo-Dateisysteme. Das NuttX-Root-Dateisystem ist immer ein Pseudo-Dateisystem. Das ist genau das Gegenteil von Linux. Bei Linux muss das Root-Dateisystem immer ein physikalisches Block-Device sein. Bei NuttX ist das Root-Dateisystem immer ein Pseudofile System, das keinen zugrunde liegenden Blocktreiber oder physikalisches Gerät benötigt. Diese Anordnung macht das Leben viel einfacher für die kleine eingebettete Welt. NuttX interagiert mit Geräten über Gerätetreiber - das heißt über Software wird die Hardware gesteuert. Wenn eine Task einen pthread erzeugt, teilt er die Umgebungsvariablen, Dateideskriptoren, Sockets und Streams. Diese Task-Ressourcen werden als Referenz gezählt und bleiben so lange bestehen, wie Thread in der Task-Gruppe aktiv ist:
     
  \begin{itemize}
   \item Umgebungsvariablen, sind die Sammlung von variablen Zuordnungen: ''VARIABLE = VALUE'' 	
   \item Ein Dateideskriptor ist eine aufgabenbezogene Zahl, die eine offene Ressource darstellt, Datei oder einen Gerätetreiber
   \item Ein Socket-Deskriptor ist wie ein Dateideskriptor, aber die offene Ressource ist in diesem Fall ein Netzwerk-Buchse
-  \item Streams wickeln Dateideskriptoren oder Sockets ein und bieten einen neuen Satz von Schnittstellenfunktionen für den Umgang mit der Standard-C Funktionen an  	
+  \item Streams wrappen Dateideskriptoren oder Sockets ein und bieten einen neuen Satz von Schnittstellenfunktionen für den Umgang mit der Standard-C Funktionen an  	
  \end{itemize}
    
  
  \section{Ziele}
  
  Es gibt einige RTOS-Funktionen, die durch interne Threads implementiert werden.
- Um ein Echtzeit-OS zu sein, muss ein RTOS ''SCHED FIFO'' unterstützen. Das heißt, strenge Priorität Scheduling. Der Scheduler: Diese Logik, die steuert, wenn Tasks oder Threads ausgeführt werden. Der Scheduler bestimmt, was eine Task oder ein Thread ist. In NuttX ist ein Thread eine beliebige steuerbare Sequenz der Befehlsausführung, die einen eigenen Stack hat. Jede Aufgabe wird durch eine Datenstruktur dargestellt, die als Task-Steuerblock oder TCB bezeichnet wird. Diese TCBs werden in Listen aufbewahrt. Der Zustand einer Task wird im Feld ''Task State'' angezeigt. Die meisten dieser Listen sind priorisiert. So dass eine gemeinsame Listenhandhabungslogik verwendet werden kann. Threads, die vom Betriebssystem verwaltet werden. Ein Prozess ist mehr als ein Thread, wie wir bisher diskutiert haben. Ein Prozess ist eine geschützte Umgebung, die einen oder mehrere Threads hostet. Unter Umgebung verstehen wir den Satz von Ressourcen von der OS.
+ Um ein Echtzeit-OS zu sein, muss ein RTOS ''SCHED FIFO'' unterstützen. Das heißt, strenge Priorität Scheduling. Der Scheduler ist die Logik, die steuert, wann Tasks oder Threads ausgeführt werden. Er bestimmt, was ein Task oder ein Thread ist. In NuttX ist ein Thread eine beliebige steuerbare Sequenz der Befehlsausführung, die einen eigenen Stack hat. Jede Aufgabe wird durch eine Datenstruktur dargestellt, die als Task-Steuerblock oder TCB bezeichnet wird. Diese TCBs werden in Listen aufbewahrt. Der Zustand einer Task wird im Feld ''Task State'' angezeigt. Die meisten dieser Listen sind priorisiert. So dass eine gemeinsame Listenhandhabungslogik verwendet werden kann. Threads werden vom Betriebssystem verwaltet. Ein Prozess ist jedoch mehr als ein Thread. Ein Prozess ist eine geschützte Umgebung, die einen oder mehrere Threads hostet. Unter Umgebung verstehen wir den Satz von Ressourcen von der OS.
 
- Um den Adressraum des Prozesses zu implementieren, muss die CPU eine Speicherverwaltungseinheit  MMU unterstützen. Allerdings wurde NuttX entworfen, um mit beschränkten Ressourcen zu funktionieren. Diese CPUs haben selten eine MMU und können daher Prozesse niemals unterstützen. So unterstützt NuttX keine Prozesse. NuttX arbeitet nur in einem flachen Adressraum, um Befehls- und Datencaches zu steuern und geschützte Speicherbereiche zu unterstützen, die dem TCB am Anfang der ready-to-run-Liste zugeordnet ist. NuttX unterstützt eine weitere Echtzeit-Planungsrichtlinie: ''SCHED RR''. Die RR steht für Roundrobin, dies wird manchmal als Round-Robin-Scheduling bezeichnet. In diesem Fall unterstützt NuttX das Timelicing. Jede Aufgabe wird nicht nur durch eine TCB, sondern auch durch eine numerische Task-ID dargestellt. Bei einem TCB kann das RTOS die Task-ID finden. Sie sind also funktional gleichwertig.\cite{NuttXProjectPDF}
+ Um den Adressraum des Prozesses zu implementieren, muss die CPU eine Speicherverwaltungseinheit  MMU unterstützen. Allerdings wurde NuttX entworfen, um mit beschränkten Ressourcen zu funktionieren. Diese CPUs haben selten eine MMU und können daher Prozesse niemals unterstützen. So unterstützt NuttX keine Prozesse. NuttX arbeitet nur in einem flachen Adressraum, um Befehls- und Datencaches zu steuern und geschützte Speicherbereiche zu unterstützen, die dem TCB am Anfang der ready-to-run-Liste zugeordnet ist. NuttX unterstützt eine weitere Echtzeit-Planungsrichtlinie: ''SCHED RR''. Die RR steht für Roundrobin, dies wird manchmal als Round-Robin-Scheduling bezeichnet. In diesem Fall unterstützt NuttX das Timelicing. Jede Aufgabe wird nicht nur durch eine TCB, sondern auch durch eine numerische Task-ID dargestellt. Bei einem TCB kann das RTOS die Task-ID finden. Sie sind also funktional gleichwertig. \cite{NuttXProjectPDF}
  
 
  \section{Aufbau}
@@ -40,7 +35,7 @@
   	
    \end{itemize}
 
-  Diese Initialisierungssequenz ist wirklich ganz einfach, weil das System im Single-Thread-Modus läuft. Kurz vor dem Starten der Anwendung geht das System in den Multi-Thread-Modus. Die Software beginnt mit der Ausführung, sobald der Prozessor ein Power-on, ein Reset oder ein Watchdog Signal erhät. Die Software, die ausgeführt wird, ist für die jeweilige CPU eindeutig.\cite{NuttXProjectPDF}
+  Diese Initialisierungssequenz ist ganz einfach, weil das System im Single-Thread-Modus läuft. Kurz vor dem Starten der Anwendung geht das System in den Multi-Thread-Modus. Die Software beginnt mit der Ausführung, sobald der Prozessor ein Power-on, ein Reset oder ein Watchdog Signal erhät. Die Software, die ausgeführt wird, ist für die jeweilige CPU eindeutig. \cite{NuttXProjectPDF}
   
      \begin{itemize}
      	\item Setzen des Prozessors in seinen Betriebszustand. Setzen der CPU-Modi und Initialisierung von Co-Prozessoren
@@ -56,30 +51,30 @@
  
  
  \begin{center}
- 	\begin{tabular}{ | l |}
+ 	\begin{tabular}{| l |}
  		\hline
- 		\textbf{Hersteller} 				\\ \hline
- 		ARM7TDMI 							\\ \hline
- 		ARM920T 							\\ \hline
- 		ARM926EJS 							\\ \hline
- 		ARM Cortex-A5						\\ \hline	
- 		ARM Cortex-A8						\\ \hline
- 		ARM Cortex-R4/R4F					\\ \hline
- 		ARM Cortex-M0 						\\ \hline
- 		ARM Cortex-M3 						\\ \hline
- 		ARM Cortex-M4 						\\ \hline
- 		ARM Cortex-M7 						\\ \hline
- 		Atmel 8-bit AVR (AT90USB, ATmega)	\\ \hline
- 		AVR32								\\ \hline
- 		Freescale M68HCS12					\\ \hline
- 		Intel X86							\\ \hline
- 		MicroChip PIC32MX (MIPS32 24Kc)		\\ \hline
- 		MicroChip PIC32MZ (MIPS32 M14k)		\\ \hline
- 		Renesas/Hitachi SuperH				\\ \hline
-	 	Renesas M16C/26						\\ \hline
- 		Zilog Z16F ZNeo						\\ \hline
- 		Zilog eZ80 Acclaim					\\ \hline
- 		Zilog Z8Encore						\\ \hline
+ 		\textbf{Hersteller / Architektur} 	\\ \hline
+ 		ARM7TDMI 							\\ 
+ 		ARM920T 							\\ 
+ 		ARM926EJS 							\\
+ 		ARM Cortex-A5						\\ 	
+ 		ARM Cortex-A8						\\ 
+ 		ARM Cortex-R4/R4F					\\
+ 		ARM Cortex-M0 						\\
+ 		ARM Cortex-M3 						\\ 
+ 		ARM Cortex-M4 						\\
+ 		ARM Cortex-M7 						\\ 
+ 		Atmel 8-bit AVR (AT90USB, ATmega)	\\ 
+ 		AVR32								\\ 
+ 		Freescale M68HCS12					\\ 
+ 		Intel X86							\\ 
+ 		MicroChip PIC32MX (MIPS32 24Kc)		\\ 
+ 		MicroChip PIC32MZ (MIPS32 M14k)		\\ 
+ 		Renesas/Hitachi SuperH				\\ 
+	 	Renesas M16C/26						\\ 
+ 		Zilog Z16F ZNeo						\\ 
+ 		Zilog eZ80 Acclaim					\\ 
+ 		Zilog Z8Encore						\\ 
  		Zilog Z80 							\\ \hline
  	\end{tabular}
  \end{center}
@@ -94,14 +89,14 @@
   \begin{center}
   	\begin{tabular}{ | l | l |}
   		\hline
-  		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
-  		DHCP 						& ADC 		\\ \hline
-  		HTTP						& CAN		\\ \hline
-	  	ICMP /  ICMPv6 / ICMPv2		& GPIO		\\ \hline
-  		IPv4 / IPv6					& I2C	 	\\ \hline
-  		TCP	/ IP					& PWM		\\ \hline
-  		NFR							& SPI		\\ \hline
-  		UDP / APR					& UART		\\ \hline
+  		\textbf{Protokoll} 		& \textbf{Subsystem} \\ \hline
+  		DHCP 						& ADC 		\\ 
+  		HTTP						& CAN		\\ 
+	  	ICMP /  ICMPv6 / ICMPv2		& GPIO		\\ 
+  		IPv4 / IPv6					& I2C	 	\\ 
+  		TCP	/ IP					& PWM		\\ 
+  		NFR							& SPI		\\ 
+  		UDP / APR					& UART		\\ 
   		6LoWPAN 					& USB		\\ \hline
   	\end{tabular}
   \end{center}

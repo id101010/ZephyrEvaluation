@@ -1,8 +1,8 @@
 % !TeX encoding = ISO-8859-1
-\chapter{Zephyr-Overview}
+\chapter{Das RTOS Zephyr}
 \label{chap:overview}
 
-\section{Übersicht Zephyr-OS}
+\section{Übersicht Zephyr}
 
 Zephyr ist laut Beschreibung der Linux-Foundation \cite{LinuxFoundation} ein Open-Source-Echtzeitbetriebssystem, speziell optimiert für Anwendungen im Internet der Dinge. Konkret also für Glühlampen, Heizungsthermostate und andere Alltagsgeräte mit Internet-Anbindung.
 
@@ -16,7 +16,7 @@ Dieses Lizenzierungsmodell kommt Firmen und Unternehmen entgegen, welche den Ein
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.7\linewidth]{bilder/zephyr_components.jpg}
-	\caption{Komponenten und Übersicht des Zephyr RTOS}
+	\caption{Grafik der Komponenten und Übersicht des Zephyr RTOS von der Projektseite}
 	\label{fig:components}
 \end{figure}
 
@@ -47,7 +47,7 @@ Das Zephyr OS setzt auf eine Kombination von Nano- und Mikrokernel. Dadurch soll
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\linewidth]{bilder/zephyr_rtos_concept.jpg}
-	\caption{Übersicht über den Nano- und Mikrokernel des Zephyr-Betriebssytems}
+	\caption{Übersicht über den Nano- und Mikrokernel des Zephyr-Betriebssytems von der Projektseite}
 	\label{fig:components}
 \end{figure}
 
@@ -59,19 +59,19 @@ Momentan unterstützt der Zephyr-Kernel, gemäss Angaben auf der Projektseite, Pro
 Zephyrapplikationen können mittels SDK aber auch für System-Emulatoren wie QEMU kompiliert werden. Folgende Hardware wird zum Zeitpunkt unserer Projektarbeit unterstützt:
 
 \begin{center}
-	\begin{tabular}{ | l | l | l |}
+	\begin{tabular}{ | l  l  l | }
 		\hline
-		\textbf{ARC}		& \textbf{ARM} 		& \textbf{X86}  \\ \hline
-		Arduino 101			& 96B-Carbon		& Galileo Gen1 Gen2   \\ \hline
-		EDesignWare EM		& 96B-Nitrogen		& Minnowboard Max \\ \hline
-		Emulation / QEMU	& Arduino Due		& Quark D2000 CRB	\\ \hline
-							& Hexiwear		 	& Emulation / QEMU	\\ \hline
-							& NXP FRDM-K64		&					\\ \hline
-							& OLIMEXINO-STM32	&					\\ \hline	
-							& nRF51-PCA10028	&					\\ \hline
-							& nRF52-PCA10040	&					\\ \hline
-							& nRF52840-PCA10056	&					\\ \hline
-							& V2M Beetle		&					\\ \hline
+		\textbf{ARC}		& \textbf{ARM} 		& \textbf{X86}  	\\ \hline
+		Arduino 101			& 96B-Carbon		& Galileo Gen1 Gen2 \\ 
+		EDesignWare EM		& 96B-Nitrogen		& Minnowboard Max 	\\ 
+		Emulation / QEMU	& Arduino Due		& Quark D2000 CRB	\\ 
+							& Hexiwear		 	& Emulation / QEMU	\\ 
+							& NXP FRDM-K64		&					\\ 
+							& OLIMEXINO-STM32	&					\\ 	
+							& nRF51-PCA10028	&					\\ 
+							& nRF52-PCA10040	&					\\ 
+							& nRF52840-PCA10056	&					\\ 
+							& V2M Beetle		&					\\ 
 							& Emulation / QEMU	&					\\ 
 		\hline
 	\end{tabular}
@@ -85,15 +85,15 @@ Folgende Tabelle zeigt die Kommunikationsmöglichkeiten sowohl die vom Betriebssy
 	\begin{tabular}{ | l | l |}
 		\hline
 		\textbf{Protokoll} 		& \textbf{System} \\ \hline
-		Bluetooth 4.0 			& ADC 	\\ \hline
-		Bluetooth Low Energy 	& GPIOs \\ \hline
-		CoAP 					& I2C 	\\ \hline
-		HTTP					& IPM 	\\ \hline
-		IEEE 802.15.4			& PWM	\\ \hline
-		IPv4 / IPv6 			& SPI	\\ \hline	
-		MQTT		 			& UART	\\ \hline
-		6LoWPAN 				& 		\\ \hline
-		Radios 					& 		\\ \hline
+		Bluetooth 4.0 			& ADC 	\\ 
+		Bluetooth Low Energy 	& GPIOs \\ 
+		CoAP 					& I2C 	\\ 
+		HTTP					& IPM 	\\ 
+		IEEE 802.15.4			& PWM	\\ 
+		IPv4 / IPv6 			& SPI	\\ 	
+		MQTT		 			& UART	\\ 
+		6LoWPAN 				& 		\\ 
+		Radios 					& 		\\ 
 		Wi-Fi					& 		\\
 		\hline
 	\end{tabular}
@@ -152,7 +152,7 @@ EOF
 
 \subsection{Herunterladen des Zephyr-Softwarearchives}
 
-Das gesamte Repository von Zephyr wird von der Linux Foundation mit einem Gerrit-Backend zur Verfügung gestellt. Der Code lässt sich bequem mittels ''git'' klonen.
+Das gesamte Repository von Zephyr wird von der Linux Foundation mit einem Gerrit-Backend zur Verfügung gestellt. Der Code lässt sich bequem mittels Git klonen.
 
 Folgender Befehl lädt das gesamte Zephyr-Repository in den Ordner zephyr-project herunter:
 

@@ -1,5 +1,5 @@
  % !TeX encoding = ISO-8859-1
- \chapter{Contiki-Overview}
+ \chapter{Contiki}
  \label{chap:overview}
  
  \section{Übersicht über Contiki}
@@ -12,7 +12,7 @@
   \begin{figure}[h]
    \centering
    \includegraphics[width=1.0\linewidth]{bilder/Contiki.jpg}
-   \caption{Übersicht über das Contiki OS}
+   \caption{Übersicht über das Contiki OS von der Projektseite}
    \label{fig:components}
   \end{figure}
   
@@ -21,8 +21,8 @@
   Wegen seiner Portabilität wurde und wird dieses System an viele Computer angepasst, wie Atari 8-bit-Rechner oder Apple II. Eine der am aktivsten entwickelten Portierungen ist die auf den C64, die sogar eine ebenfalls von Adam Dunkels entwickelte Ethernetanbindung unterstützt. PCs können Contiki ausführen und es gibt sogar eine Portierung für kleinere Spielkonsolen wie dem Game Boy.
   Daneben findet die Software Einsatz in der Middleware und den Sensoren des RUNES Projekts, Reconfigurable Ubiquitous Networked Embedded Systems.
  
-  Der Contiki-Quellcode wird unter einer 3-Klausel BSD-Lizenz veröffentlicht. Unter dieser Lizenz kann Contiki frei in kommerziellen und nicht-kommerziellen Systemen verwendet werden, solange das Copyright-Header in den Quellcodedateien beibehalten wird.
-  Das Copyright für den Contiki-Quellcode liegt im Besitz der Personen oder Organisationen, die es zu Contiki beigetragen haben, aber jeder hat es unter denselben Bedingungen der BSD-Lizenzbestimmungen mitgeteilt.\cite{ContikiProjectDocumentation}
+  Der Contiki-Quellcode wird unter einer 3-Klausel BSD-Lizenz veröffentlicht. Unter dieser Lizenz kann Contiki frei in kommerziellen und nicht-kommerziellen Systemen verwendet werden, solange der Copyright-Header in den Quellcodedateien beibehalten wird.
+  Das Copyright für den Contiki-Quellcode liegt im Besitz der Personen oder Organisationen, die es zu Contiki beigetragen haben, aber jeder hat es unter denselben Bedingungen der BSD-Lizenzbestimmungen mitgeteilt. \cite{ContikiProjectDocumentation}
   
  
  \section{Ziele}
@@ -30,17 +30,16 @@
   Contiki entstand aus dem Wunsch von Adam Dunkels, unerwartete Dinge mit dem Internet zu verbinden. 2001 wurde der Open-Source-UIP-Stack als kleinerer Cousin zu lwIP entwickelt und verbreitete sich rasch über die Embedded World. Aber uIP war nicht nur in zahlreichen tief eingebetteten Systemen, sondern auch im Internet der Dinge verwendet. 2003 folgte Contiki.
   Im Jahr 2004 wurde das Konzept der Protothreads, das nun die Grundlage für die Prozesse von Contiki bildet, in Contiki eingeführt. Frühe Versionen von Cooja und dem Rime-Stack wurden 2007 mit Contiki 2.0 hinzugefügt. Power-Profiling wurde 2007 entwickelt. Instant Contiki und das Coffee-Dateisystem wurden Anfang 2008 eingeführt. Später führte Cisco den vollständig zertifizierten IPv6-Stack zu Contiki ein.
   2009 und 2010 wurden viele neue Plattformen zu Contiki hinzugefügt und neue Low-Power-Mechanismen entwickelt. 2011 wurden zwei wichtige Mechanismen hinzugefügt: ContikiRPL, für IPv6-Routing und ContikiMAC für schläfrige Router.
-  Im Jahr 2012 wurde Thingsquare gegründet, um Contiki in die Cloud zu bringen.\cite{ContikiProjectDocumentation}
-  
+  Im Jahr 2012 wurde Thingsquare gegründet, um Contiki in die Cloud zu bringen. \cite{ContikiProjectDocumentation}
   
  \section{Aufbau}
  
- Contiki bietet leistungsstarke Low-Power-Internet-Kommunikation. Contiki unterstützt vollständig Standard IPv6 und IPv4, zusammen mit den jüngsten Low-Power-Wireless-Standards: 6lowpan, RPL, CoAP. Mit Contiki's ContikiMAC und schläfrigen Routern können sogar drahtlose Router batteriebetrieben werden.\cite{ContikiProjectDocumentation}
+ Contiki bietet leistungsstarke Low-Power-Internet-Kommunikation. Contiki unterstützt vollständig Standard IPv6 und IPv4, zusammen mit den jüngsten Low-Power-Wireless-Standards: 6lowpan, RPL, CoAP. Mit Contiki's ContikiMAC und schläfrigen Routern können sogar drahtlose Router batteriebetrieben werden. \cite{ContikiProjectDocumentation}
  
    \begin{figure}[h]
    	\centering
    	\includegraphics[width=0.7\linewidth]{bilder/Contiki.png}
-   	\caption{Struktur des Contiki OS}
+   	\caption{Struktur des Contiki OS, der Dokumentation entnommen}
    	\label{fig:components}
    \end{figure}
 
@@ -79,19 +78,18 @@
 
  \section{Unterstützung}
 
- Momentan unterstützt der Contiki-Kernel gemäss Angaben auf der Projektseite \cite{ContikiProjectDocumentation} Prozessoren der Architekturen ARM. Folgende Hardware-Hersteller wurden zum Zeitpunkt unserer Projektarbeit unterstütz:
+ Momentan unterstützt der Contiki-Kernel gemäss Angaben auf der Projektseite \cite{ContikiProjectDocumentation} Prozessoren der Architekturen ARM. Folgende Hardware-Hersteller wurden zum Zeitpunkt unserer Projektarbeit unterstützt:
  
 \begin{center}
-  \begin{tabular}{ | l |}
+  \begin{tabular}{| l |}
 	\hline
-	\textbf{ARM} 				\\ \hline
-	Atmel AVR			 		\\ \hline
-	Microchip pic32mx795f512l 	\\ \hline
-	Microchip pic32mx795f512l	\\ \hline
-	nRF52832 					\\ \hline
-	RL78						\\ \hline
-	TI CC2538					\\ \hline	
-	TI CC2538					\\ \hline	
+	\textbf{Hersteller}  		\\ \hline
+	Atmel AVR			 		\\ 
+	Microchip pic32mx795f512l 	\\ 
+	Microchip pic32mx795f512l	\\
+	nRF52832 					\\ 
+	RL78						\\	
+	TI CC2538					\\ 	
 	TI MSP430 					\\ \hline
  \end{tabular}
 \end{center}
@@ -105,17 +103,17 @@
  \begin{center}
  	\begin{tabular}{ | l | l |}
  		\hline
- 		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
- 		Bluetooth 4.0 			& GPIO 		\\ \hline
- 		CoAP					& I2C		\\ \hline
- 		HTTP					& SPI		\\ \hline
- 		IPv4 / IPv6				& UART	 	\\ \hline
- 		IEEE 802.15.4 		 	& 			\\ \hline
- 		TCP						& 			\\ \hline
- 		UDP / UHCP				& 			\\ \hline
- 		6LoWPAN 				& 			\\ \hline
- 		Radios					& 			\\ \hline
- 		RPL						& 			\\ \hline
+ 		\textbf{Protokoll} 		& \textbf{Subsystem} \\ \hline
+ 		Bluetooth 4.0 			& GPIO 		\\ 
+ 		CoAP					& I2C		\\ 
+ 		HTTP					& SPI		\\ 
+ 		IPv4 / IPv6				& UART	 	\\ 
+ 		IEEE 802.15.4 		 	& 			\\ 
+ 		TCP						& 			\\ 
+ 		UDP / UHCP				& 			\\ 
+ 		6LoWPAN 				& 			\\ 
+ 		Radios					& 			\\ 
+ 		RPL						& 			\\ 
  		Wi-Fi					& 			\\ \hline
  	\end{tabular}
  \end{center}

@@ -1,5 +1,5 @@
  % !TeX encoding = ISO-8859-1
- \chapter{RIOT-Overview}
+ \chapter{RIOT}
  \label{chap:overview}
  
  \section{Übersicht über RIOT}
@@ -14,23 +14,23 @@
   \begin{figure}[h]
   	\centering
   	\includegraphics[width=1.0\linewidth]{bilder/RIOT.png}
-  	\caption{Übersicht über das RIOT}
+  	\caption{Übersicht über das RIOT von der Projektseite}
   	\label{fig:components}
   \end{figure} 
   \vspace{5mm} 
    
- RIOT-Programme können in C und C++ geschrieben werden. Es ist im Gegensatz zu anderen kleinen Betriebssystemen wie TinyOS ein echtes Multithreading verfügbar. Für Linux und MacOS existieren native Portierungen, so dass Anwendungen auf dem Computer geschrieben und dann schnell auf echte Hardware portiert werden können, was das Debugging erleichtern soll. Dabei werden Standardwerkzeuge wie GNU Compiler Collection (GCC), GNU Debugger benutzt.[3] Aufgrund der Herkunft als Betriebssystem für Sensornetzwerke bei der Feuerwehr ist RIOT echtzeitfähig. Teile des POSIX-Standards sind implementiert.
- Der Quellcode liegt auf GitHub und wird von einer freien Entwickler-Community mitentwickelt.\cite{RIOTProjectDocumentation}
- 
+ RIOT-Programme können laut Dokumentation \cite{RIOTProjectDocumentation}
+  in C und C++ geschrieben werden. Es ist im Gegensatz zu anderen kleinen Betriebssystemen wie TinyOS ein echtes Multithreading verfügbar. Für Linux und MacOS existieren native Portierungen, so dass Anwendungen auf dem Computer geschrieben und dann schnell auf echte Hardware portiert werden können, was das Debugging erleichtern soll. Dabei werden Standardwerkzeuge wie GNU Compiler Collection (GCC), GNU Debugger benutzt. Aufgrund der Herkunft als Betriebssystem für Sensornetzwerke bei der Feuerwehr ist RIOT echtzeitfähig. Teile des POSIX-Standards sind implementiert.
+ Der Quellcode liegt auf GitHub und wird von einer freien Entwickler-Community mitentwickelt.
  \section{Aufbau}
  
- Dieser Abschnitt führt Sie durch die Struktur von RIOT. Sobald Sie diese Struktur verstehen, verstehen Sie den RIOT-Code-Basis.
+ Dieser Abschnitt zeigt die Struktur von RIOT. 
  
  \vspace{5mm} 
  \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\linewidth]{bilder/RIOT.jpg}
-  \caption{Struktur von RIOT}
+  \caption{Struktur von RIOT, Bild der Projektseite}
   \label{fig:components}
  \end{figure}
  \vspace{10mm}
@@ -91,30 +91,30 @@
   
   Pkg:
   
-  RIOT unterstützt mehrere externe Bibliotheken z.B. OpenWSN, Microcoap. Die exteren Bibliotheken werden als benutzerdefinierte Makefiles ausgeliefert. Die Bibliothek lädt optional eine Anzahl von Patches herunter, damit RIOT funktioniert. Diese Makefiles und Patches finden Sie im pkg-Verzeichnis.\cite{RIOTProjectDocumentation}
+  RIOT unterstützt mehrere externe Bibliotheken z.B. OpenWSN, Microcoap. Die exteren Bibliotheken werden als benutzerdefinierte Makefiles ausgeliefert. Die Bibliothek lädt optional eine Anzahl von Patches herunter, damit RIOT funktioniert. Diese Makefiles und Patches finden Sie im pkg-Verzeichnis. \cite{RIOTProjectDocumentation}
   
    \vspace{60mm}
   
  \section{Unterstützung}
  
-  Momentan unterstützt der RIOT-Kernel gemäss Angaben auf der Projektseite \cite{RIOTProjectDocumentation} Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurden zum Zeitpunkt unserer Projektarbeit unterstütz:
+  Momentan unterstützt der RIOT-Kernel gemäss Angaben auf der Projektseite \cite{RIOTProjectDocumentation} Prozessoren der Architekturen ARM. Somit kann er sowohl für einen System-Emulator wie z.B. Qemu kompiliert werden als auch für eine unterstützte Hardware. Folgende Hardware-Hersteller wurden zum Zeitpunkt unserer Projektarbeit unterstützt:
 
    
    \begin{center}
-   	\begin{tabular}{ | l |}
+   	\begin{tabular}{| l |}
    		\hline
    		\textbf{Hersteller} 	\\ \hline
-   		Arduino		I 			\\ \hline
-   		ARM architecture 		\\ \hline
-   		Atmel 					\\ \hline
-   		Freescale				\\ \hline
-   		IoT-LAB					\\ \hline	
-   		MSB						\\ \hline	
-   		Nordic Semiconductor 	\\ \hline
-   		Nucleo					\\ \hline
-   		NXP						\\ \hline
-   		PIC microcontroller		\\ \hline
-   		STMicroelectronics		\\ \hline
+   		Arduino					\\ 
+   		ARM architecture 		\\ 
+   		Atmel 					\\ 
+   		Freescale				\\ 
+   		IoT-LAB					\\ 	
+   		MSB						\\ 	
+   		Nordic Semiconductor 	\\ 
+   		Nucleo					\\ 
+   		NXP						\\ 
+   		PIC microcontroller		\\ 
+   		STMicroelectronics		\\ 
    		Texas Instruments		\\ \hline
    	\end{tabular}
    \end{center}
@@ -129,15 +129,15 @@
  \begin{center}
   \begin{tabular}{ | l | l |}
 		\hline
-		\textbf{Protokoll} 		& \textbf{Hardwarekomponente} \\ \hline
-		Bluetooth 4.0 			& ADC 			\\ \hline
-		CoAP / CSMA / CA		& Ethernet		\\ \hline
-		IPv4 / IPv6				& Flash / RAM 	\\ \hline
-		IEEE 802.15.4 		 	& GPIO			\\ \hline
-		NTP / UNTP				& SPI			\\ \hline
-		UDP / UHCP				& UART			\\ \hline
-		6LoWPAN 				& 				\\ \hline
-		Radios					& 				\\ \hline
+		\textbf{Protokoll} 		& \textbf{Subsystem} \\ \hline
+		Bluetooth 4.0 			& ADC 			\\ 
+		CoAP / CSMA / CA		& Ethernet		\\ 
+		IPv4 / IPv6				& Flash / RAM 	\\ 
+		IEEE 802.15.4 		 	& GPIO			\\
+		NTP / UNTP				& SPI			\\ 
+		UDP / UHCP				& UART			\\ 
+		6LoWPAN 				& 				\\ 
+		Radios					& 				\\ 
 		Wi-Fi					& 				\\ \hline
    \end{tabular}
   \end{center}

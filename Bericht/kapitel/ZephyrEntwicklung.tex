@@ -141,10 +141,10 @@ Die Schnittstelle zwischen Board und GDB-Server ist in den meisten Fällen via \a
 Die Firma Nordic setzt beispielsweise bei ihren Boards J-Link von SEGGER ein. Dazu gehört ein GDB-Server und ein J-Link Gerät. Beim nrf52dk ist J-Link bereits auf dem Board verbaut und via USB ansprechbar.
 
 
-\section{Flashen}
+\section{Herunterladen des HEX-Files}
 
 Das Makefile der Zephyr-Build-Tools erlaubt es mittels \textbf{make flash} Software auf Boards direkt herunterzuladen. Jedoch muss beim nrf52 Development-Kit auf proprietäre Software von SEGGER zurückgegriffen werden. Da diese Software nicht quelloffen ist, kann sie nicht mit den Build-Tools ausgeliefert werden.
-Um die Entwicklung von Zephyrapplikationen dennoch zu vereinfachen, ist im Rahmen der Projektarbeit ein kleines Shellskript entstanden, welches die grundlegenden Operationen wie das Erstellen eines Projektes mit Minimalkonfiguration, das Kompilieren einer Applikation oder das Herunterladen eines Binarys auf das nrf52 Development-Kit erlaubt. Die Bedienung des Shellskripts hält sich an die gängigen Unix Standards. Mehr dazu ist im Kapitel 9 zu finden.
+Um die Entwicklung von Zephyr-Applikationen dennoch zu vereinfachen, ist im Rahmen der Projektarbeit ein kleines Shellskript entstanden, welches die grundlegenden Operationen wie das Erstellen eines Projektes mit Minimalkonfiguration, das Kompilieren einer Applikation oder das Herunterladen eines Binarys auf das nrf52 Development-Kit erlaubt. Die Bedienung des Shellskripts hält sich an die gängigen Unix Standards. Mehr dazu ist im Kapitel 9 zu finden.
 
 \newpage
 
