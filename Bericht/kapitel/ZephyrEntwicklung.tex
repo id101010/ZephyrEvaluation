@@ -8,7 +8,7 @@ Das Buildsystem des Zephyr-Kernels basiert auf Kbuild. Kbuild ist das System, we
 
 Um eine Applikation zu erstellen, ist ein Konfigurationsfile für den Kernel notwendig. Das Buildsystem kompiliert dann sowohl den Kernel als auch die Applikation und erstellt ein einziges Binary daraus.
 
-Im folgenden wird unterschieden zwischen dem Kernel-Ordner und dem Applikations-Ordner. Der Kernel-Ordner enthält den vollständigen Quellcode des Kernels, die Standardkonfiguration und die Build Definitionen für den Kernel. Der Applikationsordner enthält den ganzen Quellcode und spezifische Konfigurationen für den Kernel. Im Quellcode der Applikation wird lediglich auf den Kernel gelinkt. Wenn keine neuen Treiber entwickelt werden sollen, beschränkt sich die Applikationsentwicklung ausschliesslich auf die Konfigurationen und den Quellcode im Applikationsverzeichnis. Der Kernel selbst muss nicht verändert werden, da dies vom Buildsystem erledigt wird.
+Im Folgenden wird unterschieden zwischen dem Kernel-Ordner und dem Applikations-Ordner. Der Kernel-Ordner enthält den vollständigen Quellcode des Kernels, die Standardkonfiguration und die Build Definitionen für den Kernel. Der Applikationsordner enthält den ganzen Quellcode und spezifische Konfigurationen für den Kernel. Im Quellcode der Applikation wird lediglich auf den Kernel gelinkt. Wenn keine neuen Treiber entwickelt werden sollen, beschränkt sich die Applikationsentwicklung ausschliesslich auf die Konfigurationen und den Quellcode im Applikationsverzeichnis. Der Kernel selbst muss nicht verändert werden, da dies vom Buildsystem erledigt wird.
 
 \section{Applikationsstruktur}
 
@@ -150,7 +150,7 @@ Um die Entwicklung von Zephyrapplikationen dennoch zu vereinfachen, ist im Rahme
 
 \section{Minimalprogramm mit Zephyr}
 
-Nachfolgend ein Beispiel für Minimalprogramm mit Einbindung des Zephyrkernels. Das Programm enthält die Konfiguration der LED Pinnummern fürs nRF52 Board. Passt man diese jedoch an, sollte es auf jeder Plattform lauffähig sein.
+Nachfolgend ein Beispiel für ein Minimalprogramm mit Einbindung des Zephyrkernels. Das Programm enthält die Konfiguration der LED Pinnummern fürs nRF52 Board. Passt man diese jedoch an, sollte es auf jeder Plattform lauffähig sein.
 
 \begin{lstlisting}[style=customc]
 #include <zephyr.h>
@@ -199,4 +199,4 @@ void main(void)
 
 \end{lstlisting}
 
-Demonstriert wird die Funktionalität der GPIOS und die Debugausgaben auf dem seriellen Terminal. Unter Linuxsystemen werden serielle Geräte welche über einen \ac{FTDI} Chip verfügen meistens unter /dev/ttyACM oder /dev/ttyUSB gemappt. Die Ausgaben sollten mittels seriellem Terminal under diesen Device Knoten lesbar sein. Die serielle Ausgabe von Zephyr erfolgt, sofern nichts anderes konfiguriert wurde mit 1158200 Baud.
+Demonstriert wird die Funktionalität der GPIOS und die Debugausgaben auf dem seriellen Terminal. Unter Linuxsystemen werden serielle Geräte, welche über einen \ac{FTDI} Chip verfügen, meistens unter /dev/ttyACM oder /dev/ttyUSB gemappt. Die Ausgaben sollten mittels seriellem Terminal under diesen Device Knoten lesbar sein. Die serielle Ausgabe von Zephyr erfolgt, sofern nichts anderes konfiguriert wurde, mit 1158200 Baud.
