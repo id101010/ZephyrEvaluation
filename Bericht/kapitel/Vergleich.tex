@@ -2,7 +2,7 @@
  \chapter{Vergleich}
  \label{chap:overview}
  
-Eine unserer Aufgaben war, die bestehenden RTOS mit dem Zephyr-Betriebssystem zu vergleichen. Wir fanden, dass eine Übersichtstabelle für Entwickler, welche sich mit der Evaluation eines passenden RTOS auseinander setzen müssen, sehr hilfreich wäre. Spezifisch wurde der Fokus auf die Kommunikationsmöglichkeiten der jeweiligen OS gelegt, da diese Betriebssysteme vorwiegend beim Internet der Ding(IoT) eingesetzt werden. Diese Tabelle mit den Angaben, vor allem beim Zephyr-Betriebssystem ist mit Vorsicht zu geniessen, da es eine Momentaufnahme des Betriebssystems ist und da an diesem noch laufend weiterentwickelt wird. 
+Eine unserer Aufgaben war, die bestehenden RTOS mit dem Zephyr-Betriebssystem zu vergleichen. Wir fanden, dass eine Übersichtstabelle für Entwickler, welche sich mit der Evaluation eines passenden RTOS auseinander setzen müssen, sehr hilfreich wäre. Spezifisch wurde der Fokus auf die Kommunikationsmöglichkeiten der jeweiligen OS gelegt, da diese Betriebssysteme vorwiegend beim Internet der Ding eingesetzt werden. Diese Tabelle mit den Angaben, vor allem beim Zephyr-Betriebssystem, ist mit Vorsicht zu geniessen, da es eine Momentaufnahme des Betriebssystems ist und da an diesem noch laufend weiterentwickelt wird. 
 
 Was noch speziell zu erwähnen ist; viele der angegebenen Unterstützungen bei FreeRTOS sind von sogenannten Drittanbietern und müssen kostenpflichtig eingekauft werden. Somit ist nur ein kleiner Teil von FreeRTOS auch wirklich Open-Source.
  
@@ -12,8 +12,8 @@ Was noch speziell zu erwähnen ist; viele der angegebenen Unterstützungen bei Fre
  \begin{center}
  	\begin{tabular}{ | l | l | l | l | l | l | l | l |}
  		\hline
- 		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable / Treiber}  & \textbf{Lizenz}\\ \hline
- 		Zephyr		& ADC		 & Bluetooth 4.0 		& ARC	& 10kByte	& Multi-threding services:	& JA & Apache v2.0 \\ \hline
+ 		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable/Treiber}  & \textbf{Lizenz}\\ \hline
+ 		Zephyr		& ADC		 & Bluetooth 4.0 		& ARC	& 10kByte	& Multithreding services:	& JA & Apache v2.0 \\ \hline
 					& GPIO		 & Bluetooth Low Energy	& ARM	&			& non-preemptive fibers		&	 & \\ \hline
 				 	& I2C		 & CoAP					& x86	&			& und prioritybased			&	 & \\ \hline
 				 	& IPM		 & MQTT					&    	&			&							&    & \\ \hline
@@ -31,7 +31,7 @@ Was noch speziell zu erwähnen ist; viele der angegebenen Unterstützungen bei Fre
 		    		& SPI		 & IPv4 / IPv6			&		&			&							&	 & \\ \hline	
 		    		& 		 	 & Wi-Fi				&		&			&							&	 & \\ \hline
 		    		&  			 & 						&		&			&							&	 & \\ \hline
-	    RIOT		& ADC		 & Bluetooth 4.0 		& ARM	& 1.5-5kByte& Unterstützt Multi-threding& JA & LGPL \\ \hline
+	    RIOT		& ADC		 & Bluetooth 4.0 		& ARM	& 1.5-5kByte& Unterstützt Multithreding& JA & LGPL \\ \hline
 				    & GPIO		 & CoAP					& 		&			& 							&	 & \\ \hline
 				    & I2C		 & CSMA / Ca			& 		&			& 							&	 & \\ \hline
 				    & PWM		 & UDP / UHCP			&    	&			&							&    & \\ \hline
@@ -48,7 +48,7 @@ Was noch speziell zu erwähnen ist; viele der angegebenen Unterstützungen bei Fre
   \begin{center}
   	\begin{tabular}{ | l | l | l | l | l | l | l | l |}
   		\hline
-  		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable / Treiber}  & \textbf{Lizenz}\\ \hline
+  		\textbf{RTOS}   & \textbf{Chip to Chip Kommunikation}   & \textbf{Chip to extern Kommunikation} & \textbf{Architekturen} & \textbf{Speicher} & \textbf{Multithreding} & \textbf{Portable/Treiber}  & \textbf{Lizenz}\\ \hline
   		Contiki		& GPIO		 & Bluetooth 4.0 		& ARM	& 10-20kByte& Partial Support			& JA & 3Klausel \\ \hline
   		& I2C		 & CoAP					& 		&			& 							&	 & BSD  \\ \hline
   		& UART		 & HTTP					& 		&			& 							&	 & \\ \hline
@@ -60,7 +60,7 @@ Was noch speziell zu erwähnen ist; viele der angegebenen Unterstützungen bei Fre
   		&  			 & UDP					&		&			&							&	 & \\ \hline
   		&  			 & Wi-Fi				&		&			&							&	 & \\ \hline
   		&  			 & 						&		&			&							&	 & \\ \hline
-  		NuttX		& ADC		 & DHCP 				& ARM	& 15-30kByte& Unterstützt Multi-threding& JA & BSD \\ \hline
+  		NuttX		& ADC		 & DHCP 				& ARM	& 15-30kByte& Unterstützt Multithreding& JA & BSD \\ \hline
   		& CAN		 & HTTP					& 		&			& 							&	 & \\ \hline
   		& GPIO		 & 6loWPAN				& 		&			& 							&	 & \\ \hline
   		& I2C		 & ICMP					&    	&			&							&    & \\ \hline
