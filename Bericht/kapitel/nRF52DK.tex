@@ -9,9 +9,9 @@
 	\label{fig:devkit}
 \end{figure}
 
-Das nRF52 DK ist eine single-Board Entwicklungsplatform welche für die Verwendung von \ac{BLE}, ANT, und proprietären 2.4GHz Protokollen ausgelegt ist. Herzstück des Kits ist das nRF52832 \ac{SoC}.
+Das nRF52 DK ist eine single-Board Entwicklungsplattform, welche für die Verwendung von \ac{BLE}, ANT und proprietären 2.4GHz Protokollen ausgelegt ist. Herzstück des Kits ist das nRF52832 \ac{SoC}.
 
-Die Header sind kompatibel mit allen Arduino Shields des Revisionsstandards 3 was das Kit enorm erweiterbar macht. Weiter besteht die Möglichkeit eine mitgelieferte NFC-Antenne anzuschliessen um NFC-Tags zu lesen. Alle GPIOs sind via Header herausgeführt. Zusätzlich verfügt das Board über 4 LEDs und 4 Taster. 
+Die Header sind kompatibel mit allen Arduino Shields des Revisionsstandards 3, was das Kit enorm erweiterbar macht. Weiter besteht die Möglichkeit eine mitgelieferte NFC-Antenne anzuschliessen, um NFC-Tags zu lesen. Alle GPIOs sind via Header herausgeführt. Zusätzlich verfügt das Board über 4 LEDs und 4 Taster. 
 
 \newpage
 
@@ -24,17 +24,17 @@ Die Header sind kompatibel mit allen Arduino Shields des Revisionsstandards 3 wa
 	\label{fig:schematic}
 \end{figure}
 
-Wie aus dem Schema ersichtlich wird, basiert das Developmentkit auf dem nRF52832 \ac{SoC}. In diesem Chip steckt ein 32bit ARM Cortex M4F welcher mit 32MHz getaktet ist. Der Chip verfügt weiter über einen 2.4GHz Transceiver und \ac{NFC}.
+Wie aus dem Schema ersichtlich wird, basiert das Developmentkit auf dem nRF52832 \ac{SoC}. In diesem Chip steckt ein 32bit ARM Cortex M4F, welcher mit 32MHz getaktet ist. Der Chip verfügt weiter über einen 2.4GHz Transceiver und \ac{NFC}.
 
 \section{Installation der GNU ARM Embedded Toolchain}
 
-Um die Funktion aller Tools und der SDK zu gewährleisten, sollten folgende Installationen ausschliesslich in der hier beschriebenen Reihenfolge ausgeführt werden. Da sich die Installation unter Ubuntu und Arch Linux unterscheiden, sind im nachfolgenden beide Varianten dokumentiert. 
+Um die Funktion aller Tools und der SDK zu gewährleisten, sollten folgende Installationen ausschliesslich in der hier beschriebenen Reihenfolge ausgeführt werden. Da sich die Installation unter Ubuntu und Arch Linux unterscheiden, sind nachfolgend beide Varianten dokumentiert. 
 
 Um die Software auf dem Hostsystem für das nRF52DK kompilieren zu können, benötigen wir eine sogenannte crosscompiler-toolchain. Für ARM basierte Controller ist hier die erste Wahl die gnu-arm-none-eabi Toolchain. Sie lässt sich von folgender Seite beziehen:
 
 \url{https://launchpad.net/gcc-arm-embedded/+download}
 
-Es gilt darauf zu achten, die neueste Version zu verwenden und sich zu notieren, welche Version heruntergeladen wurde, da diese später im Makefile angegeben werden muss. Die Software sollte im Verzeichnis /opt installiert werden. Die Binaries sollten mit den nötigen Rechten ausgestattet werden. Weiter empfiehlt es sich symbolische Links zu generieren, um die Programme systemweit sichtbar zu machen.
+Es gilt darauf zu achten, die neueste Version zu verwenden und sich zu notieren, welche Version heruntergeladen wurde, da diese später im Makefile angegeben werden muss. Die Software sollte im Verzeichnis /opt installiert werden. Die Binaries sollten mit den nötigen Rechten ausgestattet werden. Weiter empfiehlt es sich, symbolische Links zu generieren, um die Programme systemweit sichtbar zu machen.
 
 Die Befehle dazu lauten:
 
@@ -101,7 +101,7 @@ Die JLink Toolchain sollte auf dem System unter dem Ordner /opt installiert werd
     ln -s /opt/SEGGER/JLink/JLinkGDBServer /usr/bin/JLinkGDBServer
 \end{lstlisting}
 
-SEGGER bietet auch ein Debianpaket an. Dieses kann auf Systemen, welche über den Paketmanager DPKG verfügen mittels \verb|dpkg -i JLink_linux.deb| installiert werden. Dadurch entfällt obiger Installationsaufwand.\newline
+SEGGER bietet auch ein Debianpaket an. Dieses kann auf Systemen, welche über den Paketmanager DPKG verfügen, mittels \verb|dpkg -i JLink_linux.deb| installiert werden. Dadurch entfällt obiger Installationsaufwand.\newline
 
 Unter ArchLinux lässt sich die Software auch aus dem Arch-User-Repository installieren, der Befehl dazu lautet:
 \begin{lstlisting}[style=BashInputStyle]
@@ -121,13 +121,13 @@ Nachdem \ac{GDB} gestartet wurde, lässt sich über folgenden Befehl eine Verbindu
 
 \textbf{(gdb) target remote localhost:1234}
 
-Alternativ kann auch eine Konfigurationsdatei für GDB angelegt werden. Dazu erstellt man im Home-Verzeichnis eine Datei mit dem Namen .gdbinit. Um automatisch auf den lokalen Server zu verbinden ist lediglich die obere Zeile hinzufügen. 
+Alternativ kann auch eine Konfigurationsdatei für GDB angelegt werden. Dazu erstellt man im Home-Verzeichnis eine Datei mit dem Namen .gdbinit. Um automatisch auf den lokalen Server zu verbinden, ist lediglich die obere Zeile hinzufügen. 
 
 \section{Verwendung von nrfjprog}
 
 Nrfjprog ist Teil der Proprietären Softwarewerkzeuge der SDK von Nordic. Es unterstützt das Flashen von Hex-Binarys über SWD oder JTAG. Der Funktionsumfang ist sehr gross, daher sei an dieser Stelle auch noch aufs Helpfile verwiesen.
 
-Um eine bereits kompilierte Beispielapplikation auf das nrf52 Board zu laden sind folgende Befehle in dieser Reihenfolge auszuführen.
+Um eine bereits kompilierte Beispielapplikation auf das nrf52 Board zu laden, sind folgende Befehle in dieser Reihenfolge auszuführen.
 
 \begin{lstlisting}[style=BashInputStyle]
     nrfjprog --eraseall -f nrf52
@@ -143,7 +143,7 @@ Zeile 3 Resetet den SoC, alternativ kann auch der Hardwarereset betätigt werden.
 
 \section{nrf52dk-zephyr-tool}
 
-Das nrf52-zephyr-tool ist ein Werkzeug welches die noch fehlende Funktionalität des Zephyr Build Systemes fürs nRF52DK ersetzen soll. Es vereinfacht das anlegen von neuen Projekten und bietet die möglichkeit ein Binary auf das Developmentkit zu laden. Die Bedienung funktioniert über ein \ac{CLI}.
+Das nrf52-zephyr-tool ist ein Werkzeug, welches die noch fehlende Funktionalität des Zephyr Build Systemes fürs nRF52DK ersetzen soll. Es vereinfacht das Anlegen von neuen Projekten und bietet die Möglichkeit, ein Binary auf das Developmentkit zu laden. Die Bedienung funktioniert über ein \ac{CLI}.
 
 Ein Aufruf der Helpfunktion erzeugt folgende Ausgabe:
 
@@ -163,15 +163,15 @@ create ProjectPath   Creates a new project folder with standard configuration
 \end{lstlisting}
 
 Die ganzen boardspezifischen Konfigurationen und eine Beispielapplikation wurden im Script mittels Base64 Codierung hinzugefügt. Es bedarf daher keiner weiteren Dateien um ein neues Projekt anzulegen.
-Damit das Script ordnungsgemäss funktionert muss folgendes gewährleistet sein:
+Damit das Script ordnungsgemäss funktionert, muss folgendes gewährleistet sein:
 
 \begin{enumerate}
-	\item Das zephyr-environment ist in der aktuellen Shell gesourced
+	\item Das Zephyr-Environment ist in der aktuellen Shell gesourced
 	\item Die Zephyr-SDK ist installiert
 	\item Die nRF5x-Command-Line-Tools sind installiert
 \end{enumerate}
 
-Ein Aufruf des Scrips mit dem Argument \textbf{create} führt dazu dass folgende Ordnerstruktur auf dem Filesystem angelegt wird:
+Ein Aufruf des Scrips mit dem Argument \textbf{create} führt dazu, dass folgende Ordnerstruktur auf dem Filesystem angelegt wird:
 
 \begin{figure}[h]
 	\centering
@@ -180,6 +180,6 @@ Ein Aufruf des Scrips mit dem Argument \textbf{create} führt dazu dass folgende 
 	\label{fig:tree}
 \end{figure}
 
-Das Projekt lässt sich mit dem Argument \textbf{build} kompilieren und anschliessend mit \textbf{flash} auf das Board laden. Der Debugserver von Nordic lässt sich mit \textbf{debug} starten. Anschliessend sollte es möglich sein sich mittels GDB zu verbinden.
+Das Projekt lässt sich mit dem Argument \textbf{build} kompilieren und anschliessend mit \textbf{flash} auf das Board laden. Der Debugserver von Nordic lässt sich mit \textbf{debug} starten. Anschliessend sollte es möglich sein, sich mittels GDB zu verbinden.
 
 Eine wünschenswerte Erweiterung des Scripts wäre der automatische Download und die Installation der Nordic-SDK, der arm-none-eabi-Toolchain und der Zephyr-SDK. 

@@ -11,9 +11,9 @@
   \begin{itemize}
   	\item  FreeRTOS führt nie einen nicht-deterministischen Vorgang aus, wie etwa das Verfolgen einer verknüpften Liste, und zwar innerhalb eines kritischen Abschnitts oder Interrupts.
   	\item Wir sind besonders stolz auf die effiziente Software-Timerimplementierung, die keine CPU-Zeit in Anspruch nimmt, es sei denn, ein Timer muss tatsächlich gewartet werden. Software-Timer enthalten keine Variablen, die bis auf Null gezählt werden müssen.
-  	\item Ebenso benötigen Listen von blockierten (angehängten) Tasks keine zeitraubende periodische Wartung.
+  	\item Ebenso benötigen Listen von blockierten angehängten Tasks keine zeitraubende periodische Wartung.
   	\item Direkt zu Task-Benachrichtigungen ermöglichen eine schnelle Task-Signalisierung mit praktisch keinem RAM-Overhead und können in der Mehrzahl der Inter-Task verwendet werden.
-  	\item Das FreeRTOS-Warteschlangen-Nutzungsmodell schafft es, Einfachheit mit Flexibilität (in einer winzigen Codegröße) zu kombinieren - Attribute, die sich normalerweise gegenseitig ausschließen.
+  	\item Das FreeRTOS-Warteschlangen-Nutzungsmodell schafft es, Einfachheit mit Flexibilität in einer winzigen Codegröße zu kombinieren - Attribute, die sich normalerweise gegenseitig ausschließen.
   \end{itemize}
  
   
@@ -29,7 +29,7 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
  
  \section{Ziele}
  
- Die ursprüngliche Aufgabe des FreeRTOS-Projekts war es, eine kostenlose RTOS-Lösung bereitzustellen, die einfach zu bedienen war. Das heisst, einfach zu erstellen und zu implementieren, auf einem Windows- oder Linux Computer, ohne herauszufinden, welche Quelldateien und welche Pfade erforderlich sind, oder wie die Echtzeit-Debugging-Umgebung konfiguriert wird. Dies wurde durch die Bereitstellung von vorkonfigurierten Beispielprojekten für jeden offiziell unterstützten Board erreicht.
+ Die ursprüngliche Aufgabe des FreeRTOS-Projekts war, eine kostenlose RTOS-Lösung bereitzustellen, die einfach zu bedienen war. Das heisst, einfach zu erstellen und zu implementieren, auf einem Windows- oder Linux Computer, ohne herauszufinden, welche Quelldateien und welche Pfade erforderlich sind, oder wie die Echtzeit-Debugging-Umgebung konfiguriert wird. Dies wurde durch die Bereitstellung von vorkonfigurierten Beispielprojekten für jedes offiziell unterstützte Board erreicht.
  
  FreeRTOS ist ein skalierbarer Echtzeitkern, der speziell für kleine Embedded-Systeme entwickelt wurde. Zu den Highlights gehören:\cite{FreeRTOSProjectDocumentation}
  
@@ -40,7 +40,7 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
  	\item SafeRTOS-Produkt soll ein hohes Maß an Vertrauen in die Codeintegrität schaffen
  	\item Enthält einen Tickless-Modus für Anwendungen mit geringer Leistung
  	\item Unterstützt viele unterschiedliche Boards und Kommunikationsprotokolle
- 	\item RTOS-Objekte (Tasks, Warteschlangen, Semaphoren, Software-Timer, Mutexes und Ereignisgruppen) können entweder mit dynamisch oder statisch zugewiesenem RAM erstellt werden
+ 	\item RTOS-Objekte wie Tasks, Warteschlangen, Semaphoren, Software-Timer, Mutexes und Ereignisgruppen können entweder mit dynamisch oder statisch zugewiesenem RAM erstellt werden
  	\item Unterstützt sowohl Echtzeitaufgaben als auch Co-Routinen.
  	\item Mutexes mit Prioritätsvererbung
  	\item Effiziente Software-Timer
@@ -51,13 +51,13 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
 
  \section{Aufbau}
  
- Die Implementierung FreeRTOS ist so konzipiert, dass es klein und einfach ist. Der Kernel selbst besteht aus nur drei C-Dateien. Um den Code lesbar, einfach zu portieren und wartbar zu machen, ist er meistens in C geschrieben, aber es gibt, wenn nötig, einige Montagefunktionen (meistens in architekturspezifischen Schedulerroutinen). FreeRTOS bietet Methoden für mehrere Threads oder Aufgaben, Mutexes, Semaphoren und Software-Timer. Ein Tick-less-Modus ist für Anwendungen mit geringer Leistung vorgesehen. Thread-Prioritäten werden unterstützt. Darüber hinaus gibt es vier Schemata der Speicherzuweisung:
+ Die Implementierung FreeRTOS ist so konzipiert, dass es klein und einfach ist. Der Kernel selbst besteht aus nur drei C-Dateien. Um den Code lesbar, einfach zu portieren und wartbar zu machen, ist er meistens in C geschrieben, aber es gibt, wenn nötig, einige Montagefunktionen meistens in architekturspezifischen Schedulerroutinen. FreeRTOS bietet Methoden für mehrere Threads oder Aufgaben, Mutexes, Semaphoren und Software-Timer. Ein Tick-less-Modus ist für Anwendungen mit geringer Leistung vorgesehen. Thread-Prioritäten werden unterstützt. Darüber hinaus gibt es vier Schemata der Speicherzuweisung:
 
    \begin{itemize}
    	\item Nur Zuweisung
-   	\item Zuweisen und kostenlos mit einem sehr einfachen, schnellen Algorithmus
+   	\item Zuweisen mit einem sehr einfachen und schnellen Algorithmus
    	\item Ein komplexer, aber schnell zuweisbarer und freier Algorithmus mit Speicherkoaleszenz 
-   	\item C-Bibliothek zuzuordnen und kostenlos mit einigen gegenseitigen Ausschluss-Schutz
+   	\item C-Bibliothek
    \end{itemize}
    \vspace{5mm}
    
@@ -69,7 +69,7 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
    	\item Tick-less Option für Low-Power-Anwendungen
    	\item Gleichermaßen gut für Hobbyisten, die neu für Betriebssysteme sind und professionelle Entwickler, die an kommerziellen Produkten arbeiten
    	\item   Der Scheduler kann sowohl für den präventiven als auch für den kooperativen Betrieb konfiguriert werden
-   	\item Coroutine Unterstützung (Coroutine in FreeRTOS ist eine sehr einfache und leichte Aufgabe, die sehr begrenzte Nutzung von Stack hat)
+   	\item Coroutine Unterstützung 
    \end{itemize}
    \vspace{5mm}
  
@@ -80,7 +80,7 @@ Es wird unter der GPL mit einer zusätzlichen Einschränkung und optionaler Ausnah
  
  \section{Unterstützung}
  
- Momentan unterstützt der FreeRTOS-Kernel, gemäss Angaben auf der Projektseite \cite{FreeRTOSProjectDocumentation}, Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurde zum Zeitpunkt unserer Projektarbeit unterstütz:
+ Momentan unterstützt der FreeRTOS-Kernel, gemäss Angaben auf der Projektseite \cite{FreeRTOSProjectDocumentation}, Prozessoren der Architekturen ARM. Somit  kann es sowohl auf einem System-Emulator wie z.B. Qemu kompiliert werden oder auf einer unterstützten Hardware. Folgende Hardware-Hersteller wurden zum Zeitpunkt unserer Projektarbeit unterstütz:
  
  \begin{center}
  \begin{tabular}{ | l |}
